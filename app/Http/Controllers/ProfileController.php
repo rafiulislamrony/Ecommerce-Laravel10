@@ -57,4 +57,18 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $notification = [
+            'message' => 'Successfully Logout',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('login')->with($notification);
+    }
 }
