@@ -619,8 +619,7 @@
     <script src="{{ asset('panel/assets/plugins/pie_chart/pie.active.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
+ 
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}";

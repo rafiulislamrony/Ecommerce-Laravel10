@@ -17,4 +17,20 @@ class AdminController extends Controller
     public function index(){
         return view('admin.home');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $notification = [
+            'message' => 'Admin Successfully Logout',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('admin.login')->with($notification);
+    }
+
+
 }
