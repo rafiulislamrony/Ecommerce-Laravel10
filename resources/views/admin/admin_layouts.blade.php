@@ -29,20 +29,23 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Starlight Responsive Bootstrap 4 Admin Template</title>
+    <title>Admin Ecommerce Dashboard </title>
 
     <!-- vendor css -->
-    <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
-    <link href="../lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <link href="../lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link href="{{ asset('backend/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/lib/Ionicons/css/ionicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
 
     <!-- Starlight CSS -->
-    <link rel="stylesheet" href="../css/starlight.css">
+    <link rel="stylesheet" href="{{ asset('backend/css/starlight.css') }}">
 </head>
 
 <body>
 
+    @guest()
+
+    @else
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
     <div class="sl-sideleft">
@@ -176,7 +179,7 @@
                 <div class="dropdown">
                     <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                         <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-                        <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
+                        <img src="{{ asset('backend/img/img3.jpg') }}" class="wd-32 rounded-circle" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-200">
                         <ul class="list-unstyled user-profile-nav">
@@ -220,7 +223,7 @@
                     <!-- loop starts here -->
                     <a href="" class="media-list-link">
                         <div class="media">
-                            <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img3.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                                 <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
@@ -232,7 +235,7 @@
                     <!-- loop ends here -->
                     <a href="" class="media-list-link">
                         <div class="media">
-                            <img src="../img/img4.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img4.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Samantha Francis</p>
                                 <span class="d-block tx-11 tx-gray-500">3 hours ago</span>
@@ -242,7 +245,7 @@
                     </a>
                     <a href="" class="media-list-link">
                         <div class="media">
-                            <img src="../img/img7.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img7.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Robert Walker</p>
                                 <span class="d-block tx-11 tx-gray-500">5 hours ago</span>
@@ -253,7 +256,7 @@
                     </a>
                     <a href="" class="media-list-link">
                         <div class="media">
-                            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img5.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Larry Smith</p>
                                 <span class="d-block tx-11 tx-gray-500">Yesterday, 8:34pm</span>
@@ -265,7 +268,7 @@
                     </a>
                     <a href="" class="media-list-link">
                         <div class="media">
-                            <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img3.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                                 <span class="d-block tx-11 tx-gray-500">Jan 23, 2:32am</span>
@@ -287,7 +290,7 @@
                     <!-- loop starts here -->
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img8.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth
                                         Bungaos</strong> tagged you and 18 others in a post.</p>
@@ -298,7 +301,7 @@
                     <!-- loop ends here -->
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img9.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa
                                         Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The
@@ -309,7 +312,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img10.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700">20+ new items added are for sale in your <strong
                                         class="tx-medium tx-gray-800">Sale Group</strong></p>
@@ -319,7 +322,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img5.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius
                                         Erving</strong> wants to connect with you on your conversation with <strong
@@ -330,7 +333,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img8.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth
                                         Bungaos</strong> tagged you and 12 others in a post.</p>
@@ -340,7 +343,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img10.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700">10+ new items added are for sale in your <strong
                                         class="tx-medium tx-gray-800">Sale Group</strong></p>
@@ -350,7 +353,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img9.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa
                                         Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The
@@ -361,7 +364,7 @@
                     </a>
                     <a href="" class="media-list-link read">
                         <div class="media pd-x-20 pd-y-15">
-                            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                            <img src="{{ asset('backend/img/img5.jpg') }}" class="wd-40 rounded-circle" alt="">
                             <div class="media-body">
                                 <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius
                                         Erving</strong> wants to connect with you on your conversation with <strong
@@ -550,7 +553,7 @@
                         </div><!-- card-header -->
                         <div class="list-group list-group-flush">
                             <a href="" class="list-group-item list-group-item-action media">
-                                <img src="../img/img10.jpg" alt="">
+                                <img src="{{ asset('backend/img/img10.jpg') }}" alt="">
                                 <div class="media-body">
                                     <div class="msg-top">
                                         <span>Mienard B. Lumaad</span>
@@ -561,7 +564,7 @@
                                 </div><!-- media-body -->
                             </a><!-- list-group-item -->
                             <a href="" class="list-group-item list-group-item-action media">
-                                <img src="../img/img9.jpg" alt="">
+                                <img src="{{ asset('backend/img/img9.jpg') }}" alt="">
                                 <div class="media-body">
                                     <div class="msg-top">
                                         <span>Isidore Dilao</span>
@@ -572,7 +575,7 @@
                                 </div><!-- media-body -->
                             </a><!-- list-group-item -->
                             <a href="" class="list-group-item list-group-item-action media">
-                                <img src="../img/img8.jpg" alt="">
+                                <img src="{{ asset('backend/img/img8.jpg') }}" alt="">
                                 <div class="media-body">
                                     <div class="msg-top">
                                         <span>Kirby Avendula</span>
@@ -583,7 +586,7 @@
                                 </div><!-- media-body -->
                             </a><!-- list-group-item -->
                             <a href="" class="list-group-item list-group-item-action media">
-                                <img src="../img/img7.jpg" alt="">
+                                <img src="{{ asset('backend/img/img7.jpg') }}" alt="">
                                 <div class="media-body">
                                     <div class="msg-top">
                                         <span>Roven Galeon</span>
@@ -619,24 +622,27 @@
         </footer>
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
+    @endguest
 
-    <script src="../lib/jquery/jquery.js"></script>
-    <script src="../lib/popper.js/popper.js"></script>
-    <script src="../lib/bootstrap/bootstrap.js"></script>
-    <script src="../lib/jquery-ui/jquery-ui.js"></script>
-    <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-    <script src="../lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
-    <script src="../lib/d3/d3.js"></script>
-    <script src="../lib/rickshaw/rickshaw.min.js"></script>
-    <script src="../lib/chart.js/Chart.js"></script>
-    <script src="../lib/Flot/jquery.flot.js"></script>
-    <script src="../lib/Flot/jquery.flot.pie.js"></script>
-    <script src="../lib/Flot/jquery.flot.resize.js"></script>
-    <script src="../lib/flot-spline/jquery.flot.spline.js"></script>
+    @yield('admin_content')
 
-    <script src="../js/starlight.js"></script>
-    <script src="../js/ResizeSensor.js"></script>
-    <script src="../js/dashboard.js"></script>
+
+    <script src="{{ asset('backend/lib/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('backend/lib/popper.js/popper.js') }}"></script>
+    <script src="{{ asset('backend/lib/bootstrap/bootstrap.js') }}"></script>
+    <script src="{{ asset('backend/lib/jquery-ui/jquery-ui.js') }}"></script>
+    <script src="{{ asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+    <script src="{{ asset('backend/lib/jquery.sparkline.bower/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('backend/lib/d3/d3.js') }}"></script>
+    <script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js') }}"></script>
+    <script src="{{ asset('backend/lib/chart.js/Chart.js') }}"></script>
+    <script src="{{ asset('backend/lib/Flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('backend/lib/Flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('backend/lib/Flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('backend/lib/flot-spline/jquery.flot.spline.js') }}"></script>
+    <script src="{{ asset('backend/js/starlight.js') }}"></script>
+    <script src="{{ asset('backend/js/ResizeSensor.js') }}"></script>
+    <script src="{{ asset('backend/js/dashboard.js') }}"></script>
 </body>
 
 </html>

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +34,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+// Admin Routes
+Route::get('admin/home', [AdminController::class, 'index'])->name('admin.home');
+Route::get('admin', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('admin', [LoginController::class, 'login']);
+
 
 
