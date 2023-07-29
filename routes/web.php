@@ -41,8 +41,13 @@ require __DIR__.'/auth.php';
 Route::get('admin/home', [AdminController::class, 'index'])->name('admin.home');
 Route::get('admin', [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin', [LoginController::class, 'login']);
-
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+
+// admin password reset
+Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])->name('admin.password.request');
+Route::post('admin/forgot-password', [PasswordResetLinkController::class, 'store'])->name('admin.password.email');
+Route::get('admin/reset-password/{token}', [NewPasswordController::class, 'create'])->name('admin.password.reset');
+Route::post('admin/reset-password', [NewPasswordController::class, 'store'])->name('admin.password.store');
 
 
