@@ -38,6 +38,11 @@
     <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <!-- Data Table Css -->
+    <link href="{{ asset('backend/lib/highlightjs/github.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
+
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/starlight.css') }}">
 </head>
@@ -65,11 +70,11 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="chart-morris.html" class="nav-link">Category</a></li>
+                <li class="nav-item"><a href="{{ route('categories') }}" class="nav-link">Category</a></li>
                 <li class="nav-item"><a href="chart-morris.html" class="nav-link">Sub Category</a></li>
                 <li class="nav-item"><a href="chart-morris.html" class="nav-link">Brand</a></li>
             </ul>
-            
+
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -375,6 +380,14 @@
     <script src="{{ asset('backend/lib/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('backend/lib/jquery-ui/jquery-ui.js') }}"></script>
     <script src="{{ asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+
+    <!-- Data Table Js --->
+    <script src="{{ asset('backend/lib/highlightjs/highlight.pack.js') }}"></script>
+    <script src="{{ asset('backend/lib/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('backend/lib/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
+
+
     <script src="{{ asset('backend/lib/jquery.sparkline.bower/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('backend/lib/d3/d3.js') }}"></script>
     <script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js') }}"></script>
@@ -388,6 +401,34 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+
+
+
+    <!-- Data Table script --->
+    <script>
+        $(function(){
+          'use strict';
+          $('#datatable1').DataTable({
+            responsive: true,
+            language: {
+              searchPlaceholder: 'Search...',
+              sSearch: '',
+              lengthMenu: '_MENU_ items/page',
+            }
+          });
+          $('#datatable2').DataTable({
+            bLengthChange: false,
+            searching: false,
+            responsive: true
+          });
+          // Select2
+          $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        });
+    </script>
+
+    <!-- toastr script --->
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}";
@@ -411,10 +452,31 @@
             }
         @endif
     </script>
+     <!-- Sweet Alert Script --->
 
-
+     <script>
+        $(document).on("click", "#delete", function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+               swal({
+                 title: "Are you Want to delete?",
+                 text: "Once Delete, This will be Permanently Delete!",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+               })
+               .then((willDelete) => {
+                 if (willDelete) {
+                      window.location.href = link;
+                 } else {
+                   swal("Safe Data!");
+                 }
+               });
+           });
+   </script>
 
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
+
 </body>
 
 </html>

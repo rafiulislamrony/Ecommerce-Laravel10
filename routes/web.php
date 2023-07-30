@@ -5,6 +5,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +36,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-
 // Admin Routes
 Route::get('admin/home', [AdminController::class, 'index'])->name('admin.home');
 Route::get('admin', [LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -51,3 +50,5 @@ Route::get('admin/reset-password/{token}', [NewPasswordController::class, 'creat
 Route::post('admin/reset-password', [NewPasswordController::class, 'store'])->name('admin.password.store');
 
 
+//Admin Category Route
+Route::get('admin/categories', [CategoryController::class, 'category'])->name('categories');

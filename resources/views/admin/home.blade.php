@@ -101,12 +101,7 @@
                 </div><!-- card -->
             </div><!-- col-3 -->
         </div><!-- row -->
-
-        
-    </div><!-- sl-pagebody -->
-
-
-
+    </div><!-- sl-pagebody --> 
 </div><!-- sl-mainpanel -->
 
 @endsection
