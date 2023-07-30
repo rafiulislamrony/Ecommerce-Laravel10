@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
 
 Route::get('/dashboard', function () {
