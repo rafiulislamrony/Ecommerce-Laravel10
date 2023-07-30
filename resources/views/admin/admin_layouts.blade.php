@@ -29,7 +29,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Ecommere - Admin Dashboard </title>
+    <title>Ecommerce - Admin Dashboard </title>
 
     <!-- vendor css -->
     <link href="{{ asset('backend/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">

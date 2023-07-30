@@ -52,3 +52,4 @@ Route::post('admin/reset-password', [NewPasswordController::class, 'store'])->na
 
 //Admin Category Route
 Route::get('admin/categories', [CategoryController::class, 'category'])->name('categories');
+Route::post('admin/store/category', [CategoryController::class, 'storeCategory'])->name('store.category');
