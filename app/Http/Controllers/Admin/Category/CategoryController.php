@@ -19,7 +19,7 @@ class CategoryController extends Controller
         $category = Category::all();
         return view('admin.category.category', compact('category'));
     }
-    
+
     public function storeCategory(Request $request){
         $validated = $request->validate([
             'category_name' => 'required|unique:categories|max:255'
@@ -39,6 +39,19 @@ class CategoryController extends Controller
         ];
         return Redirect()->back()->with($notification);
     }
+
+    public function deleteCategory($id){
+        DB::table('categories')->where('id', $id)->delete();
+        // Category::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Category Deleted Successfully',
+            'success' => 'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
 
 
 }

@@ -36,7 +36,7 @@
                             <td>{{ $row->category_name }}</td>
                             <td>
                                 <a href="" class="btn btn-sm btn-info">Edit</a>
-                                <a href="" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                <a href="{{ route('category.delete', $row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                             </td>
                         </tr>
                         @endforeach
