@@ -54,3 +54,6 @@ Route::post('admin/reset-password', [NewPasswordController::class, 'store'])->na
 Route::get('admin/categories', [CategoryController::class, 'category'])->name('categories');
 Route::post('admin/store/category', [CategoryController::class, 'storeCategory'])->name('store.category');
 Route::get('category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+Route::get('category/edit/{id}', [CategoryController::class, 'editCategory'])->name('category.edit');
+Route::post('category/update/{id}', [CategoryController::class, 'updateCategory'])->name('category.update');
+ 

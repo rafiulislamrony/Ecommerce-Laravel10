@@ -3,12 +3,7 @@
 @section('admin_content')
 
 <!-- ########## START: MAIN PANEL ########## -->
-<div class="sl-mainpanel">
-    <nav class="breadcrumb sl-breadcrumb">
-        <a class="breadcrumb-item" href="{{ route('admin.home') }}">StarBox</a>
-        <span class="breadcrumb-item active">Categories</span>
-    </nav>
-
+<div class="sl-mainpanel">  
     <div class="sl-pagebody">
         <div class="sl-page-title">
             <h5>Category Table</h5>
@@ -35,7 +30,7 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{ $row->category_name }}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('category.delete', $row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                             </td>
                         </tr>
