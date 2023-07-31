@@ -53,7 +53,7 @@
     <!--  MODAL -->
     <div id="modaldemo3" class="modal fade">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content tx-size-sm">
+            <div class="modal-content tx-size-sm" style="min-width: 350px;">
                 <div class="modal-header pd-x-20">
                     <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Brand Add</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

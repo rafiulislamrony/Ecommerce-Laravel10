@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\BrandController;
+use App\Http\Controllers\Admin\Category\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +65,8 @@ Route::post('admin/store/brand', [BrandController::class, 'storeBrand'])->name('
 Route::get('brand/delete/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 Route::get('brand/edit/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('brand/update/{id}', [BrandController::class, 'updateBrand'])->name('brand.update');
+
+Route::get('admin/sub/category', [SubCategoryController::class, 'subCategory'])->name('sub.category');
+Route::post('admin/store/subcategory', [SubCategoryController::class, 'storeSubcat'])->name('store.subcategory');
+
 
