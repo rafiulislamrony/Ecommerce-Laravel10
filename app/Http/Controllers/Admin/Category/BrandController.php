@@ -58,7 +58,8 @@ class BrandController extends Controller
     }
 
 
-  public function deleteBrand($id){
+    public function deleteBrand($id)
+    {
         $data = DB::table('brands')->where('id', $id)->first();
         $image = $data->brand_logo;
         unlink($image);
@@ -71,6 +72,44 @@ class BrandController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    public function editBrand($id)
+    {
+        // $category = DB::table('categories')->where('id',$id)->first();
+        $brand = Brand::findOrFail($id);
+        return view('admin.category.edit_brand', compact('brand'));
+    }
 
+    public function updateBrand(Request $request, $id)
+    {
+        $oldlogo = $request->old_logo;
+        $data = array();
+        $data['brand_name'] = $request->brand_name;
+        $image = $request->file('brand_logo');
+        if ($image) {
+            unlink($oldlogo);
+            $image_name = date('dmy_H_s_i');
+            $ext = strtolower($image->getClientOriginalExtension());
+            $image_full_name = $image_name . '.' . $ext;
+            $upload_path = 'media/brand/';
+            $image_url = $upload_path . $image_full_name;
+            $image->move($upload_path, $image_full_name);
+
+            $data['brand_logo'] = $image_url;
+            DB::table('brands')->where('id',$id)->update($data);
+
+            $notification = array(
+                'messege' => 'Brand Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('brands')->with($notification);
+        } else {
+            DB::table('brands')->where('id',$id)->update($data);
+            $notification = array(
+                'messege' => 'Brand Updated Without Image Successfully  ',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('brands')->with($notification);
+        }
+    }
 
 }

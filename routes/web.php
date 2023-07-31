@@ -62,4 +62,6 @@ Route::post('category/update/{id}', [CategoryController::class, 'updateCategory'
 Route::get('admin/brands', [BrandController::class, 'brand'])->name('brands');
 Route::post('admin/store/brand', [BrandController::class, 'storeBrand'])->name('store.brand');
 Route::get('brand/delete/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
+Route::get('brand/edit/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
+Route::post('brand/update/{id}', [BrandController::class, 'updateBrand'])->name('brand.update');
 

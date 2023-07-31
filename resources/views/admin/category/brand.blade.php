@@ -34,7 +34,7 @@
                                 <img src="{{ asset($row->brand_logo) }}" height="70px" width="80px" alt="">
                             </td>
                             <td>
-                                <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('brand.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('brand.delete', $row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                             </td>
                         </tr>
