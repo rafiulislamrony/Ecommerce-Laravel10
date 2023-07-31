@@ -40,6 +40,7 @@ class BrandController extends Controller
 
             $data['brand_logo'] = $image_url;
             $brand = DB::table('brands')->insert($data);
+
             $notification = array(
                 'messege' => 'Brand Inserted Successfully',
                 'alert-type' => 'success'
@@ -57,7 +58,19 @@ class BrandController extends Controller
     }
 
 
+  public function deleteBrand($id){
+        $data = DB::table('brands')->where('id', $id)->first();
+        $image = $data->brand_logo;
+        unlink($image);
 
+        $brand = DB::table('brands')->where('id', $id)->delete();
+
+        $notification = array(
+            'message' => 'brand Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 
 
 }
