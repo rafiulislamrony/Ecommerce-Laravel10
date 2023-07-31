@@ -68,5 +68,5 @@ Route::post('brand/update/{id}', [BrandController::class, 'updateBrand'])->name(
 
 Route::get('admin/sub/category', [SubCategoryController::class, 'subCategory'])->name('sub.category');
 Route::post('admin/store/subcategory', [SubCategoryController::class, 'storeSubcat'])->name('store.subcategory');
-
-
+Route::get('subcategory/delete/{id}', [SubCategoryController::class, 'deleteSubcategory'])->name('subcategory.delete');
+ 

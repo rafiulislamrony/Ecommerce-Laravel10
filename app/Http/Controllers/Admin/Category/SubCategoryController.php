@@ -45,6 +45,15 @@ class SubCategoryController extends Controller
     }
 
 
+    public function deleteSubcategory($id){
+        DB::table('subcategories')->where('id',$id)->delete();
+        $notification = array(
+            'messege' => 'Subcategory Deleted Successfully.',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
 
 
 }
