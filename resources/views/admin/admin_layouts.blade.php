@@ -74,7 +74,6 @@
                 <li class="nav-item"><a href="{{ route('sub.category') }}" class="nav-link">Sub Category</a></li>
                 <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link">Brand</a></li>
             </ul>
-
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -374,7 +373,6 @@
 
     @yield('admin_content')
 
-
     <script src="{{ asset('backend/lib/jquery/jquery.js') }}"></script>
     <script src="{{ asset('backend/lib/popper.js/popper.js') }}"></script>
     <script src="{{ asset('backend/lib/bootstrap/bootstrap.js') }}"></script>
@@ -402,9 +400,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
-
-
-
 
     <!-- Data Table script --->
     <script>
@@ -452,8 +447,8 @@
             }
         @endif
     </script>
-     <!-- Sweet Alert Script --->
 
+     <!-- Sweet Alert Script --->
      <script>
         $(document).on("click", "#delete", function(e){
             e.preventDefault();

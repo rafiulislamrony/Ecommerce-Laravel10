@@ -65,8 +65,10 @@ Route::post('admin/store/brand', [BrandController::class, 'storeBrand'])->name('
 Route::get('brand/delete/{id}', [BrandController::class, 'deleteBrand'])->name('brand.delete');
 Route::get('brand/edit/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
 Route::post('brand/update/{id}', [BrandController::class, 'updateBrand'])->name('brand.update');
-
+//Admin Sub Category
 Route::get('admin/sub/category', [SubCategoryController::class, 'subCategory'])->name('sub.category');
 Route::post('admin/store/subcategory', [SubCategoryController::class, 'storeSubcat'])->name('store.subcategory');
 Route::get('subcategory/delete/{id}', [SubCategoryController::class, 'deleteSubcategory'])->name('subcategory.delete');
- 
+Route::get('subcategory/edit/{id}', [SubCategoryController::class, 'editSubcategory'])->name('subcategory.edit');
+Route::post('subcategory/update/{id}', [SubCategoryController::class, 'updateSubcategory'])->name('subcategory.update');
+

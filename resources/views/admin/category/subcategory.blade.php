@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 
-@section('admin_content') 
+@section('admin_content')
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-mainpanel">
     <div class="sl-pagebody">
@@ -31,7 +31,7 @@
                             <td>{{ $row->category_name }}</td>
                             <td>{{ $row->subcategory_name }}</td>
                             <td>
-                                <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('subcategory.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('subcategory.delete', $row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                             </td>
                         </tr>
