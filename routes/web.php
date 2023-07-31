@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Category\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,8 @@ Route::post('admin/store/category', [CategoryController::class, 'storeCategory']
 Route::get('category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 Route::get('category/edit/{id}', [CategoryController::class, 'editCategory'])->name('category.edit');
 Route::post('category/update/{id}', [CategoryController::class, 'updateCategory'])->name('category.update');
- 
+
+//Admin Brand
+Route::get('admin/brands', [BrandController::class, 'brand'])->name('brands');
+Route::post('admin/store/brand', [BrandController::class, 'storeBrand'])->name('store.brand');
+
