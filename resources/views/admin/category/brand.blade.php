@@ -31,7 +31,7 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{ $row->brand_name }}</td>
                             <td>
-                            <img src="{{ $row->brand_logo }}" height="70px" width="80px" alt="">
+                                <img src="{{ asset($row->brand_logo) }}" height="70px" width="80px" alt="">
                             </td>
                             <td>
                                 <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
