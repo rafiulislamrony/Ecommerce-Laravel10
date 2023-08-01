@@ -32,8 +32,8 @@
                             <td>{{ $row->coupon }}</td>
                             <td>{{ $row->discount }}</td>
                             <td>
-                                <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ route('category.delete', $row->id) }}" class="btn btn-sm btn-danger"
+                                <a href="{{ route('coupon.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('coupon.delete', $row->id) }}" class="btn btn-sm btn-danger"
                                     id="delete">Delete</a>
                             </td>
                         </tr>
@@ -76,8 +76,8 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="text1">Coupon Discount (%)</label>
-                            <input type="text" class="form-control" id="text1" name="discount"
+                            <label for="text2">Coupon Discount (%)</label>
+                            <input type="text" class="form-control" id="text2" name="discount"
                                 placeholder="Coupon Discount">
 
                             @if ($errors->any())
