@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\BrandController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
+use App\Http\Controllers\Admin\Category\NewslaterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +80,9 @@ Route::post('admin/coupon/store', [CouponController::class, 'CouponStore'])->nam
 Route::get('admin/coupon/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
 Route::get('admin/coupon/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
 Route::post('admin/coupon/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+
+//Admin Newslaters
+Route::get('admin/newslater', [NewslaterController::class, 'Newslater'])->name('admin.newslater');
+// Frontend Newslaters
+Route::post('store/newslater', [NewslaterController::class, 'storeNewslater'])->name('store.newslater');
 
