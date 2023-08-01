@@ -14,26 +14,60 @@ class NewslaterController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function Newslater(){
+    public function Newslater()
+    {
         $sub = DB::table('newslaters')->get();
         return view('admin.newslater.newslater', compact('sub'));
     }
-    public function storeNewslater(Request $request){
+    public function storeNewslater(Request $request)
+    {
         $request->validate([
-            'email' => 'required',
-            'discount' => 'required',
+            'email' => 'required|unique:newslaters|max:55',
         ]);
 
         $data = array();
-        $data['coupon'] = $request->coupon;
-        $data['discount'] = $request->discount;
-        DB::table('coupons')->insert($data);
+        $data['email'] = $request->email;
+        DB::table('newslaters')->insert($data);
 
         $notification = [
-            'message' => 'Coupon Added Successfully.',
+            'message' => 'Thanks for Subscribing.',
             'alert-type' => 'success',
         ];
         return Redirect()->back()->with($notification);
     }
+
+    public function deleteSubscriber($id)
+    {
+        DB::table('newslaters')->where('id', $id)->delete();
+        $notification = [
+            'message' => 'Subscriber Deleted Successfully.',
+            'alert-type' => 'success',
+        ];
+        return Redirect()->back()->with($notification);
+    }
+
+
+
+public function deleteSubscribers(Request $request)
+{
+    $ids = json_decode($request->input('ids'), true);
+
+    if (empty($ids)) {
+        return response()->json(['success' => false, 'message' => 'No subscribers selected.']);
+    }
+
+    DB::table('newslaters')->whereIn('id', $ids)->delete();
+
+    $notification = [
+        'message' => 'Subscribers deleted successfully.',
+        'alert-type' => 'success',
+    ];
+
+    return Redirect()->back()->with($notification);
+}
+
+
+
+
 
 }

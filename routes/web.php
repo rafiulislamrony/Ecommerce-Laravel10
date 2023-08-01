@@ -83,6 +83,10 @@ Route::post('admin/coupon/update/{id}', [CouponController::class, 'CouponUpdate'
 
 //Admin Newslaters
 Route::get('admin/newslater', [NewslaterController::class, 'Newslater'])->name('admin.newslater');
+Route::get('admin/subscriber/delete/{id}', [NewslaterController::class, 'deleteSubscriber'])->name('subscriber.delete');
+Route::post('admin/delete-subscribers', [NewslaterController::class, 'deleteSubscribers'])->name('delete.subscribers'); 
 // Frontend Newslaters
 Route::post('store/newslater', [NewslaterController::class, 'storeNewslater'])->name('store.newslater');
+
+
 
