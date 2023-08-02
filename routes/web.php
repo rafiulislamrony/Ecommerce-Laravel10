@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Category\BrandController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,9 +85,14 @@ Route::post('admin/coupon/update/{id}', [CouponController::class, 'CouponUpdate'
 //Admin Newslaters
 Route::get('admin/newslater', [NewslaterController::class, 'Newslater'])->name('admin.newslater');
 Route::get('admin/subscriber/delete/{id}', [NewslaterController::class, 'deleteSubscriber'])->name('subscriber.delete');
-Route::post('admin/delete-subscribers', [NewslaterController::class, 'deleteSubscribers'])->name('delete.subscribers'); 
+Route::post('admin/delete-subscribers', [NewslaterController::class, 'deleteSubscribers'])->name('delete.subscribers');
 // Frontend Newslaters
 Route::post('store/newslater', [NewslaterController::class, 'storeNewslater'])->name('store.newslater');
+
+
+//Admin Product Route
+Route::get('admin/product/all', [ProductController::class, 'index'])->name('all.product');
+Route::get('admin/product/add', [ProductController::class, 'create'])->name('add.product');
 
 
 
