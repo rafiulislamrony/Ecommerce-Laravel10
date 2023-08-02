@@ -1,5 +1,4 @@
 @extends('admin.admin_layouts')
-<link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
 
 @section('admin_content')
 
@@ -24,26 +23,32 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="product_name" placeholder="Enter product name">
+                                <input class="form-control" type="text" name="product_name"
+                                    placeholder="Enter product name">
                             </div>
                         </div><!-- col-4 -->
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Product Code: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="product_code" placeholder="Enter Product Code">
+                                <input class="form-control" type="text" name="product_code"
+                                    placeholder="Enter Product Code">
                             </div>
                         </div><!-- col-4 -->
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-control-label">Product Quantity: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="product_quantity" placeholder="Product Quantity">
+                                <label class="form-control-label">Product Quantity: <span
+                                        class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="product_quantity"
+                                    placeholder="Product Quantity">
                             </div>
                         </div><!-- col-4 -->
 
                         <div class="col-lg-4">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">Product Category: <span class="tx-danger">*</span></label>
-                                <select name="category_id" class="form-control select2" data-placeholder="Choose country">
+                                <label class="form-control-label">Product Category: <span
+                                        class="tx-danger">*</span></label>
+                                <select name="category_id" class="form-control select2"
+                                    data-placeholder="Choose country">
                                     <option label="Choose country"></option>
                                     <option value="USA">United States of America</option>
                                 </select>
@@ -52,8 +57,10 @@
 
                         <div class="col-lg-4">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">Product Sub-Category: <span class="tx-danger">*</span></label>
-                                <select name="subcategory_id" class="form-control select2" data-placeholder="Choose country">
+                                <label class="form-control-label">Product Sub-Category: <span
+                                        class="tx-danger">*</span></label>
+                                <select name="subcategory_id" class="form-control select2"
+                                    data-placeholder="Choose country">
                                     <option label="Choose country"></option>
                                     <option value="USA">United States of America</option>
                                 </select>
@@ -62,7 +69,8 @@
 
                         <div class="col-lg-4">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">Product Brand: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">Product Brand: <span
+                                        class="tx-danger">*</span></label>
                                 <select name="brand_id" class="form-control select2" data-placeholder="Choose country">
                                     <option label="Choose country"></option>
                                     <option value="USA">United States of America</option>
@@ -73,32 +81,123 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Product Size: <span class="tx-danger">*</span></label>
-                                <input id="size" type="text" name="product_size" data-role="tagsinput" class="form-control"/>
+                                <input id="size" type="text" name="product_size" data-role="tagsinput"
+                                    class="form-control" />
                             </div>
                         </div><!-- col-4 -->
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
-                                <input id="color" type="text" name="product_color" data-role="tagsinput" class="form-control"/>
+                                <label class="form-control-label">Product Color: <span
+                                        class="tx-danger">*</span></label>
+                                <input id="color" type="text" name="product_color" data-role="tagsinput"
+                                    class="form-control" />
                             </div>
                         </div><!-- col-4 -->
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="form-control-label">Product Selling Price: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="selling_price" placeholder="Product Selling Price">
+                                <label class="form-control-label">Product Selling Price: <span
+                                        class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="selling_price"
+                                    placeholder="Product Selling Price">
                             </div>
                         </div><!-- col-4 -->
 
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
-                                <input class="form-control" id="summernote" name="product_details" >
+                                <label class="form-control-label">Product Details: <span
+                                        class="tx-danger">*</span></label>
+                                <input class="form-control" id="summernote" name="product_details">
                             </div>
                         </div><!-- col-4 -->
 
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label">Video Link<span class="tx-danger">*</span></label>
+                                <input class="form-control" name="video_link" placeholder="Video Link">
+                            </div>
+                        </div><!-- col-4 -->
 
-
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Image One (Main Thumbnail): <span
+                                        class="tx-danger">*</span></label> <br>
+                                <label class="custom-file">
+                                    <input type="file" id="file" class="custom-file-input" name="image_one">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
+                                <br>
+                                <label class="custom-file">
+                                    <input type="file" id="file" class="custom-file-input" name="image_two">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                            </div>
+                        </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
+                                <br>
+                                <label class="custom-file">
+                                    <input type="file" id="file" class="custom-file-input" name="image_three">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                            </div>
+                        </div><!-- col-4 -->
                     </div><!-- row -->
+
+                    <hr> <br>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="main_slider">
+                                <span> Main Slider</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="hot_deal">
+                                <span> Hot Deal</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="bast_rated">
+                                <span> Bast Rated</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="trend">
+                                <span> Tranding Products</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="mid_slider">
+                                <span> Mid Slider</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="hot_new">
+                                <span>Hot New</span>
+                            </label>
+                        </div>
+                    </div> <!-- End ROw -->
+                    <br><br>
+                    <div class="form-layout-footer">
+                        <button class="btn btn-info mg-r-5">Submit Form</button>
+                    </div>
+
                 </div>
 
             </form>
