@@ -19,7 +19,14 @@ class ProductController extends Controller
        $product =  DB::table('products')->get();
     }
     public function create(){
-      return view('admin.product.create');
+        $category = DB::table('categories')->get();
+        $brand = DB::table('brands')->get();
+      return view('admin.product.create', compact('category','brand'));
+    }
+
+    public function GetSubcat($category_id){
+        $cat = DB::table('subcategories')->where('category_id', $category_id)->get();
+        return json_encode($cat);
     }
 
 }

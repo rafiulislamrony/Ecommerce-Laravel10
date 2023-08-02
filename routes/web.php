@@ -94,5 +94,8 @@ Route::post('store/newslater', [NewslaterController::class, 'storeNewslater'])->
 Route::get('admin/product/all', [ProductController::class, 'index'])->name('all.product');
 Route::get('admin/product/add', [ProductController::class, 'create'])->name('add.product');
 
+// Sub Category Show by ajax
+Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubcat']);
+
 
 
