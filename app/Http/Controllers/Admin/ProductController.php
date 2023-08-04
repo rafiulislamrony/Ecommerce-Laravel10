@@ -43,7 +43,7 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request)
     {
-
+        $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_code'] = $request->product_code;
         $data['product_quantity'] = $request->product_quantity;
@@ -137,8 +137,6 @@ class ProductController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-
-
     public function viewProduct($id)
     {
         $product = DB::table('products')
@@ -159,6 +157,48 @@ class ProductController extends Controller
         $subcategory =DB::table('subcategories')->get();
         $brand =DB::table('brands')->get();
         return view('admin.product.edit', compact('product', 'category','subcategory','brand'));
+    }
+
+    public function updateProduct(Request $request, $id){
+
+        $data = array();
+        $data['product_name'] = $request->product_name;
+        $data['product_code'] = $request->product_code;
+        $data['product_quantity'] = $request->product_quantity;
+        $data['category_id'] = $request->category_id;
+        $data['subcategory_id'] = $request->subcategory_id;
+        $data['brand_id'] = $request->brand_id;
+        $data['product_size'] = $request->product_size;
+        $data['product_color'] = $request->product_color;
+        $data['selling_price'] = $request->selling_price;
+        $data['product_details'] = $request->product_details;
+
+        $data['video_link'] = $request->video_link;
+        $data['discount_price'] = $request->discount_price;
+
+        $data['main_slider'] = $request->main_slider;
+        $data['hot_deal'] = $request->hot_deal;
+        $data['bast_rated'] = $request->bast_rated;
+        $data['trend'] = $request->trend;
+        $data['mid_slider'] = $request->mid_slider;
+        $data['hot_new'] = $request->hot_new;
+        $data['status'] = 1;
+
+        $update = DB::table('products')->where('id', $id)->update($data);
+
+        if($update){
+            $notification = [
+                'message' => 'Product Data Updated Successfully.',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->back()->with($notification);
+        }else{
+            $notification = [
+                'message' => 'Nothid To Update.',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->route('all.product')->with($notification);
+        } 
     }
 
 }

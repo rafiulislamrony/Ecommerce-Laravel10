@@ -100,6 +100,7 @@ Route::get('admin/product/active/{id}', [ProductController::class, 'activeProduc
 Route::get('admin/product/delete/{id}', [ProductController::class, 'deleteProduct'])->name('delete.product');
 Route::get('admin/product/view/{id}', [ProductController::class, 'viewProduct'])->name('view.product');
 Route::get('admin/product/edit/{id}', [ProductController::class, 'editProduct'])->name('edit.product');
+Route::post('admin/product/update/{id}', [ProductController::class, 'updateProduct'])->name('update.product');
 
 // Sub Category Show by ajax
 Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubcat']);
