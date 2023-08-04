@@ -12,8 +12,7 @@
 
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Product List
-                <a href="{{ route('add.product') }}" class="btn btn-sm btn-primary" style="float: right"
-                    data-toggle="modal" data-target="#modaldemo3">Add New</a>
+                <a href="{{ route('add.product') }}" class="btn btn-sm btn-primary" style="float: right" >Add New</a>
             </h6>
             <div class="table-wrapper">
                 <table id="datatable1" class="table display responsive nowrap">
@@ -60,7 +59,7 @@
                                 <a href="{{ route('brand.edit', $row->id) }}" class="btn btn-sm btn-info"  title="Edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ route('brand.delete', $row->id) }}" class="btn btn-sm btn-danger"  title="Delete"
+                                <a href="{{ route('delete.product', $row->id) }}" class="btn btn-sm btn-danger"  title="Delete"
                                     id="delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
