@@ -12,10 +12,13 @@
 
     <div class="sl-pagebody">
         <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">New Product Add</h6>
+            <h6 class="card-body-title">New Product Add
+                <a href="{{ route('all.product') }}" class="btn btn-sm btn-success" style="float: right"
+                    data-toggle="modal" data-target="#modaldemo3" id="btnAllDelete">All Product</a>
+            </h6>
             <p class="mg-b-20 mg-sm-b-30">New Product Add From</p>
 
-            <form action="" method="POST" action="" enctype="multipart/form-data">
+            <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-layout">
@@ -110,7 +113,9 @@
                             <div class="form-group">
                                 <label class="form-control-label">Product Details: <span
                                         class="tx-danger">*</span></label>
-                                <input class="form-control" id="summernote" name="product_details">
+                                <textarea class="form-control" id="summernote" name="product_details">
+
+                                </textarea>
                             </div>
                         </div><!-- col-4 -->
 
@@ -126,8 +131,8 @@
                                 <label class="form-control-label">Image One (Main Thumbnail): <span
                                         class="tx-danger">*</span></label> <br>
                                 <label class="custom-file">
-                                    <input class="d-block" type="file" id="file" class="custom-file-input" name="image_one"
-                                    onchange="readURL(this);" >
+                                    <input class="d-block" type="file" id="file" class="custom-file-input"
+                                        name="image_one" onchange="readURL(this);">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="one" alt="">
                                 </label>
@@ -138,7 +143,8 @@
                                 <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
                                 <br>
                                 <label class="custom-file">
-                                    <input onchange="readURL2(this);" class="d-block" type="file" id="file" class="custom-file-input" name="image_two">
+                                    <input onchange="readURL2(this);" class="d-block" type="file" id="file"
+                                        class="custom-file-input" name="image_two">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="two" alt="">
                                 </label>
@@ -149,7 +155,8 @@
                                 <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
                                 <br>
                                 <label class="custom-file">
-                                    <input class="d-block" onchange="readURL3(this);" type="file" id="file" class="custom-file-input" name="image_three">
+                                    <input class="d-block" onchange="readURL3(this);" type="file" id="file"
+                                        class="custom-file-input" name="image_three">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="three" alt="">
                                 </label>
