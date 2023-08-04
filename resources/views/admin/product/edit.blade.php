@@ -224,7 +224,8 @@
             <div class="card pd-20 pd-sm-40">
                 <h6 class="card-body-title">Update Product Images</h6>
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update.productimage', $product->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row align-items-center">
                         <div class="col-lg-6">
@@ -233,8 +234,9 @@
                                         class="tx-danger">*</span></label> <br>
                                 <label class="custom-file" style="width: 80%;">
                                     <input class="d-block" type="file" id="file" class="custom-file-input"
-                                        name="image_one" onchange="readURL(this);" required="">
+                                        name="image_one" onchange="readURL(this);">
                                     <span class="custom-file-control"></span>
+                                    <input type="hidden" name="old_one" value="{{ $product->image_one  }}" >
                                     <img class="mt-4" src="#" id="one" alt=""> <br>
                                     <br>
                                 </label>
@@ -252,7 +254,8 @@
                                 <br>
                                 <label class="custom-file" style="width: 80%;">
                                     <input onchange="readURL2(this);" class="d-block" type="file" id="file"
-                                        class="custom-file-input" name="image_two" required="">
+                                        class="custom-file-input" name="image_two">
+                                        <input type="hidden" name="old_two" value="{{ $product->image_two  }}">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="two" alt="">
                                 </label>
@@ -262,20 +265,21 @@
                             <img class="mt-4" src="{{ asset($product->image_two) }}" style="width:200px" alt="">
                         </div>
                     </div>
-                    <div class="row align-items-center" >
+                    <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
                                 <br>
                                 <label class="custom-file" style="width: 80%;">
                                     <input class="d-block" onchange="readURL3(this);" type="file" id="file"
-                                        class="custom-file-input" name="image_three" required="">
+                                        class="custom-file-input" name="image_three">
                                     <span class="custom-file-control"></span>
+                                    <input type="hidden" name="old_three" value="{{ $product->image_three  }}">
                                     <img class="mt-4" src="#" id="three" alt="">
                                 </label>
                             </div>
                         </div><!-- col-4 -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-6"> 
                             <img class="mt-4" src="{{ asset($product->image_three) }}" style="width:200px" alt="">
                         </div>
 
