@@ -12,114 +12,85 @@
 
     <div class="sl-pagebody">
         <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">New Product Add
-                <a href="{{ route('all.product') }}" class="btn btn-sm btn-success" style="float: right"
-                    data-toggle="modal" data-target="#modaldemo3" id="btnAllDelete">All Product</a>
-            </h6>
-            <p class="mg-b-20 mg-sm-b-30">New Product Add From</p>
+            <h6 class="card-body-title">Product Details Page </h6>
 
             <div class="form-layout">
                 <div class="row mg-b-25">
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
-                            <input class="form-control" type="text" name="product_name"
-                                placeholder="Enter product name">
+
+                            <br> <strong> {{ $product->product_name }}</strong>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Product Code: <span class="tx-danger">*</span></label>
-                            <input class="form-control" type="text" name="product_code"
-                                placeholder="Enter Product Code">
+                            <br> <strong> {{ $product->product_code }}</strong>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Product Quantity: <span
-                                    class="tx-danger">*</span></label>
-                            <input class="form-control" type="text" name="product_quantity"
-                                placeholder="Product Quantity">
+                            <label class="form-control-label">Product Quantity: <span class="tx-danger">*</span></label>
+                            <br> <strong> {{ $product->product_quantity }}</strong>
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
-                            <label class="form-control-label">Product Category: <span
-                                    class="tx-danger">*</span></label>
-                            <select name="category_id" class="form-control select2"
-                                data-placeholder="Choose Category">
-                                <option label="Choose Category"></option>
-                                @foreach ($category as $row)
-                                <option value="{{ $row->id }}"> {{ $row->category_name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-control-label">Product Category: <span class="tx-danger">*</span></label>
+                            <br> <strong> {{ $product->category_name }}</strong>
+
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
-                            <label class="form-control-label">Product Sub-Category: <span
-                                    class="tx-danger">*</span></label>
-                            <select name="subcategory_id" class="form-control select2"
-                                data-placeholder="Choose Sub-Category">
-                                <option label="Choose  Sub-Category"></option>
-                            </select>
+                            <label class="form-control-label">Product Sub-Category:
+                                <span class="tx-danger">*</span></label>
+                            <br> <strong> {{ $product->subcategory_name }}</strong>
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-4">
                         <div class="form-group mg-b-10-force">
-                            <label class="form-control-label">Product Brand: <span
-                                    class="tx-danger">*</span></label>
-
-                            <select name="brand_id" class="form-control select2" data-placeholder="Choose Brand">
-                                <option label="Choose Brand"></option>
-                                @foreach ($brand as $row)
-                                <option value="{{ $row->id }}"> {{ $row->brand_name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-control-label">Product Brand: <span class="tx-danger">*</span></label>
+                            <br> <strong> {{ $product->brand_name }}</strong>
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Product Size: <span class="tx-danger">*</span></label>
-                            <input id="size" type="text" name="product_size" data-role="tagsinput"
-                                class="form-control" />
+                            <br> <strong> {{ $product->product_size }}</strong>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Product Color: <span
-                                    class="tx-danger">*</span></label>
-                            <input id="color" type="text" name="product_color" data-role="tagsinput"
-                                class="form-control" />
+                            <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
+
+                            <br> <strong> {{ $product->product_color }}</strong>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Product Selling Price: <span
                                     class="tx-danger">*</span></label>
-                            <input class="form-control" type="text" name="selling_price"
-                                placeholder="Product Selling Price">
+                            <br> <strong> {{ $product->selling_price }}</strong>
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="form-control-label">Product Details: <span
-                                    class="tx-danger">*</span></label>
-                            <textarea class="form-control" id="summernote" name="product_details">
-
-                            </textarea>
+                            <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
+                            <strong> {!! $product->product_details !!}</strong>
                         </div>
                     </div><!-- col-4 -->
 
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label">Video Link<span class="tx-danger">*</span></label>
-                            <input class="form-control" name="video_link" placeholder="Video Link">
+                            <br> <strong> {{ $product->video_link }}</strong>
                         </div>
                     </div><!-- col-4 -->
 
@@ -127,36 +98,25 @@
                         <div class="form-group">
                             <label class="form-control-label">Image One (Main Thumbnail): <span
                                     class="tx-danger">*</span></label> <br>
-                            <label class="custom-file">
-                                <input class="d-block" type="file" id="file" class="custom-file-input"
-                                    name="image_one" onchange="readURL(this);" required="">
-                                <span class="custom-file-control"></span>
-                                <img class="mt-4" src="#" id="one" alt="">
-                            </label>
+                            <img class="mt-4" src="{{  asset($product->image_one) }}" style="height:60px; width: 60px;"
+                                alt="">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
                             <br>
-                            <label class="custom-file">
-                                <input onchange="readURL2(this);" class="d-block" type="file" id="file"
-                                    class="custom-file-input" name="image_two" required="">
-                                <span class="custom-file-control"></span>
-                                <img class="mt-4" src="#" id="two" alt="">
-                            </label>
+                            <img class="mt-4" src="{{ asset($product->image_two) }}" style="height:60px; width:60px;"
+                                alt="">
+
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
                             <br>
-                            <label class="custom-file">
-                                <input class="d-block" onchange="readURL3(this);" type="file" id="file"
-                                    class="custom-file-input" name="image_three" required="">
-                                <span class="custom-file-control"></span>
-                                <img class="mt-4" src="#" id="three" alt="">
-                            </label>
+                            <img class="mt-4" src="{{ asset( $product->image_three ) }}"
+                                style="height:60px; width: 60px;" alt="">
                         </div>
                     </div><!-- col-4 -->
                 </div><!-- row -->
@@ -165,46 +125,70 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="main_slider">
+                            @if($product->main_slider == 1)
+                            <input type="checkbox" checked name="main_slider">
+                            @else
+                            <input type="checkbox" checked name="main_slider">
+                            @endif
                             <span> Main Slider</span>
                         </label>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="hot_deal">
+                            @if($product->hot_deal == 1)
+                            <input type="checkbox" checked name="hot_deal">
+                            @else
+                            <input type="checkbox" checked name="hot_deal">
+                            @endif
                             <span> Hot Deal</span>
                         </label>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="bast_rated">
+                            @if($product->bast_rated == 1)
+                            <input type="checkbox" checked name="bast_rated">
+                            @else
+                            <input type="checkbox" checked name="bast_rated">
+                            @endif
                             <span> Bast Rated</span>
                         </label>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="trend">
+                            @if($product->trend == 1)
+                            <input type="checkbox" checked name="trend">
+                            @else
+                            <input type="checkbox" checked name="trend">
+                            @endif
                             <span> Tranding Products</span>
                         </label>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="mid_slider">
+                            @if($product->mid_slider == 1)
+                            <input type="checkbox" checked name="mid_slider">
+                            @else
+                            <input type="checkbox" checked name="mid_slider">
+                            @endif
                             <span> Mid Slider</span>
                         </label>
                     </div>
 
                     <div class="col-lg-4">
                         <label class="ckbox">
-                            <input type="checkbox" value="1" name="hot_new">
+                            @if($product->hot_new == 1)
+                            <input type="checkbox" checked name="hot_new">
+                            @else
+                            <input type="checkbox" checked name="hot_new">
+                            @endif
                             <span>Hot New</span>
                         </label>
                     </div>
-                </div> <!-- End ROw --> 
+                </div> <!-- End ROw -->
 
             </div>
 
