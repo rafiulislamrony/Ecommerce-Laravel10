@@ -95,6 +95,9 @@ Route::get('admin/product/all', [ProductController::class, 'index'])->name('all.
 Route::get('admin/product/add', [ProductController::class, 'create'])->name('add.product');
 Route::post('admin/product/store', [ProductController::class, 'storeProduct'])->name('store.product');
 
+Route::get('admin/product/inactive/{id}', [ProductController::class, 'inactiveProduct'])->name('inactive.product');
+Route::get('admin/product/active/{id}', [ProductController::class, 'activeProduct'])->name('active.product');
+
 // Sub Category Show by ajax
 Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubcat']);
 
