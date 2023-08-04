@@ -63,7 +63,7 @@
                                     id="delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
-                                <a href="{{ route('brand.delete', $row->id) }}" class="btn btn-sm btn-warning"  title="View">
+                                <a href="{{ route('view.product', $row->id) }}" class="btn btn-sm btn-warning"  title="View">
                                     <i class="fa fa-eye"></i>
                                 </a>
 
