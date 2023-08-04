@@ -18,7 +18,7 @@
             </h6>
             <p class="mg-b-20 mg-sm-b-30">New Product Add From</p>
 
-            <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('store.product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-layout">
@@ -132,7 +132,7 @@
                                         class="tx-danger">*</span></label> <br>
                                 <label class="custom-file">
                                     <input class="d-block" type="file" id="file" class="custom-file-input"
-                                        name="image_one" onchange="readURL(this);">
+                                        name="image_one" onchange="readURL(this);" required="">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="one" alt="">
                                 </label>
@@ -144,7 +144,7 @@
                                 <br>
                                 <label class="custom-file">
                                     <input onchange="readURL2(this);" class="d-block" type="file" id="file"
-                                        class="custom-file-input" name="image_two">
+                                        class="custom-file-input" name="image_two" required="">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="two" alt="">
                                 </label>
@@ -156,7 +156,7 @@
                                 <br>
                                 <label class="custom-file">
                                     <input class="d-block" onchange="readURL3(this);" type="file" id="file"
-                                        class="custom-file-input" name="image_three">
+                                        class="custom-file-input" name="image_three" required="">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="three" alt="">
                                 </label>

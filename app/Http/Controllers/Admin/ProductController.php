@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Unique;
+use Image;
 
 class ProductController extends Controller
 {
@@ -55,7 +57,29 @@ class ProductController extends Controller
         $image_two = $request->image_two;
         $image_three = $request->image_three;
 
-        return response()->json($data);
+        // return response()->json($data);
+        if($image_one && $image_two && $image_three ){
+
+            $image_one_name = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
+            Image::make($image_one)->resize(300,300)->save('media/product/'.$image_one_name);
+            $data['image_one'] = 'media/product/' . $image_one_name;
+
+            $image_two_name = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
+            Image::make($image_two)->resize(300,300)->save('media/product/'.$image_two_name);
+            $data['image_two'] = 'media/product/' . $image_two_name;
+
+            $image_three_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
+            Image::make($image_three)->resize(300,300)->save('media/product/'.$image_three_name);
+            $data['image_three'] = 'media/product/' . $image_three_name;
+
+            DB::table('products')->insert($data);
+
+            $notification = [
+                'message' => 'Product Inserted Successfully.',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->back()->with($notification);
+        }
 
     }
 
