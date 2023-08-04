@@ -153,4 +153,12 @@ class ProductController extends Controller
 
     }
 
+    public function editProduct($id){
+        $product = DB::table('products')->where('id',$id)->first();
+        $category =DB::table('categories')->get();
+        $subcategory =DB::table('subcategories')->get();
+        $brand =DB::table('brands')->get();
+        return view('admin.product.edit', compact('product', 'category','subcategory','brand'));
+    }
+
 }

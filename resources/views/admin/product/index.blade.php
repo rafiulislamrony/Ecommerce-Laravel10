@@ -56,7 +56,7 @@
                             </td>
 
                             <td>
-                                <a href="{{ route('brand.edit', $row->id) }}" class="btn btn-sm btn-info"  title="Edit">
+                                <a href="{{ route('edit.product', $row->id) }}" class="btn btn-sm btn-info"  title="Edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a href="{{ route('delete.product', $row->id) }}" class="btn btn-sm btn-danger"  title="Delete"
