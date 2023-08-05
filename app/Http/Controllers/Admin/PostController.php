@@ -46,4 +46,23 @@ class PostController extends Controller
         return Redirect()->back()->with($notification);
     }
 
+    public function EditBlogCat($id){
+       $blogcatedit =  DB::table('post_category')->where('id',$id)->first();
+       return view('admin.blog.category.edit', compact('blogcatedit'));
+    }
+    public function UpdateBlogCat(Request $request, $id){
+        $data = array();
+        $data['category_name_en'] = $request->category_name_en;
+        $data['category_name_hin'] = $request->category_name_hin;
+
+        DB::table('post_category')->where('id',$id)->update($data);
+
+        $notification = [
+            'message' => 'Blog Category Update Successfully',
+            'alert-type' => 'success',
+        ];
+        return Redirect()->route('add.blog.category')->with($notification);
+    }
+
+
 }

@@ -111,4 +111,6 @@ Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubca
 Route::get('blog/category/list', [PostController::class, 'AddBlogCat'])->name('add.blog.category');
 Route::post('blog/category/store', [PostController::class, 'StoreBlogCat'])->name('store.blog.category');
 Route::get('blog/category/delete/{id}', [PostController::class, 'DeleteBlogCat'])->name('delete.blog.category');
+Route::get('blog/category/edit/{id}', [PostController::class, 'EditBlogCat'])->name('edit.blog.category');
+Route::post('blog/category/update/{id}', [PostController::class, 'UpdateBlogCat'])->name('update.blog.category');
 
