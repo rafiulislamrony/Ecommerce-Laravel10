@@ -16,7 +16,6 @@ class ProductController extends Controller
         $this->middleware('auth:admin');
     }
 
-
     public function index()
     {
         $product = DB::table('products')
@@ -147,7 +146,7 @@ class ProductController extends Controller
             ->where('products.id', $id)
             ->first();
 
-        return view('admin.product.show', compact('product'));
+         return view('admin.product.show', compact('product'));
 
     }
 
@@ -209,8 +208,8 @@ class ProductController extends Controller
         $oldthree = $request->old_three;
 
         $data = array();
-        $image_one   = $request->file('image_one');
-        $image_two   = $request->file('image_two');
+        $image_one = $request->file('image_one');
+        $image_two = $request->file('image_two');
         $image_three = $request->file('image_three');
 
         if ($image_one) {
