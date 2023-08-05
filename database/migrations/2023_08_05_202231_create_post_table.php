@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('post_title_en');
             $table->string('post_title_hin');
             $table->string('post_image');
-            $table->string('details_en');
-            $table->string('details_hin');
+            $table->text('details_en');
+            $table->text('details_hin');
             $table->timestamps();
         });
     }

@@ -71,7 +71,7 @@
                                 <br>
                                 <label class="custom-file">
                                     <input class="d-block" type="file" id="file" class="custom-file-input"
-                                        name="post_image" onchange="readURL(this);" required="">
+                                        name="post_image" onchange="readURL(this);">
                                     <span class="custom-file-control"></span>
                                     <img class="mt-4" src="#" id="one" alt="">
                                 </label>
