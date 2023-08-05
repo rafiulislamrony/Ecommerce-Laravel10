@@ -111,4 +111,29 @@ class PostController extends Controller
         }
     }
 
+    public function BlogList(){
+        $post =  DB::table('posts')
+        ->join('post_category', 'posts.category_id', 'post_category.id')
+        ->select('posts.*', 'post_category.category_name_en')->get();
+        return view('admin.blog.index', compact('post'));
+
+    }
+    public function DeleteBlog($id){
+        $data = DB::table('posts')->where('id', $id)->first();
+        $image = $data->post_image;
+
+        if($image){
+            unlink($image);
+        } 
+        DB::table('posts')->where('id',$id)->delete();
+
+        $notification = [
+            'message' => 'Blog Delete Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return Redirect()->route('add.blog.category')->with($notification);
+
+    }
+
 }

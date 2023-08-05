@@ -6,51 +6,63 @@
 <div class="sl-mainpanel">
     <div class="sl-pagebody">
         <div class="sl-page-title">
-            <h5>Blog category Update</h5>
-        </div><!-- sl-page-title -->
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card pd-20 pd-sm-40">
-                    <div class="table-wrapper">
-                        <form action="{{ route('update.blog.category', $blogcatedit->id) }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="modal-body pd-20">
-                                <div class="form-group">
-                                    <label for="text1">Category Name English</label>
-                                    <input type="text" class="form-control" id="text1" name="category_name_en"
-                                        value="{{ $blogcatedit->category_name_en }}">
-                                    @if ($errors->any())
-                                    <ul class="text-danger">
-                                        @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label for="text1">Category Name Hindi</label>
-                                    <input type="text" class="form-control" id="text1" name="category_name_hin"
-                                        value="{{ $blogcatedit->category_name_hin }}">
-                                    @if ($errors->any())
-                                    <ul class="text-danger">
-                                        @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
-                                </div>
+            <h5>Blog Table</h5>
 
-                            </div><!-- modal-body -->
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-info pd-x-20">Update</button>
-                            </div>
-                        </form>
-                    </div><!-- table-wrapper -->
-                </div><!-- card -->
+        </div><!-- sl-page-title -->
+
+        <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">Blog List
+                <a href="{{ route('add.blog') }}" class="btn btn-sm btn-primary" style="float: right">Add Blog</a>
+            </h6>
+            <div class="table-wrapper">
+                <table id="datatable1" class="table display responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th class="wd-15p">Id</th>
+                            <th class="wd-15p">Blog Category </th>
+                            <th class="wd-15p">Blog Image</th>
+                            <th class="wd-15p">Blog Title En</th>
+                            <th class="wd-15p">Blog Title Hin</th>
+                            <th class="wd-15p">Blog Details En</th>
+                            <th class="wd-15p">Blog Details Hin</th>
+                            <th class="wd-20p">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($post as $key=>$row)
+
+                        <tr>
+                            <td>{{ $key +1 }}</td>
+                            <td>{{ $row->category_name_en }}</td>
+                            <td>
+                                <?php
+                                if (!empty($row->post_image)) { ?>
+                                    <img src="{{ asset($row->post_image) }}" width="80px" alt="">
+                                    <?php
+                                } else {
+                                    echo "No image found";
+                                } ?>
+                            </td>
+                            <td>{{ substr($row->post_title_en, 0, 30). '...' }}</td>
+                            <td>{{ substr($row->post_title_hin, 0, 30). '...' }}</td>
+                            <td>{{ substr($row->details_en, 0, 30). '...' }}</td>
+                            <td>{{ substr($row->details_hin, 0, 30). '...' }}</td>
+                            <td>
+                                <a href="{{ route('edit.blog', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('delete.blog', $row->id) }}" class="btn btn-sm btn-danger"
+                                    id="delete">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-</div><!-- sl-mainpanel -->
-<!-- ########## END: MAIN PANEL ########## -->
+
+            <!-- table-wrapper -->
+        </div><!-- card -->
+
+    </div><!-- sl-mainpanel -->
+</div>
+</div>
+
 @endsection
