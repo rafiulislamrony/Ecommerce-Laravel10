@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,5 +107,7 @@ Route::post('admin/productimage/update/{id}', [ProductController::class, 'update
 // Sub Category Show by ajax
 Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubcat']);
 
-
+// Admin Blog All Route
+Route::get('blog/category/list', [PostController::class, 'AddBlogCat'])->name('add.blog.category');
+Route::post('blog/category/store', [PostController::class, 'StoreBlogCat'])->name('store.blog.category');
 
