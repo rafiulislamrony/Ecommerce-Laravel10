@@ -65,4 +65,26 @@ class PostController extends Controller
     }
 
 
+    public function AddBlog(){
+        $blogCategory = DB::table('post_category')->get();
+        return view('admin.blog.create', compact('blogCategory'));
+    }
+    public function StoreBlog(Request $request)
+    {
+        $request->validate([
+            'category_name_en' => 'required|max:255',
+            'category_name_hin' => 'required|max:255'
+        ]);
+        $data = array();
+        $data['category_name_en'] = $request->category_name_en;
+        $data['category_name_hin'] = $request->category_name_hin;
+        DB::table('post_category')->insert($data);
+
+        $notification = [
+            'message' => 'Blog Category Inserted Successfully',
+            'alert-type' => 'success',
+        ];
+        return Redirect()->back()->with($notification);
+    }
+
 }

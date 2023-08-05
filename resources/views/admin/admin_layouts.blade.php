@@ -109,8 +109,8 @@
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('add.blog.category') }}" class="nav-link">Blog Category</a></li>
-                <li class="nav-item"><a href="{{ route('admin.newslater') }}" class="nav-link">Add Blog</a></li>
-                <li class="nav-item"><a href="{{ route('admin.newslater') }}" class="nav-link">Blog List</a></li>
+                <li class="nav-item"><a href="{{ route('add.blog') }}" class="nav-link">Add Blog</a></li>
+                <li class="nav-item"><a href="{{ route('all.blog') }}" class="nav-link">Blog List</a></li>
             </ul>
 
             <a href="#" class="sl-menu-link">
@@ -383,6 +383,11 @@
           height: 150,
           tooltip: false
         })
+        $('#summernote2').summernote({
+          height: 150,
+          tooltip: false
+        })
+
       });
     </script>
 
