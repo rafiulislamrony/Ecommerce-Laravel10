@@ -110,4 +110,5 @@ Route::get('get/subcategory/{category_id}', [ProductController::class, 'GetSubca
 // Admin Blog All Route
 Route::get('blog/category/list', [PostController::class, 'AddBlogCat'])->name('add.blog.category');
 Route::post('blog/category/store', [PostController::class, 'StoreBlogCat'])->name('store.blog.category');
+Route::get('blog/category/delete/{id}', [PostController::class, 'DeleteBlogCat'])->name('delete.blog.category');
 

@@ -34,7 +34,7 @@
                             <td>{{ $row->category_name_hin }}</td>
                             <td>
                                 <a href="{{ route('category.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ route('category.delete', $row->id) }}" class="btn btn-sm btn-danger"
+                                <a href="{{ route('delete.blog.category', $row->id) }}" class="btn btn-sm btn-danger"
                                     id="delete">Delete</a>
                             </td>
                         </tr>

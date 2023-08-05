@@ -37,5 +37,13 @@ class PostController extends Controller
         return Redirect()->back()->with($notification);
     }
 
+    public function DeleteBlogCat($id){
+        DB::table('post_category')->where('id',$id)->delete();
+        $notification = [
+            'message' => 'Blog Category Delete Successfully',
+            'alert-type' => 'success',
+        ];
+        return Redirect()->back()->with($notification);
+    }
 
 }
