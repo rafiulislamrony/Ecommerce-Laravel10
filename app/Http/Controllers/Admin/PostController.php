@@ -124,7 +124,7 @@ class PostController extends Controller
 
         if($image){
             unlink($image);
-        } 
+        }
         DB::table('posts')->where('id',$id)->delete();
 
         $notification = [
@@ -133,7 +133,51 @@ class PostController extends Controller
         ];
 
         return Redirect()->route('add.blog.category')->with($notification);
+    }
 
+    public function EditBlog($id){
+        $blog = DB::table('posts')->where('id', $id)->first();
+        $blogcategory = DB::table('post_category')->get();
+        return view('admin.blog.edit', compact('blog','blogcategory'));
+    }
+
+    public function UpdateBlog(request $request, $id){
+
+        $old_image = $request->old_image;
+
+        $data = array();
+        $data['category_id'] = $request->category_id;
+        $data['post_title_en'] = $request->post_title_en;
+        $data['post_title_hin'] = $request->post_title_hin;
+        $data['details_en'] = $request->details_en;
+        $data['details_hin'] = $request->details_hin;
+
+        $post_image = $request->file('post_image');
+
+        if ($post_image) {
+            if($old_image){
+                unlink($old_image);
+            }
+            $image_name = hexdec(uniqid()) . '.' . $post_image->getClientOriginalExtension();
+            Image::make($post_image)->resize(400, 200)->save('media/blog/' . $image_name);
+            $data['post_image'] = 'media/blog/' . $image_name;
+
+            DB::table('posts')->where('id',$id)->update($data);
+
+            $notification = [
+                'message' => 'Blog Update Successfully.',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->route('all.blog')->with($notification);
+        }else{
+            $data['post_image'] = $old_image;
+            DB::table('posts')->where('id',$id)->update($data);
+            $notification = [
+                'message' => 'Blog Update without Image.',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->route('all.blog')->with($notification);
+        }
     }
 
 }

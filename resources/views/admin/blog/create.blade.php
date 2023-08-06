@@ -9,7 +9,7 @@
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Blog Add
                 <a href="{{ route('all.blog') }}" class="btn btn-sm btn-success" style="float: right"
-                    data-toggle="modal" data-target="#modaldemo3" id="btnAllDelete">All Product</a>
+                    data-toggle="modal" data-target="#modaldemo3" id="btnAllDelete">All Blog</a>
             </h6>
             <p class="mg-b-20 mg-sm-b-30">Blog Add From</p>
 

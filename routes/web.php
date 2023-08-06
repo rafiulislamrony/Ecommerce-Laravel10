@@ -118,3 +118,6 @@ Route::get('blog/list', [PostController::class, 'BlogList'])->name('all.blog');
 Route::get('blog/add', [PostController::class, 'AddBlog'])->name('add.blog');
 Route::post('blog/store', [PostController::class, 'StoreBlog'])->name('store.blog');
 Route::get('blog/delete/{id}', [PostController::class, 'DeleteBlog'])->name('delete.blog');
+Route::get('blog/edit/{id}', [PostController::class, 'EditBlog'])->name('edit.blog');
+
+Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('update.blog');
