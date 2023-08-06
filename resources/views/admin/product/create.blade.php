@@ -108,6 +108,14 @@
                                     placeholder="Product Selling Price">
                             </div>
                         </div><!-- col-4 -->
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Product Discount Price: <span
+                                        class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="discount_price"
+                                    placeholder="Product Discount Price">
+                            </div>
+                        </div><!-- col-4 -->
 
                         <div class="col-lg-12">
                             <div class="form-group">

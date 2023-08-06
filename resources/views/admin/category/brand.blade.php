@@ -7,9 +7,7 @@
     <div class="sl-pagebody">
         <div class="sl-page-title">
             <h5>Brand Table</h5>
-
         </div><!-- sl-page-title -->
-
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Brand List
                 <a href="" class="btn btn-sm btn-primary" style="float: right" data-toggle="modal"
@@ -31,11 +29,12 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{ $row->brand_name }}</td>
                             <td>
-                                <img src="{{ asset($row->brand_logo) }}" height="70px" width="80px" alt="">
+                                <img src="{{ asset($row->brand_logo) }}" width="80px" alt="">
                             </td>
                             <td>
                                 <a href="{{ route('brand.edit', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ route('brand.delete', $row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
+                                <a href="{{ route('brand.delete', $row->id) }}" class="btn btn-sm btn-danger"
+                                    id="delete">Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -44,7 +43,7 @@
             </div>
 
             <!-- table-wrapper -->
-        </div><!-- card -->
+        </div> <!-- card -->
 
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
@@ -60,32 +59,34 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('store.brand') }}" method="post" enctype="multipart/form-data" >
+                <form action="{{ route('store.brand') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body pd-20">
                         <div class="form-group">
                             <label for="text1">Brand Name</label>
-                            <input type="text" class="form-control" id="text1" name="brand_name" placeholder="Brand Name">
+                            <input type="text" class="form-control" id="text1" name="brand_name"
+                                placeholder="Brand Name">
 
                             @if ($errors->any())
-                                <ul class="text-danger" >
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                           @endif
+                            <ul class="text-danger">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="text2">Brand Logo</label>
-                            <input type="file" class="form-control" id="text2" name="brand_logo" placeholder="Brand Logo">
+                            <input type="file" class="form-control" id="text2" name="brand_logo"
+                                placeholder="Brand Logo">
 
                             @if ($errors->any())
-                                <ul class="text-danger" >
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                           @endif
+                            <ul class="text-danger">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
                         </div>
 
                     </div><!-- modal-body -->
@@ -96,8 +97,8 @@
                 </form>
             </div>
         </div><!-- modal-dialog -->
-    </div><!-- modal -->
+    </div> <!-- modal -->
 
+</div>
 
-
-    @endsection
+@endsection

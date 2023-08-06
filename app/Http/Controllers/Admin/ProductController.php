@@ -52,6 +52,7 @@ class ProductController extends Controller
         $data['product_size'] = $request->product_size;
         $data['product_color'] = $request->product_color;
         $data['selling_price'] = $request->selling_price;
+        $data['discount_price'] = $request->discount_price;
         $data['product_details'] = $request->product_details;
         $data['video_link'] = $request->video_link;
 
