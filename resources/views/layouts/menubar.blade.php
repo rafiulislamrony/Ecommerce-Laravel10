@@ -1,6 +1,10 @@
- <!-- Main Navigation -->
+<!-- Main Navigation -->
 
- <nav class="main_nav">
+@php
+$category = DB::table('categories')->get();
+@endphp
+
+<nav class="main_nav">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -10,46 +14,29 @@
                     <!-- Categories Menu -->
 
                     <div class="cat_menu_container">
-                        <div
-                            class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                        <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                             <div class="cat_burger"><span></span><span></span><span></span></div>
                             <div class="cat_menu_text">categories</div>
                         </div>
 
                         <ul class="cat_menu">
-                            <li><a href="#">Computers & Laptops <i
-                                        class="fas fa-chevron-right ml-auto"></i></a></li>
-                            <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
+                            @foreach ($category as $cat)
+                            @php
+                            $subcategory = DB::table('subcategories')->where('category_id', $cat->id)->get();
+                            @endphp
+                            <li  @if (count($subcategory) > 0) class="hassubs" @endif>
+                                <a href="#">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
                                 <ul>
-                                    <li class="hassubs">
-                                        <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i
-                                                        class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i
-                                                        class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i
-                                                        class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i
-                                                        class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
+                                    @foreach ($subcategory as $subcat)
+                                    <li>
+                                        <a href="#">{{ $subcat->subcategory_name }} <i class="fas fa-chevron-right"></i></a>
                                     </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a>
-                            </li>
-                            <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a>
-                            </li>
-                            <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                            @endforeach
                         </ul>
+
                     </div>
 
                     <!-- Main Nav Menu -->
@@ -99,16 +86,12 @@
                                 <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="product.html">Product<i
-                                                class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog_single.html">Blog Post<i
-                                                class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="regular.html">Regular Post<i
-                                                class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i
-                                                class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </li>
                             <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
@@ -123,7 +106,8 @@
                             <div class="menu_burger">
                                 <div class="menu_trigger_text">menu</div>
                                 <div class="cat_burger menu_burger_inner">
-                                    <span></span><span></span><span></span></div>
+                                    <span></span><span></span><span></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,22 +191,20 @@
                                 <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                             </ul>
                         </li>
-                        <li class="page_menu_item"><a href="blog.html">blog<i
-                                    class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item"><a href="contact.html">contact<i
-                                    class="fa fa-angle-down"></i></a></li>
+                        <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
+                        <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a>
+                        </li>
                     </ul>
 
                     <div class="menu_contact">
                         <div class="menu_contact_item">
-                            <div class="menu_contact_icon"><img
-                                    src="{{ asset('frontend/images/phone_white.png')}}" alt=""></div>+38 068
+                            <div class="menu_contact_icon"><img src="{{ asset('frontend/images/phone_white.png')}}"
+                                    alt=""></div>+38 068
                             005 3570
                         </div>
                         <div class="menu_contact_item">
-                            <div class="menu_contact_icon"><img
-                                    src="{{ asset('frontend/images/mail_white.png')}}" alt=""></div><a
-                                href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                            <div class="menu_contact_icon"><img src="{{ asset('frontend/images/mail_white.png')}}"
+                                    alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                         </div>
                     </div>
                 </div>
@@ -236,21 +218,20 @@
 <!-- Banner -->
 
 <div class="banner">
-<div class="banner_background"
-    style="background-image:url({{ asset('frontend/images/banner_background.jpg')}})"></div>
-<div class="container fill_height">
-    <div class="row fill_height">
-        <div class="banner_product_image"><img src="{{ asset('frontend/images/banner_product.png')}}"
-                alt=""></div>
-        <div class="col-lg-5 offset-lg-4 fill_height">
-            <div class="banner_content">
-                <h1 class="banner_text">new era of smartphones</h1>
-                <div class="banner_price"><span>$530</span>$460</div>
-                <div class="banner_product_name">Apple Iphone 6s</div>
-                <div class="button banner_button"><a href="#">Shop Now</a></div>
+    <div class="banner_background" style="background-image:url({{ asset('frontend/images/banner_background.jpg')}})">
+    </div>
+    <div class="container fill_height">
+        <div class="row fill_height">
+            <div class="banner_product_image"><img src="{{ asset('frontend/images/banner_product.png')}}" alt=""></div>
+            <div class="col-lg-5 offset-lg-4 fill_height">
+                <div class="banner_content">
+                    <h1 class="banner_text">new era of smartphones</h1>
+                    <div class="banner_price"><span>$530</span>$460</div>
+                    <div class="banner_product_name">Apple Iphone 6s</div>
+                    <div class="button banner_button"><a href="#">Shop Now</a></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- Characteristics -->
