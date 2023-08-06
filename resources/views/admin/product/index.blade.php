@@ -22,6 +22,7 @@
                             <th>Product Name</th>
                             <th>Image</th>
                             <th>Category</th>
+                            <th>Sub-Category</th>
                             <th>Brand</th>
                             <th>Code</th>
                             <th>Color</th>
@@ -36,11 +37,12 @@
                         @foreach ($product as $key=>$row)
                         <tr>
                             <td>{{ $key +1 }}</td>
-                            <td>{{ $row->product_name }}</td>
+                            <td>{{ substr($row->product_name, 0, 20) . '...' }}</td>
                             <td>
                                 <img src="{{ asset($row->image_one) }}" width="50px" alt="">
                             </td>
                             <td>{{ $row->category_name }}</td>
+                            <td>{{ $row->subcategory_name }}</td>
                             <td>{{ $row->brand_name }}</td>
                             <td>{{ $row->product_code }}</td>
                             <td>{{ $row->product_color }}</td>
