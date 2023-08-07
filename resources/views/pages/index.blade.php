@@ -9,6 +9,12 @@ $featured = DB::table('products')->where('status',1)->orderBy('id','desc')->limi
 $trend = DB::table('products')->where('status',1)->where('trend',1)->orderBy('id','desc')->limit(6)->get();
 $bestrat = DB::table('products')->where('status',1)->where('bast_rated',1)->orderBy('id','desc')->limit(6)->get();
 
+$hot = DB::table('products')
+->join('brands', 'products.brand_id', 'brands.id')
+->select('products.*', 'brands.brand_name')
+->where('products.status',1)->where('hot_deal',1)
+->orderBy('id','desc')->limit(3)->get();
+
 @endphp
 
 
@@ -84,21 +90,28 @@ $bestrat = DB::table('products')->where('status',1)->where('bast_rated',1)->orde
                         <div class="owl-carousel owl-theme deals_slider">
 
                             <!-- Deals Item -->
+                            @foreach ($hot as $row)
                             <div class="owl-item deals_item">
-                                <div class="deals_image"><img src="{{ asset('frontend/images/deals.png')}}" alt="">
+                                <div class="deals_image"><img src="{{ asset($row->image_one)}}" alt="">
                                 </div>
                                 <div class="deals_content">
                                     <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                        <div class="deals_item_price_a ml-auto">$300</div>
+                                        <div class="deals_item_category"><a href="#">{{ $row->brand_name }}</a></div>
+                                        <div class="deals_item_price_a ml-auto">
+                                            {{ $row->selling_price }}
+
+                                        </div>
                                     </div>
                                     <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_name">Beoplay H7</div>
-                                        <div class="deals_item_price ml-auto">$225</div>
+                                        <div class="deals_item_name">{{ $row->product_name }}  </div>
+                                        @if($row->discount_price !== NULL)
+                                        <div class="deals_item_price ml-auto">${{ $row->discount_price }}</div>
+                                        @else
+                                        @endif
                                     </div>
                                     <div class="available">
                                         <div class="available_line d-flex flex-row justify-content-start">
-                                            <div class="available_title">Available: <span>6</span></div>
+                                            <div class="available_title">Available: <span>{{ $row->product_quantity	 }}</span></div>
                                             <div class="sold_title ml-auto">Already sold: <span>28</span></div>
                                         </div>
                                         <div class="available_bar"><span style="width:17%"></span></div>
@@ -127,96 +140,7 @@ $bestrat = DB::table('products')->where('status',1)->where('bast_rated',1)->orde
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Deals Item -->
-                            <div class="owl-item deals_item">
-                                <div class="deals_image"><img src="{{ asset('frontend/images/deals.png')}}" alt="">
-                                </div>
-                                <div class="deals_content">
-                                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                        <div class="deals_item_price_a ml-auto">$300</div>
-                                    </div>
-                                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_name">Beoplay H7</div>
-                                        <div class="deals_item_price ml-auto">$225</div>
-                                    </div>
-                                    <div class="available">
-                                        <div class="available_line d-flex flex-row justify-content-start">
-                                            <div class="available_title">Available: <span>6</span></div>
-                                            <div class="sold_title ml-auto">Already sold: <span>28</span></div>
-                                        </div>
-                                        <div class="available_bar"><span style="width:17%"></span></div>
-                                    </div>
-                                    <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                        <div class="deals_timer_title_container">
-                                            <div class="deals_timer_title">Hurry Up</div>
-                                            <div class="deals_timer_subtitle">Offer ends in:</div>
-                                        </div>
-                                        <div class="deals_timer_content ml-auto">
-                                            <div class="deals_timer_box clearfix" data-target-time="">
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_hr" class="deals_timer_hr"></div>
-                                                    <span>hours</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_min" class="deals_timer_min"></div>
-                                                    <span>mins</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_sec" class="deals_timer_sec"></div>
-                                                    <span>secs</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Deals Item -->
-                            <div class="owl-item deals_item">
-                                <div class="deals_image"><img src="{{ asset('frontend/images/deals.png')}}" alt="">
-                                </div>
-                                <div class="deals_content">
-                                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                        <div class="deals_item_price_a ml-auto">$300</div>
-                                    </div>
-                                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_name">Beoplay H7</div>
-                                        <div class="deals_item_price ml-auto">$225</div>
-                                    </div>
-                                    <div class="available">
-                                        <div class="available_line d-flex flex-row justify-content-start">
-                                            <div class="available_title">Available: <span>6</span></div>
-                                            <div class="sold_title ml-auto">Already sold: <span>28</span></div>
-                                        </div>
-                                        <div class="available_bar"><span style="width:17%"></span></div>
-                                    </div>
-                                    <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                        <div class="deals_timer_title_container">
-                                            <div class="deals_timer_title">Hurry Up</div>
-                                            <div class="deals_timer_subtitle">Offer ends in:</div>
-                                        </div>
-                                        <div class="deals_timer_content ml-auto">
-                                            <div class="deals_timer_box clearfix" data-target-time="">
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer3_hr" class="deals_timer_hr"></div>
-                                                    <span>hours</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer3_min" class="deals_timer_min"></div>
-                                                    <span>mins</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer3_sec" class="deals_timer_sec"></div>
-                                                    <span>secs</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
 
@@ -362,7 +286,7 @@ $bestrat = DB::table('products')->where('status',1)->where('bast_rated',1)->orde
                         <div class="product_panel panel">
                             <div class="featured_slider slider">
 
- 
+
                                 @foreach ($bestrat as $row)
 
                                 <div class="featured_slider_item">
