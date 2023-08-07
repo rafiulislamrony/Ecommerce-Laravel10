@@ -38,7 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/user/logout', [ProfileController::class, 'logout'])->name('user.logout');
+    Route::get('/password-change', [ProfileController::class, 'passwordChange'])->name('password.change');
 });
+
+
 
 require __DIR__.'/auth.php';
 

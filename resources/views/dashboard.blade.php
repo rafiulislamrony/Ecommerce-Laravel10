@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
- 
+
 <div class="contact_form">
     <div class="container">
         <div class="row">
@@ -50,7 +50,11 @@
                     <h5 class="card-title text-center">{{ Auth::user()->name }} </h5>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{{ route('password.reset',Auth::user()->id ) }}">Change Password</a></li>
+                    <li class="list-group-item">
+                        <a href="{{ route('password.change') }}">
+                            Change Password 
+                        </a>
+                    </li>
                     <li class="list-group-item">one</li>
                     <li class="list-group-item">one</li>
                   </ul>
