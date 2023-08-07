@@ -99,11 +99,10 @@ $hot = DB::table('products')
                                         <div class="deals_item_category"><a href="#">{{ $row->brand_name }}</a></div>
                                         <div class="deals_item_price_a ml-auto">
                                             {{ $row->selling_price }}
-
                                         </div>
                                     </div>
                                     <div class="deals_info_line d-flex flex-row justify-content-start">
-                                        <div class="deals_item_name">{{ $row->product_name }}  </div>
+                                        <div class="deals_item_name">{{ $row->product_name }} </div>
                                         @if($row->discount_price !== NULL)
                                         <div class="deals_item_price ml-auto">${{ $row->discount_price }}</div>
                                         @else
@@ -111,7 +110,8 @@ $hot = DB::table('products')
                                     </div>
                                     <div class="available">
                                         <div class="available_line d-flex flex-row justify-content-start">
-                                            <div class="available_title">Available: <span>{{ $row->product_quantity	 }}</span></div>
+                                            <div class="available_title">Available: <span>{{ $row->product_quantity
+                                                    }}</span></div>
                                             <div class="sold_title ml-auto">Already sold: <span>28</span></div>
                                         </div>
                                         <div class="available_bar"><span style="width:17%"></span></div>
@@ -204,12 +204,13 @@ $hot = DB::table('products')
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         <ul class="product_marks">
                                             @if ($row->discount_price == NULL)
-                                            <li class="product_mark product_new" style="opacity: 1; visibility:visible; display:block;" >new</li>
+                                            <li class="product_mark product_new"
+                                                style="opacity: 1; visibility:visible; display:block;">new</li>
                                             @else
                                             <li class="product_mark product_discount">
                                                 @php
-                                                    $amount = $row->selling_price - $row->discount_price;
-                                                    $discount = $amount/$row->selling_price*100;
+                                                $amount = $row->selling_price - $row->discount_price;
+                                                $discount = $amount/$row->selling_price*100;
                                                 @endphp
                                                 {{ intval($discount) }}%
                                             </li>
@@ -261,12 +262,13 @@ $hot = DB::table('products')
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         <ul class="product_marks">
                                             @if ($row->discount_price == NULL)
-                                            <li class="product_mark product_new" style="opacity: 1; visibility:visible; display:block;" >new</li>
+                                            <li class="product_mark product_new"
+                                                style="opacity: 1; visibility:visible; display:block;">new</li>
                                             @else
                                             <li class="product_mark product_discount">
                                                 @php
-                                                    $amount = $row->selling_price - $row->discount_price;
-                                                    $discount = $amount/$row->selling_price*100;
+                                                $amount = $row->selling_price - $row->discount_price;
+                                                $discount = $amount/$row->selling_price*100;
                                                 @endphp
                                                 {{ intval($discount) }}%
                                             </li>
@@ -321,12 +323,13 @@ $hot = DB::table('products')
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         <ul class="product_marks">
                                             @if ($row->discount_price == NULL)
-                                            <li class="product_mark product_new" style="opacity: 1; visibility:visible; display:block;" >new</li>
+                                            <li class="product_mark product_new"
+                                                style="opacity: 1; visibility:visible; display:block;">new</li>
                                             @else
                                             <li class="product_mark product_discount">
                                                 @php
-                                                    $amount = $row->selling_price - $row->discount_price;
-                                                    $discount = $amount/$row->selling_price*100;
+                                                $amount = $row->selling_price - $row->discount_price;
+                                                $discount = $amount/$row->selling_price*100;
                                                 @endphp
                                                 {{ intval($discount) }}%
                                             </li>
@@ -368,55 +371,24 @@ $hot = DB::table('products')
             </div>
 
             <!-- Popular Categories Slider -->
-
+            @php
+            $category = DB::table('categories')->get();
+            @endphp
             <div class="col-lg-9">
                 <div class="popular_categories_slider_container">
                     <div class="owl-carousel owl-theme popular_categories_slider">
 
                         <!-- Popular Categories Item -->
+                        @foreach ($category as $row)
+
                         <div class="owl-item">
                             <div class="popular_category d-flex flex-column align-items-center justify-content-center">
                                 <div class="popular_category_image"><img
                                         src="{{ asset('frontend/images/popular_1.png')}}" alt=""></div>
-                                <div class="popular_category_text">Smartphones & Tablets</div>
+                                <div class="popular_category_text"> {{ $row->category_name }}</div>
                             </div>
                         </div>
-
-                        <!-- Popular Categories Item -->
-                        <div class="owl-item">
-                            <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                <div class="popular_category_image"><img
-                                        src="{{ asset('frontend/images/popular_2.png')}}" alt=""></div>
-                                <div class="popular_category_text">Computers & Laptops</div>
-                            </div>
-                        </div>
-
-                        <!-- Popular Categories Item -->
-                        <div class="owl-item">
-                            <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                <div class="popular_category_image"><img
-                                        src="{{ asset('frontend/images/popular_3.png')}}" alt=""></div>
-                                <div class="popular_category_text">Gadgets</div>
-                            </div>
-                        </div>
-
-                        <!-- Popular Categories Item -->
-                        <div class="owl-item">
-                            <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                <div class="popular_category_image"><img
-                                        src="{{ asset('frontend/images/popular_4.png')}}" alt=""></div>
-                                <div class="popular_category_text">Video Games & Consoles</div>
-                            </div>
-                        </div>
-
-                        <!-- Popular Categories Item -->
-                        <div class="owl-item">
-                            <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                <div class="popular_category_image"><img
-                                        src="{{ asset('frontend/images/popular_5.png')}}" alt=""></div>
-                                <div class="popular_category_text">Accessories</div>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
@@ -426,6 +398,14 @@ $hot = DB::table('products')
 </div>
 
 <!-- Banner -->
+@php
+$mid = DB::table('products')
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->select('products.*', 'brands.brand_name', 'categories.category_name')
+            ->where('products.mid_slider',1)
+            ->orderBy('id','desc')->limit(3)->get();
+@endphp
 
 <div class="banner_2">
     <div class="banner_2_background"
@@ -437,16 +417,17 @@ $hot = DB::table('products')
         <div class="owl-carousel owl-theme banner_2_slider">
 
             <!-- Banner 2 Slider Item -->
+            @foreach ($mid as $row)
             <div class="owl-item">
                 <div class="banner_2_item">
                     <div class="container fill_height">
                         <div class="row fill_height">
                             <div class="col-lg-4 col-md-6 fill_height">
                                 <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Maecenas fermentum laoreet.</div>
+                                    <div class="banner_2_category"><h4>{{ $row->category_name }}</h4></div>
+                                    <div class="banner_2_title">{{ $row->product_name }}</div>
+                                    <div class="banner_2_text"><h3>{{ $row->brand_name }}</h3>
+                                    </div>
                                     <div class="rating_r rating_r_4 banner_2_rating">
                                         <i></i><i></i><i></i><i></i><i></i>
                                     </div>
@@ -454,10 +435,10 @@ $hot = DB::table('products')
                                 </div>
 
                             </div>
-                            <div class="col-lg-8 col-md-6 fill_height">
+                            <div class="col-lg-8 col-md-6  ">
                                 <div class="banner_2_image_container">
-                                    <div class="banner_2_image"><img
-                                            src="{{ asset('frontend/images/banner_2_product.png')}}" alt="">
+                                    <div class="banner_2_image d-flex justify-content-end"><img style="max-width: 500px"
+                                            src="{{ asset($row->image_one)}}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -465,67 +446,7 @@ $hot = DB::table('products')
                     </div>
                 </div>
             </div>
-
-            <!-- Banner 2 Slider Item -->
-            <div class="owl-item">
-                <div class="banner_2_item">
-                    <div class="container fill_height">
-                        <div class="row fill_height">
-                            <div class="col-lg-4 col-md-6 fill_height">
-                                <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Maecenas fermentum laoreet.</div>
-                                    <div class="rating_r rating_r_4 banner_2_rating">
-                                        <i></i><i></i><i></i><i></i><i></i>
-                                    </div>
-                                    <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-8 col-md-6 fill_height">
-                                <div class="banner_2_image_container">
-                                    <div class="banner_2_image"><img
-                                            src="{{ asset('frontend/images/banner_2_product.png')}}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Banner 2 Slider Item -->
-            <div class="owl-item">
-                <div class="banner_2_item">
-                    <div class="container fill_height">
-                        <div class="row fill_height">
-                            <div class="col-lg-4 col-md-6 fill_height">
-                                <div class="banner_2_content">
-                                    <div class="banner_2_category">Laptops</div>
-                                    <div class="banner_2_title">MacBook Air 13</div>
-                                    <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Maecenas fermentum laoreet.</div>
-                                    <div class="rating_r rating_r_4 banner_2_rating">
-                                        <i></i><i></i><i></i><i></i><i></i>
-                                    </div>
-                                    <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-8 col-md-6 fill_height">
-                                <div class="banner_2_image_container">
-                                    <div class="banner_2_image"><img
-                                            src="{{ asset('frontend/images/banner_2_product.png')}}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 </div>
