@@ -206,6 +206,14 @@
                                 <span>Hot New</span>
                             </label>
                         </div>
+                        <div class="col-lg-4">
+                            <label class="ckbox"> 
+                                <input type="checkbox" value="1" name="buyone_getone" <?php if ( $product->buyone_getone == 1){
+                                    echo 'checked';
+                                    } ?>>
+                                <span>Buy One Get One</span>
+                            </label>
+                        </div>
                     </div>
                     <!-- End ROw -->
                     <br><br>
@@ -279,7 +287,7 @@
                                 </label>
                             </div>
                         </div><!-- col-4 -->
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
                             <img class="mt-4" src="{{ asset($product->image_three) }}" style="width:200px" alt="">
                         </div>
 
