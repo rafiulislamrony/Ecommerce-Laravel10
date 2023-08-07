@@ -1,63 +1,59 @@
-@extends('../user_layouts')
+@extends('layouts.app')
 
-@section('user_content')
-
-
-    <!-- wrapper -->
-    <div class="wrapper without_header_sidebar">
-        <!-- contnet wrapper -->
-        <div class="content_wrapper">
-            <!-- page content -->
-            <div class="login_page center_container">
-                <div class="center_content">
-                    <div class="logo">
-                        <img src="panel/assets/images/logo.png" alt="" class="img-fluid">
-                    </div>
-                    <form method="POST" class="d-block" action="{{ route('login') }}">
+@section('content')
+<!-- wrapper -->
+<div class="wrapper without_header_sidebar">
+    <!-- contnet wrapper -->
+    <div class="content_wrapper">
+        <!-- page content -->
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-6">
+                    <form method="POST" action="{{ route('login') }}"
+                        style="border: 2px solid #ddd; padding: 30px 30px;  border-radius: 5px; background: #fafafa;">
                         @csrf
                         <div class="form-group icon_parent">
                             <label for="email">Email</label>
                             <input id="email" type="email" name="email" class="form-control" :value="old('email')"
                                 required autofocus autocomplete="username" placeholder="Email Address">
-                            <span class="icon_soon_bottom_right"><i class="fas fa-envelope"></i></span>
+                                <x-input-error :messages="$errors->get('email')" class="text-danger mt-2" />
                         </div>
                         <div class="form-group icon_parent">
                             <label for="password">Password</label>
                             <input id="password" type="password" class="form-control" name="password" required
                                 autocomplete="current-password" placeholder="Password">
-
-                            <span class="icon_soon_bottom_right"><i class="fas fa-unlock"></i></span>
+                                <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
                         </div>
-                        <div class="form-group">
-                            <label for="remember_me" class="chech_container">Remember me
-                                <input type="checkbox" name="remember" id="remember_me">
-                                <span class="checkmark"></span>
+                        <div class="form-check position-relative">
+                            <input class="form-check-input ml-0" type="checkbox" name="remember" id="remember_me">
+
+                            <label class="form-check-label" for="remember_me">
+                                Remember me
                             </label>
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group d-flex justify-content-between">
                             @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="registration">Create new account</a>
                             @endif
                             <br>
+
                             @if (Route::has('password.request'))
-                            <a class="text-white" href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
+                            <a href="{{ route('password.request') }}">
+                                Forgot your password?
                             </a>
                             @endif
-                            <button type="submit" class="btn btn-blue">Login</button>
                         </div>
-                    </form>
-                    <div class="footer">
-                        <p>Copyright &copy; 2020 <a href="https://easylearningbd.com/">easy Learning</a>. All rights
-                            reserved.</p>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
 
+                    </form>
                 </div>
             </div>
         </div>
-        <!--/ content wrapper -->
     </div>
-    <!--/ wrapper -->
+    <!--/ content wrapper -->
+</div>
+<!--/ wrapper -->
 
 
 @endsection
