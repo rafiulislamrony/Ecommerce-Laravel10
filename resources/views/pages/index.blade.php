@@ -196,7 +196,7 @@ $hot = DB::table('products')
                                             <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         </a> --}}
 
-                                        <button class="addwishlist" data-id="{{ $row->id }}">
+                                        <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;" >
                                             <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         </button>
 
@@ -222,7 +222,6 @@ $hot = DB::table('products')
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -2684,53 +2683,58 @@ $mid = DB::table('products')
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
-<script>
+<script type="text/javascript">
     $(document).ready(function(){
-    $('.addwishlist').on('click', function(){
+     $('.addwishlist').on('click', function(){
         var id = $(this).data('id');
-        if(id){
+        if (id) {
             $.ajax({
-                url: "{{ url('wishlist/add/') }}"+$id,
-                type : "GET",
-                dataType : "json",
+                url: " {{ url('wishlist/add/') }}/"+id,
+                type:"GET",
+                datType:"json",
                 success:function(data){
+             const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
 
-                    const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                    })
+             if ($.isEmptyObject(data.error)) {
 
-                    if($.isEmptyObject(data.error)){
-                        Toast.fire({
-                        icon: 'success',
-                        title: data.success
-                        })
-                    }else{
-                        Toast.fire({
-                        icon: 'error',
-                        title: data.error
-                        })
-                    }
+                Toast.fire({
+                  icon: 'success',
+                  title: data.success
+                })
+             }else{
+                 Toast.fire({
+                  icon: 'error',
+                  title: data.error
+                })
+             }
+
 
                 },
             });
+
         }else{
             alert('danger');
         }
-    });
-});
+     });
+
+   });
+
 
 </script>
+
 
 @endsection

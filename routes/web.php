@@ -128,6 +128,5 @@ Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('up
 
 
 // Wishlist  All Route
-Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist'])->name('add.wishlist');
+Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
 
- 
