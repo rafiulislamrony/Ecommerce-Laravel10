@@ -175,7 +175,9 @@ $hot = DB::table('products')
                                                 @if($row->discount_price == NULL)
                                                 <span>${{ $row->selling_price }}</span>
                                                 @else
-                                                ${{ $row->discount_price }}<span   style="text-decoration: line-through;">${{ $row->selling_price }}</span>
+                                                ${{ $row->discount_price }}<span
+                                                    style="text-decoration: line-through;">${{ $row->selling_price
+                                                    }}</span>
                                                 @endif
                                             </div>
                                             <div class="product_name">
@@ -192,7 +194,7 @@ $hot = DB::table('products')
                                             </div>
                                         </div>
 
-                                        <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;" >
+                                        <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;">
                                             <div class="product_fav"><i class="fas fa-heart"></i></div>
                                         </button>
 
@@ -327,10 +329,10 @@ $mid = DB::table('products')
 
 <!-- Category  One  -->
 @php
-    $cats = DB::table('categories')->skip(1)->first();
-    $catid = $cats->id;
-    $product = DB::table('products')->where('category_id',$catid)->where('status',1)->limit(10)
-              ->orderBy('id', 'DESC')->get();
+$cats = DB::table('categories')->skip(1)->first();
+$catid = $cats->id;
+$product = DB::table('products')->where('category_id',$catid)->where('status',1)->limit(10)
+->orderBy('id', 'DESC')->get();
 @endphp
 
 <div class="new_arrivals">
@@ -365,10 +367,12 @@ $mid = DB::table('products')
                                             <div class="product_content"> <br>
                                                 <div class="product_price">
                                                     @if($row->discount_price == NULL)
-                                                <span>${{ $row->selling_price }}</span>
-                                                @else
-                                                ${{ $row->discount_price }}<span   style="text-decoration: line-through;">${{ $row->selling_price }}</span>
-                                                @endif
+                                                    <span>${{ $row->selling_price }}</span>
+                                                    @else
+                                                    ${{ $row->discount_price }}<span
+                                                        style="text-decoration: line-through;">${{ $row->selling_price
+                                                        }}</span>
+                                                    @endif
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a href="product.html">{{ $row->product_name }}</a></div>
@@ -386,7 +390,8 @@ $mid = DB::table('products')
                                                         Cart</button>
                                                 </div>
                                             </div>
-                                            <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;" >
+                                            <button class="addwishlist" data-id="{{ $row->id }}"
+                                                style="cursor: pointer;">
                                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                                             </button>
                                             <ul class="product_marks">
@@ -420,10 +425,10 @@ $mid = DB::table('products')
 
 <!-- Category Two -->
 @php
-    $cats = DB::table('categories')->skip(3)->first();
-    $catid = $cats->id;
-    $product = DB::table('products')->where('category_id',$catid)->where('status',1)->limit(10)
-              ->orderBy('id', 'DESC')->get();
+$cats = DB::table('categories')->skip(3)->first();
+$catid = $cats->id;
+$product = DB::table('products')->where('category_id',$catid)->where('status',1)->limit(10)
+->orderBy('id', 'DESC')->get();
 @endphp
 
 <div class="new_arrivals pt-0">
@@ -458,10 +463,12 @@ $mid = DB::table('products')
                                             <div class="product_content"> <br>
                                                 <div class="product_price">
                                                     @if($row->discount_price == NULL)
-                                                <span>${{ $row->selling_price }}</span>
-                                                @else
-                                                ${{ $row->discount_price }}<span  style="text-decoration: line-through;">${{ $row->selling_price }}</span>
-                                                @endif
+                                                    <span>${{ $row->selling_price }}</span>
+                                                    @else
+                                                    ${{ $row->discount_price }}<span
+                                                        style="text-decoration: line-through;">${{ $row->selling_price
+                                                        }}</span>
+                                                    @endif
                                                 </div>
                                                 <div class="product_name">
                                                     <div><a href="product.html">{{ $row->product_name }}</a></div>
@@ -479,7 +486,8 @@ $mid = DB::table('products')
                                                         Cart</button>
                                                 </div>
                                             </div>
-                                            <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;" >
+                                            <button class="addwishlist" data-id="{{ $row->id }}"
+                                                style="cursor: pointer;">
                                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                                             </button>
                                             <ul class="product_marks">
@@ -1447,7 +1455,16 @@ $mid = DB::table('products')
     </div>
 </div>
 
-<!-- Trends -->
+
+@php
+$buyGet = DB::table('products')
+->join('brands','products.brand_id', 'brands.id')
+->select('products.*', 'brands.brand_name')
+->where('buyone_getone',1)->where('status',1)->limit(6)->orderBy('id', 'DESC')->get();
+
+@endphp
+
+<!-- Buy One Get One -->
 <div class="trends">
     <div class="trends_background" style="background-image:url({{ asset('frontend/images/trends_background.jpg')}})">
     </div>
@@ -1478,132 +1495,54 @@ $mid = DB::table('products')
                     <div class="owl-carousel owl-theme trends_slider">
 
                         <!-- Trends Slider Item -->
+                        @foreach ($buyGet as $row)
+
                         <div class="owl-item">
                             <div class="trends_item is_new">
                                 <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_1.jpg')}}" alt="">
+                                    <img src="{{ asset( $row->image_one )}}" style=" height:180px;" alt="">
                                 </div>
-                                <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
-                                    <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                        <div class="trends_price">$379</div>
-                                    </div>
-                                </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
-                                </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                            </div>
-                        </div>
 
-                        <!-- Trends Slider Item -->
-                        <div class="owl-item">
-                            <div class="trends_item">
-                                <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_2.jpg')}}" alt="">
-                                </div>
                                 <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
+                                    <div class="trends_category"><a href="#">{{ $row->brand_name }}</a></div>
                                     <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">Samsung Charm...</a>
+                                        <div class="trends_name mb-2"><a href="product.html">{{ $row->product_name }} </a>
                                         </div>
-                                        <div class="trends_price">$379</div>
-                                    </div>
-                                </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
-                                </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                            </div>
-                        </div>
-
-                        <!-- Trends Slider Item -->
-                        <div class="owl-item">
-                            <div class="trends_item is_new">
-                                <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_3.jpg')}}" alt="">
-                                </div>
-                                <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
-                                    <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">DJI Phantom 3...</a>
+                                        <div class="product_price mb-2">
+                                            @if($row->discount_price == NULL)
+                                            <span>${{ $row->selling_price }}</span>
+                                            @else
+                                            ${{ $row->discount_price }}<span
+                                                style="text-decoration: line-through;">${{ $row->selling_price
+                                                }}</span>
+                                            @endif
                                         </div>
-                                        <div class="trends_price">$379</div>
                                     </div>
                                 </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
+
+                                <ul class="product_marks d-block">
+                                    @if ($row->discount_price == NULL)
+                                    <li class="product_mark product_new"
+                                        style="opacity: 1; visibility:visible; display:block;">new</li>
+                                    @else
+                                    <li class="product_mark d-block product_discount" style="visibility: visible; opacity:1;">
+                                        @php
+                                        $amount = $row->selling_price - $row->discount_price;
+                                        $discount = $amount/$row->selling_price*100;
+                                        @endphp
+                                        {{ intval($discount) }}%
+                                    </li>
+                                    @endif
                                 </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
+                                <button class="btn btn-primary ">Add to
+                                    Cart</button>
+                                <button class="addwishlist" data-id="{{ $row->id }}" style="cursor: pointer;">
+                                    <div class="product_fav trends_fav"><i class="fas fa-heart"></i></div>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Trends Slider Item -->
-                        <div class="owl-item">
-                            <div class="trends_item is_new">
-                                <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_1.jpg')}}" alt="">
-                                </div>
-                                <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
-                                    <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                        <div class="trends_price">$379</div>
-                                    </div>
-                                </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
-                                </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                            </div>
-                        </div>
-
-                        <!-- Trends Slider Item -->
-                        <div class="owl-item">
-                            <div class="trends_item">
-                                <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_2.jpg')}}" alt="">
-                                </div>
-                                <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
-                                    <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                        <div class="trends_price">$379</div>
-                                    </div>
-                                </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
-                                </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                            </div>
-                        </div>
-
-                        <!-- Trends Slider Item -->
-                        <div class="owl-item">
-                            <div class="trends_item is_new">
-                                <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                                    <img src="{{ asset('frontend/images/trends_3.jpg')}}" alt="">
-                                </div>
-                                <div class="trends_content">
-                                    <div class="trends_category"><a href="#">Smartphones</a></div>
-                                    <div class="trends_info clearfix">
-                                        <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                        <div class="trends_price">$379</div>
-                                    </div>
-                                </div>
-                                <ul class="trends_marks">
-                                    <li class="trends_mark trends_discount">-25%</li>
-                                    <li class="trends_mark trends_new">new</li>
-                                </ul>
-                                <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
