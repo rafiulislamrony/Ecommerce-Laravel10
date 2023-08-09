@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/responsive.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
 </head>
 
@@ -150,7 +151,7 @@
                                 <!-- Cart -->
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                        <div class="cart_icon"> 
+                                        <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}"
                                             alt="">
                                             <div class="cart_count"><span>10</span></div>
@@ -301,6 +302,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
     <!-- toastr script --->

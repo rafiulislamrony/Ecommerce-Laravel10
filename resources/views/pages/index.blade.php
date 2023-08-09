@@ -191,9 +191,14 @@ $hot = DB::table('products')
                                                 <button class="product_cart_button">Add to Cart</button>
                                             </div>
                                         </div>
-                                        <a href="{{ route('add.wishlist', $row->id) }}">
-                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                        </a> 
+
+                                        {{-- <a href="{{ route('add.wishlist', $row->id) }}">
+                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        </a> --}}
+
+                                        <button class="addwishlist" data-id="{{ $row->id }}">
+                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        </button>
 
                                         <ul class="product_marks">
                                             @if ($row->discount_price == NULL)
@@ -1201,9 +1206,7 @@ $mid = DB::table('products')
     </div>
 </div>
 
-
 <!-- Best Sellers -->
-
 <div class="best_sellers">
     <div class="container">
         <div class="row">
@@ -2082,7 +2085,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Adverts -->
-
 <div class="adverts">
     <div class="container">
         <div class="row">
@@ -2142,7 +2144,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Trends -->
-
 <div class="trends">
     <div class="trends_background" style="background-image:url({{ asset('frontend/images/trends_background.jpg')}})">
     </div>
@@ -2309,7 +2310,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Reviews -->
-
 <div class="reviews">
     <div class="container">
         <div class="row">
@@ -2472,7 +2472,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Recently Viewed -->
-
 <div class="viewed">
     <div class="container">
         <div class="row">
@@ -2600,7 +2599,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Brands -->
-
 <div class="brands">
     <div class="container">
         <div class="row">
@@ -2657,7 +2655,6 @@ $mid = DB::table('products')
 </div>
 
 <!-- Newsletter -->
-
 <div class="newsletter">
     <div class="container">
         <div class="row">
@@ -2686,4 +2683,54 @@ $mid = DB::table('products')
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+
+<script>
+    $(document).ready(function(){
+    $('.addwishlist').on('click', function(){
+        var id = $(this).data('id');
+        if(id){
+            $.ajax({
+                url: "{{ url('wishlist/add/') }}"+$id,
+                type : "GET",
+                dataType : "json",
+                success:function(data){
+
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    if($.isEmptyObject(data.error)){
+                        Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                        })
+                    }
+
+                },
+            });
+        }else{
+            alert('danger');
+        }
+    });
+});
+
+</script>
+
 @endsection
