@@ -129,4 +129,6 @@ Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('up
 
 // Wishlist  All Route
 Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
+Route::get('add-to-cart/{id}', [WishlistController::class, 'addToCart'])->name('add.cart');
+
 
