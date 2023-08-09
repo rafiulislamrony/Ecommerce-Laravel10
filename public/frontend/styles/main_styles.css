@@ -3643,11 +3643,7 @@ select option
 .copyright_content span
 {
 	font-weight: 500;
-}
-.logos
-{
-
-}
+} 
 .logos_list li
 {
 	display: inline-block;
@@ -3662,4 +3658,8 @@ select option
 }
 .product_fav:hover i {
     color: red;
+}
+
+.arrivals_slider .slick-track {
+    padding-bottom: 110px;
 }
