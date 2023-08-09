@@ -191,7 +191,10 @@ $hot = DB::table('products')
                                                 <button class="product_cart_button">Add to Cart</button>
                                             </div>
                                         </div>
+                                        <a href="{{ route('add.wishlist', $row->id) }}">
                                         <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                        </a> 
+
                                         <ul class="product_marks">
                                             @if ($row->discount_price == NULL)
                                             <li class="product_mark product_new"

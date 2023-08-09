@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,3 +125,9 @@ Route::get('blog/delete/{id}', [PostController::class, 'DeleteBlog'])->name('del
 Route::get('blog/edit/{id}', [PostController::class, 'EditBlog'])->name('edit.blog');
 
 Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('update.blog');
+
+
+// Wishlist  All Route
+Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist'])->name('add.wishlist');
+
+ 
