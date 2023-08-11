@@ -268,4 +268,10 @@ class ProductController extends Controller
         }
     }
 
+    public function ProductDetsilsView($id, $product_name){
+        return view('pages.product_details');
+    }
+
+
+
 }

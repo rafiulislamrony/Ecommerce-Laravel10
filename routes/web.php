@@ -133,7 +133,10 @@ Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
 
 // Add to Cart Wishlist
 Route::get('add/to/cart/{id}', [CartController::class, 'AddToCart']);
+Route::get('check', [CartController::class, 'check']);
 
-// Route::get('add-to-cart/{id}', [CartController::class, 'addCart'])->name('add.cart');
+
+// Product Details Route
+Route::get('product/details/{id}/{product_name}', [ProductController::class, 'ProductDetsilsView']);
 
 

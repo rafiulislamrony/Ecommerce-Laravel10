@@ -181,7 +181,8 @@ $hot = DB::table('products')
                                                 @endif
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="product.html">{{ $row->product_name }}</a></div>
+                                                <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{ $row->product_name }}</a></div>
+
                                             </div>
                                             <div class="product_extras">
                                                 <div class="product_color">
@@ -1230,38 +1231,12 @@ $buyGet = DB::table('products')
                         })
                     }
                 },
-            });
-
+            }); 
         }else{
             alert('danger');
         }
      });
-
    });
-
-
 </script>
-
-{{-- <script type="text/javascript">
-    $(document).on('click','.cart-link',function() {
-        let cartUrl = $(this).attr('data-href');
-        let cartItemCount = $('.cart-amount').val();
-        if(typeof cartItemCount === 'undefined'){
-            cartItemCount = 1;
-        }
-        console.log(cartItemCount);
-        $.get(cartUrl+',,,'+cartItemCount,function(res){
-            if(res.message){
-                getCartQty();
-                success(res.message);
-                $('.cart-amount').val(1);
-            }else{
-                error(res.error)
-                $('.cart-amount').val(1);
-            }
-        })
-    });
-</script> --}}
-
 
 @endsection
