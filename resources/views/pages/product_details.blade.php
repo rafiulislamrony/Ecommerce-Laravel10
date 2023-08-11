@@ -42,45 +42,41 @@
                     </div>
                     <div class="order_info d-flex flex-row">
                         <form action="#">
-                            <div class="clearfix" style="z-index: 1000;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Select Color</label>
+                                        <select class="form-control" name="color" id="color" style="min-width:100px; width:100px;" >
+                                            @foreach ($product_color as $color)
+                                            <option value="{{ $color }}" >{{ $color }}</option>
+                                            @endforeach
+                                        </select>
+                                      </div>
+                                </div>
+                                @if($product->product_size == NULL)
 
-                                <!-- Product Quantity -->
-                                <div class="product_quantity clearfix">
-                                    <span>Quantity: </span>
-                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                                    <div class="quantity_buttons">
-                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i
-                                                class="fas fa-chevron-up"></i></div>
-                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i
-                                                class="fas fa-chevron-down"></i></div>
-                                    </div>
+                                @else
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Select Size</label>
+                                        <select class="form-control" name="size" id="size" style="min-width:100px; width:100px;" >
+                                            @foreach ($product_size as $size)
+                                            <option value="{{ $size }}" >{{ $size }}</option>
+                                            @endforeach
+                                        </select>
+                                      </div>
+                                </div>
+                                @endif
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Select Quantity</label>
+                                       <input type="number" name="qty" class="form-control" value="1" >
+                                      </div>
                                 </div>
 
-                                <!-- Product Color -->
-                                <ul class="product_color">
-                                    <li>
-                                        <span>Color: </span>
-                                        <div class="color_mark_container">
-                                            <div id="selected_color" class="color_mark"></div>
-                                        </div>
-                                        <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i>
-                                        </div>
-
-                                        <ul class="color_list">
-                                            <li>
-                                                <div class="color_mark" style="background: #999999;"></div>
-                                            </li>
-                                            <li>
-                                                <div class="color_mark" style="background: #b19c83;"></div>
-                                            </li>
-                                            <li>
-                                                <div class="color_mark" style="background: #000000;"></div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
 
                             </div>
+
 
                             <div class="product_price">
                                 @if($product->discount_price == NULL)
@@ -90,9 +86,7 @@
                                     $product->selling_price
                                     }}</span>
                                 @endif
-
                             </div>
-
 
                             <div class="button_container">
                                 <button type="button" class="button cart_button">Add to Cart</button>
@@ -122,13 +116,14 @@
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home"
-                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Product Details</button>
+                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Product
+                                Details</button>
                             <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile"
-                                type="button" role="tab" aria-controls="nav-profile"
-                                aria-selected="false">Video Link</button>
+                                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Video
+                                Link</button>
                             <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact"
-                                type="button" role="tab" aria-controls="nav-contact"
-                                aria-selected="false">Product Review</button>
+                                type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Product
+                                Review</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -142,13 +137,17 @@
                             {{ $product->video_link }}
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                          <br>
-                          What is business insurance and how does it work?
-There are lots of risks involved in running a business. To protect against this risk, business owners take out business insurance policies in the event that something happens.
+                            <br>
+                            What is business insurance and how does it work?
+                            There are lots of risks involved in running a business. To protect against this risk,
+                            business owners take out business insurance policies in the event that something happens.
 
-There are many different types of business insurance policies, but depending on what policy you have, business insurance can cover your business for lost income, legal liability, damage to property, and more.
+                            There are many different types of business insurance policies, but depending on what policy
+                            you have, business insurance can cover your business for lost income, legal liability,
+                            damage to property, and more.
 
-Some types of business insurance are compulsory, either by law (such as worker’s compensation insurance) or because those you deal with may require it.
+                            Some types of business insurance are compulsory, either by law (such as worker’s
+                            compensation insurance) or because those you deal with may require it.
                         </div>
                     </div>
 
