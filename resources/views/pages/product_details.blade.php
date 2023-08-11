@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-@include('layouts.menubar');
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
 
 <div class="single_product">
     <div class="container">
@@ -11,15 +11,15 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    <li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-                    <li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-                    <li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+                    <li data-image="{{ asset('frontend/images/single_4.jpg') }}"><img src="{{ asset('frontend/images/single_4.jpg') }}" alt=""></li>
+                    <li data-image="{{ asset('frontend/images/single_2.jpg') }}"><img src="{{ asset('frontend/images/single_2.jpg') }}" alt=""></li>
+                    <li data-image="{{ asset('frontend/images/single_3.jpg') }}"><img src="{{ asset('frontend/images/single_3.jpg') }}" alt=""></li>
                 </ul>
             </div>
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
+                <div class="image_selected"><img src="{{ asset('frontend/images/single_4.jpg') }}" alt=""></div>
             </div>
 
             <!-- Description -->
@@ -27,7 +27,9 @@
                 <div class="product_description">
                     <div class="product_category">Laptops</div>
                     <div class="product_name">MacBook Air 13</div>
-                    <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                    <div class="rating_r rating_r_4 product_rating">
+                        <i></i><i></i><i></i><i></i><i></i>
+                    </div>
                     <div class="product_text">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet
                             turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus
@@ -212,5 +214,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,6 +138,6 @@ Route::get('check', [CartController::class, 'check']);
 
 
 // Product Details Route
-Route::get('product/details/{id}/{product_name}', [ProductController::class, 'ProductDetsilsView']);
+Route::get('product/details/{id}/{product_name}', [ProductDetailsController::class, 'ProductDetsilsView']);
 
 

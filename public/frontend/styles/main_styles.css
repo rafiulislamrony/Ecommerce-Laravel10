@@ -2145,13 +2145,15 @@ select option
 }
 .rating_r i::before
 {
-	font-family: 'FontAwesome';
-	content: "\f006";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+	content: "\f005";
 	font-style: normal;
 	font-size: 19px;
 	margin-right: 4px;
 	color: #f5e211;
 }
+
 .rating_r_1 i:first-child::before{content: "\f005";}
 .rating_r_2 i:first-child::before{content: "\f005";}
 .rating_r_2 i:nth-child(2)::before{content: "\f005";}
@@ -3643,7 +3645,7 @@ select option
 .copyright_content span
 {
 	font-weight: 500;
-} 
+}
 .logos_list li
 {
 	display: inline-block;

@@ -267,11 +267,5 @@ class ProductController extends Controller
             return Redirect()->route('all.product')->with($notification);
         }
     }
-
-    public function ProductDetsilsView($id, $product_name){
-        return view('pages.product_details');
-    }
-
-
-
+ 
 }

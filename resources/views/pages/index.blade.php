@@ -181,7 +181,7 @@ $hot = DB::table('products')
                                                 @endif
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{ $row->product_name }}</a></div>
+                                                <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{ $row->product_name }}</a> </div>
 
                                             </div>
                                             <div class="product_extras">
@@ -1231,7 +1231,7 @@ $buyGet = DB::table('products')
                         })
                     }
                 },
-            }); 
+            });
         }else{
             alert('danger');
         }
