@@ -190,13 +190,11 @@ $hot = DB::table('products')
                                                     <input type="radio" name="product_color" style="background:#000000">
                                                     <input type="radio" name="product_color" style="background:#999999">
                                                 </div>
-                                                <a href="javascript:;" data-href="{{route('add.cart',$row->id)}}"
-                                                    class="cart-link product_cart_button active d-inline-flex"
-                                                    data-toggle="tooltip" data-placement="right"
-                                                    title="{{ __('Add To Cart') }}"
-                                                    style="justify-content: center; align-items:center;">
+
+                                                <button class="product_cart_button addcart" data-id="{{ $row->id }}"
+                                                    style="cursor: pointer;">
                                                     Add To Cart
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -1196,10 +1194,55 @@ $buyGet = DB::table('products')
 
    });
 
-
 </script>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+     $('.addcart').on('click', function(){
+        var id = $(this).data('id');
+
+        if (id) {
+            $.ajax({
+                url: " {{ url('/add/to/cart/') }}/"+id,
+                type:"GET",
+                datType:"json",
+                success:function(data){
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                        })
+                    }
+                },
+            });
+
+        }else{
+            alert('danger');
+        }
+     });
+
+   });
+
+
+</script>
+
+{{-- <script type="text/javascript">
     $(document).on('click','.cart-link',function() {
         let cartUrl = $(this).attr('data-href');
         let cartItemCount = $('.cart-amount').val();
@@ -1218,7 +1261,7 @@ $buyGet = DB::table('products')
             }
         })
     });
-</script>
+</script> --}}
 
 
 @endsection

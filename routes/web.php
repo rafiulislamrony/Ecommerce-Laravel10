@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,6 +130,10 @@ Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('up
 
 // Wishlist  All Route
 Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
-Route::get('add-to-cart/{id}', [WishlistController::class, 'addToCart'])->name('add.cart');
+
+// Add to Cart Wishlist
+Route::get('add/to/cart/{id}', [CartController::class, 'AddToCart']);
+
+// Route::get('add-to-cart/{id}', [CartController::class, 'addCart'])->name('add.cart');
 
 
