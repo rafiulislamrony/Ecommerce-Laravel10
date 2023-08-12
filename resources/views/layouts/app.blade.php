@@ -8,8 +8,10 @@
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/bootstrap4/bootstrap.min.css') }}">
-    <link href="{{ asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet"
+        type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }} ">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
@@ -161,18 +163,32 @@
                                 <!-- Cart -->
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                        @php
+                                        $countitem = 0;
+                                        if(Session::has('cart')){
+                                            $cart = Session::get('cart');
+                                            $cartTotal = 0;
+                                            if($cart){
+                                                foreach ($cart as $product) {
+                                                   $cartTotal += (double)$product['price'] * (int)$product['qty'];
+                                                   $countitem += (int)$product['qty'];
+                                                }
+                                            }
+                                        }else{
+                                            $cart =[];
+                                        }
+                                       @endphp
                                         <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}" alt="">
-                                            <div class="cart_count"><span>10</span></div>
+                                            <div class="cart_count"><span>{{ count($cart) }}</span></div>
                                         </div>
+
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="#">Cart</a></div>
-                                            <div class="cart_price">$85</div>
+                                            <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
+                                            <div class="cart_price">${{ number_format($cartTotal, 2) }}</div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

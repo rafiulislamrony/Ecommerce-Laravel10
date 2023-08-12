@@ -136,6 +136,8 @@ Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
 Route::get('add/to/cart/{id}', [CartController::class, 'AddToCart']);
 Route::get('check', [CartController::class, 'check']);
 
+Route::get('product/cart', [CartController::class, 'ShowCart'])->name('show.cart');
+
 
 // Product Details Route
 Route::get('product/details/{id}/{product_name}', [ProductDetailsController::class, 'ProductDetsilsView']);
