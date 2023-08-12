@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
 
-<div class="single_product">
+<div class="single_product pt-4">
     <div class="container">
         <div class="row">
 
@@ -41,12 +41,14 @@
                         </p>
                     </div>
                     <div class="order_info d-flex flex-row">
-                        <form action="#">
+                        <form action="{{ route('cart.product.add',$product->id) }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Color</label>
-                                        <select class="form-control" name="color" id="color" style="min-width:100px; width:100px;" >
+                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;">
+                                            <option>Choose Color</option>
                                             @foreach ($product_color as $color)
                                             <option value="{{ $color }}" >{{ $color }}</option>
                                             @endforeach
@@ -59,9 +61,10 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Size</label>
-                                        <select class="form-control" name="size" id="size" style="min-width:100px; width:100px;" >
+                                        <select class="form-control" name="size" id="size" style="min-width:100%; width:100%;" >
+                                            <option>Choose Size</option>
                                             @foreach ($product_size as $size)
-                                            <option value="{{ $size }}" >{{ $size }}</option>
+                                            <option value="{{ $size }}">{{ $size }}</option>
                                             @endforeach
                                         </select>
                                       </div>
@@ -70,26 +73,23 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Quantity</label>
-                                       <input type="number" name="qty" class="form-control" value="1" >
+                                       <input type="number" name="qty" class="form-control" min="1" value="1">
                                       </div>
                                 </div>
-
-
                             </div>
 
-
-                            <div class="product_price">
+                            <div class="product_price mt-3">
                                 @if($product->discount_price == NULL)
-                                <span>${{ $product->selling_price }}</span>
+                                <span style="font-size:16px;">${{ $product->selling_price }}</span>
                                 @else
-                                ${{ $product->discount_price }}<span style="text-decoration: line-through;">${{
+                                ${{ $product->discount_price }}<span style="font-size:16px; text-decoration: line-through;">${{
                                     $product->selling_price
                                     }}</span>
                                 @endif
                             </div>
 
                             <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
+                                <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
 

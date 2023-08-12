@@ -141,7 +141,7 @@ class CartController extends Controller
                 "image" => $product->image_one
             ];
 
-            if ($product->product_quantity < $cart[$id]['qty']) {
+            if (array_key_exists($id, $cart) && $product->product_quantity < $cart[$id]['qty']) {
                 return response()->json(['error' => 'Product Out of Stock']);
             } elseif (array_key_exists($id, $cart)) {
                 // If the item already exists in the cart, update the quantity
