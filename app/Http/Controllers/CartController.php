@@ -55,7 +55,7 @@ class CartController extends Controller
             $cart = [];
         }
         return view('pages.cart', compact('cart'));
-    }
+    } 
 
     public function check()
     {

@@ -1208,17 +1208,22 @@ $buyGet = DB::table('products')
                 type:"GET",
                 datType:"json",
                 success:function(data){
-                const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true,
-                  onOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-                })
+
+                    let oldCart =  $('#cart_count').text();
+                    let newCart = parseInt(oldCart) + 1;
+                    $('#cart_count').text(newCart);
+
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                         icon: 'success',

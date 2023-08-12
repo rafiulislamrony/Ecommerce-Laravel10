@@ -132,11 +132,11 @@ Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('up
 // Wishlist  All Route
 Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
 
-// Add to Cart
+//  Cart Route
 Route::get('add/to/cart/{id}', [CartController::class, 'AddToCart']);
 Route::get('check', [CartController::class, 'check']);
-
 Route::get('product/cart', [CartController::class, 'ShowCart'])->name('show.cart');
+Route::get('cart/qty/get/ajax', [CartController::class, 'cartQtyGet'])->name('cart.qty.get');
 
 
 // Product Details Route

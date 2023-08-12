@@ -165,9 +165,9 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         @php
                                         $countitem = 0;
+                                        $cartTotal = 0;
                                         if(Session::has('cart')){
                                             $cart = Session::get('cart');
-                                            $cartTotal = 0;
                                             if($cart){
                                                 foreach ($cart as $product) {
                                                    $cartTotal += (double)$product['price'] * (int)$product['qty'];
@@ -178,15 +178,17 @@
                                             $cart =[];
                                         }
                                        @endphp
+
                                         <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}" alt="">
-                                            <div class="cart_count"><span>{{ count($cart) }}</span></div>
+                                            <div class="cart_count"><span id="cart_count">{{ count($cart) }}</span></div>
                                         </div>
 
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price">${{ number_format($cartTotal, 2) }}</div>
+                                            <div class="cart_price" id="cart_price">${{ number_format($cartTotal,2 ) }}</div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -358,7 +360,7 @@
                 toastr.info(message);
                 break;
         }
-    @endif
+        @endif
     </script>
 
     <!-- Sweet Alert Script --->
