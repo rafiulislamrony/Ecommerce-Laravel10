@@ -64,9 +64,19 @@ $cart =[];
                                         {{ $row['size'] }}
                                         @endif
                                     </td>
-                                    <td>{{ $row['qty'] }}</td>
+                                    <td>
+                                        <form action="{{ route('update.cartqty') }}" method="post" class="d-flex align-items-center">
+                                            @csrf
+                                            <input type="hidden" name="productId" value="{{  $row['id'] }}">
+                                            <input type="number" name="qty" min="1" value="{{ $row['qty'] }}"  class="form-control" style="width:60px" >
+                                            <button class="btn btn-success btn-sm" type="submit" ><i class="fas fa-check-square"></i> </button>
+                                        </form>
+                                    </td>
                                     <td> {{ number_format($row['price'], 2, '.', ',') }} </td>
-                                    <td> {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }} </td>
+                                    <td>
+                                        {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }}
+
+                                    </td>
                                     <td>
                                         <span data-id="{{ $row['id'] }}" class="cartRemove text-danger" style="cursor: pointer;" >
                                             <i class="far fa-trash-alt"></i> </span>

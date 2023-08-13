@@ -30,7 +30,7 @@ class CartController extends Controller
 
             if (array_key_exists($id, $cart) && $product->product_quantity < $cart[$id]['qty']) {
                 return response()->json(['error' => 'Product Out of Stock']);
-            } elseif (array_key_exists($id, $cart)) { 
+            } elseif (array_key_exists($id, $cart)) {
                 return response()->json(['error' => 'Allready Added On Cart.']);
             } else {
                 // Otherwise, add the new item to the cart
@@ -45,7 +45,8 @@ class CartController extends Controller
         return response()->json(['error' => 'Product not found.']);
     }
 
-    public function ShowCart(){
+    public function ShowCart()
+    {
         if (Session::has('cart')) {
             $cart = Session::get('cart');
         } else {
@@ -54,7 +55,8 @@ class CartController extends Controller
         return view('pages.cart', compact('cart'));
     }
 
-    public function RemoveCart($id){
+    public function RemoveCart($id)
+    {
         if ($id) {
             $cart = Session::get('cart');
             if (isset($cart[$id])) {
@@ -63,7 +65,7 @@ class CartController extends Controller
             }
             $total = 0;
             $count = 0;
-            $count = count( $cart);
+            $count = count($cart);
             foreach ($cart as $i) {
                 $total += $i['price'] * $i['qty'];
             }
@@ -74,6 +76,35 @@ class CartController extends Controller
                 'count' => $count,
                 'total' => $total
             ]);
+        }
+    }
+
+    public function UpdateCartQty(Request $request)
+    {
+        $id = $request->productId;
+        $qty = $request->qty;
+
+        if (Session::has('cart')) {
+            $cart = Session::get('cart');
+
+            $product = DB::table('products')->where('id', $id)->first();
+
+            if ($product->product_quantity < $qty) {
+                $notification = [
+                    'message' => 'Stock not available',
+                    'alert-type' => 'error',
+                ];
+                return redirect()->back()->with($notification);
+            }
+            if (isset($cart[$id])) {
+                $cart[$id]['qty'] = $qty;
+                Session::put('cart', $cart);
+                $notification = [
+                    'message' => 'Quantity Updated.',
+                    'alert-type' => 'success',
+                ];
+                return redirect()->back()->with($notification);
+            }
         }
     }
 
