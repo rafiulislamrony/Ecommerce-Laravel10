@@ -45,7 +45,7 @@ $cart =[];
                                 $i = 1;
                                 @endphp
                                 @foreach ($cart as $row)
-                                <tr>
+                                <tr class="cartRowremove{{$row['id']}}" >
                                     <th scope="row">{{ $i++ }}</th>
                                     <td><img src="{{ asset($row['image']) }}" alt="" style="max-width: 60px;"></td>
                                     <td>{{ $row['name'] }}</td>
@@ -68,10 +68,19 @@ $cart =[];
                                     <td> {{ number_format($row['price'], 2, '.', ',') }} </td>
                                     <td> {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }} </td>
                                     <td>
-                                        <a href="{{ route('cart.remove', $row['id']) }}" class="  text-danger" > <i class="far fa-trash-alt"></i> </a>
+                                        <span data-id="{{ $row['id'] }}" class="cartRemove text-danger" style="cursor: pointer;" >
+                                            <i class="far fa-trash-alt"></i> </span>
                                     </td>
                                 </tr>
                                 @endforeach
+                                @if(count($cart) == 0)
+                                <tr>
+                                    <td class="bg-light py-5  text-center" colspan="100">
+                                         <h3 class="text-uppercase">Cart is empty!</h3>
+                                    </td>
+                                </tr>
+                                @endif
+
                             </tbody>
                         </table>
                     </div>
@@ -80,11 +89,11 @@ $cart =[];
                     <div class="order_total d-flex justify-content-between">
                         <div class="order_total_content">
                             <div class="order_total_title">Total Item:</div>
-                            <div class="order_total_amount">{{ $countitem }}</div>
+                            <div class="order_total_amount cartQTY">{{ count($cart) }}</div>
                         </div>
                         <div class="order_total_content ">
                             <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount">${{ number_format($cartTotal, 2, '.', ',') }}</div>
+                            <div class="order_total_amount cartTotal">${{ number_format($cartTotal, 2, '.', ',') }}</div>
                         </div>
                     </div>
 
@@ -128,5 +137,60 @@ $cart =[];
     </div>
 </div>
 <!-- Footer -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+     $('.cartRemove').on('click', function(){
+        var id = $(this).data('id');
+        if (id) {
+            $.ajax({
+                url: " {{ url('cart/remove/') }}/"+id,
+                type:"GET",
+                datType:"json",
+                success:function(data){
+                    $('.cartQTY').text(data.count);
+                    $('.cartTotal').text(data.total);
+                    $('.cartRowremove'+id).remove();
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                        })
+                    }
+                },
+            });
+
+        }else{
+            alert('danger');
+        }
+     });
+   });
+
+</script>
+
+
 
 @endsection

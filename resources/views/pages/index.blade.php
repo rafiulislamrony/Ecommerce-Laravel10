@@ -18,7 +18,7 @@ $hot = DB::table('products')
 @endphp
 
 
-<div class="characteristics">
+{{-- <div class="characteristics">
     <div class="container">
         <div class="row">
 
@@ -71,7 +71,7 @@ $hot = DB::table('products')
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Deals of the week -->
 
@@ -1203,38 +1203,42 @@ $buyGet = DB::table('products')
 
 </script>
 
+
 <script type="text/javascript">
     $(document).ready(function(){
      $('.addcart').on('click', function(){
         var id = $(this).data('id');
         var price = parseFloat($(this).data('price'));
         var qty = parseInt($(this).data('qty'));
-
         if (id) {
             $.ajax({
                 url: "{{ url('/add/to/cart/') }}/"+id,
                 type:"GET",
                 datType:"json",
                 success:function(data){
-                    let oldCart = parseInt($('#cart_count').text());
-                    let newCart = oldCart + 1;
-                    $('#cart_count').text(newCart);
 
-                    let oldPrice = parseFloat($('#cart_price').text());
-                    let newPrice = oldPrice + (price * qty);
-                    $('#cart_price').text(newPrice.toFixed(2));
+                    if(data.success){
+                        let oldCart = parseInt($('#cart_count').text());
+                         let newCart = oldCart + 1;
+                        $('#cart_count').text(newCart);
+
+                        let oldPrice = parseFloat($('#cart_price').text());
+                        let newPrice = oldPrice + (price * qty);
+                        $('#cart_price').text(newPrice.toFixed(2));
+                    }
 
                     const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    onOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
                     })
+
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                         icon: 'success',
@@ -1247,7 +1251,7 @@ $buyGet = DB::table('products')
                         })
                     }
 
-                },
+                }
             });
         }else{
             alert('danger');

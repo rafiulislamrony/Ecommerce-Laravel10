@@ -30,11 +30,8 @@ class CartController extends Controller
 
             if (array_key_exists($id, $cart) && $product->product_quantity < $cart[$id]['qty']) {
                 return response()->json(['error' => 'Product Out of Stock']);
-            } elseif (array_key_exists($id, $cart)) {
-                // If the item already exists in the cart, update the quantity
-                $cart[$id]['qty']++;
-                Session::put('cart', $cart);
-                return response()->json(['success' => 'Product Quantity Updated successfully']);
+            } elseif (array_key_exists($id, $cart)) { 
+                return response()->json(['error' => 'Allready Added On Cart.']);
             } else {
                 // Otherwise, add the new item to the cart
                 $cart[$id] = $cartItem;
@@ -55,13 +52,38 @@ class CartController extends Controller
             $cart = [];
         }
         return view('pages.cart', compact('cart'));
-    } 
+    }
+
+    public function RemoveCart($id){
+        if ($id) {
+            $cart = Session::get('cart');
+            if (isset($cart[$id])) {
+                unset($cart[$id]);
+                Session::put('cart', $cart);
+            }
+            $total = 0;
+            $count = 0;
+            $count = count( $cart);
+            foreach ($cart as $i) {
+                $total += $i['price'] * $i['qty'];
+            }
+            $total = round($total, 2);
+
+            return response()->json([
+                'success' => 'Product removed successfully',
+                'count' => $count,
+                'total' => $total
+            ]);
+        }
+    }
 
     public function check()
     {
         $content = Session::get('cart');
         return response()->json($content);
     }
+
+
 
 
 }

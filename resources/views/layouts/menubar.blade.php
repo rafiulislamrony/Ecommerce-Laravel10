@@ -120,7 +120,7 @@ $category = DB::table('categories')->get();
 
 <!-- Menu -->
 
-<div class="page_menu">
+{{-- <div class="page_menu">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -211,7 +211,7 @@ $category = DB::table('categories')->get();
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 </header>
 
@@ -223,7 +223,7 @@ $category = DB::table('categories')->get();
     ->where('main_slider',1)->orderBy('id', 'DESC')->first();
 @endphp
 
-<div class="banner">
+{{-- <div class="banner">
     <div class="banner_background" style="background-image:url({{ asset('frontend/images/banner_background.jpg')}})">
     </div>
     <div class="container fill_height">
@@ -247,5 +247,5 @@ $category = DB::table('categories')->get();
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Characteristics -->

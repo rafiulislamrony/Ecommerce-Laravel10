@@ -169,7 +169,6 @@
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         @php
-                                        $countitem = 0;
                                         $cartTotal = 0;
                                         if(Session::has('cart')){
                                         $cart = Session::get('cart');
@@ -177,7 +176,6 @@
                                         if($cart){
                                         foreach ($cart as $product) {
                                         $cartTotal += (double)$product['price'] * (int)$product['qty'];
-                                        $countitem += (int)$product['qty'];
                                         }
                                         }
                                         }else{
@@ -187,13 +185,13 @@
 
                                         <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}" alt="">
-                                            <div class="cart_count"><span id="cart_count">{{ count($cart) }}</span>
+                                            <div class="cart_count"><span class="cartQTY" id="cart_count">{{ count($cart) }}</span>
                                             </div>
                                         </div>
 
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price"> $<span id="cart_price">{{ $cartTotal }}</span>
+                                            <div class="cart_price"> $<span class="cartTotal" id="cart_price">{{ $cartTotal }}</span>
                                             </div>
                                         </div>
 
@@ -337,7 +335,7 @@
     <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
-    <script src="{{ asset('frontend/js/cart_custom.js')}}"></script> 
+    <script src="{{ asset('frontend/js/cart_custom.js')}}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
