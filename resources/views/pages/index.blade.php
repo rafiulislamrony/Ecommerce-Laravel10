@@ -18,7 +18,7 @@ $hot = DB::table('products')
 @endphp
 
 
-{{-- <div class="characteristics">
+<div class="characteristics">
     <div class="container">
         <div class="row">
 
@@ -71,7 +71,7 @@ $hot = DB::table('products')
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 <!-- Deals of the week -->
 
@@ -1164,6 +1164,11 @@ $buyGet = DB::table('products')
                 type:"GET",
                 datType:"json",
                 success:function(data){
+
+                let oldWish = parseInt($('#wishlist_count').text());
+                let newWish = oldWish + 1;
+                $('#wishlist_count').text(newWish);
+
                 const Toast = Swal.mixin({
                   toast: true,
                   position: 'top-end',
@@ -1188,7 +1193,6 @@ $buyGet = DB::table('products')
                         title: data.error
                         })
                     }
-
                 },
 
             });
@@ -1197,7 +1201,6 @@ $buyGet = DB::table('products')
             alert('danger');
         }
      });
-
    });
 
 </script>

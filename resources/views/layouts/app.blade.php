@@ -154,7 +154,7 @@
                                             alt=""></div>
                                     <div class="wishlist_content">
                                         <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                        <div class="wishlist_count"> {{ count($wishlist) }} </div>
+                                        <div class="wishlist_count" id="wishlist_count" > {{ count($wishlist) }} </div>
                                     </div>
 
                                 </div>
