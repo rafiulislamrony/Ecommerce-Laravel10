@@ -3669,10 +3669,10 @@ select option
     align-items: center;
 }
 
-.product_fav {
+.product_fav i {
     transition: 0.3s ease-in-out;
 }
 
-.product_fav:hover  {
+.product_fav:hover i {
     color: red;
 }

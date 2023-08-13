@@ -199,8 +199,6 @@ $hot = DB::table('products')
                                                     data-qty="1" style="cursor: pointer;">
                                                     Add To Cart
                                                 </button>
-
-
                                             </div>
                                         </div>
 

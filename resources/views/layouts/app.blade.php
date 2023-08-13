@@ -120,15 +120,17 @@
                                             <input type="search" required="required" class="header_search_input"
                                                 placeholder="Search for products...">
                                             <div class="custom_dropdown">
+
                                                 <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc">All Categories</span>
+                                                    <span class="custom_dropdown_placeholder clc" id="catall" >All Categories</span>
                                                     <i class="fas fa-chevron-down"></i>
-                                                    <ul class="custom_list clc">
+                                                    <ul class="custom_list clc" id="catlist" >
                                                         @foreach ($category as $cat)
                                                         <li><a class="clc" href="#">{{ $cat->category_name }} </a></li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
+
                                             </div>
                                             <button type="submit" class="header_search_button trans_300"
                                                 value="Submit"><img src="{{ asset('frontend/images/search.png')}}"
@@ -154,7 +156,7 @@
                                             alt=""></div>
                                     <div class="wishlist_content">
                                         <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                        <div class="wishlist_count" id="wishlist_count" > {{ count($wishlist) }} </div>
+                                        <div class="wishlist_count" id="wishlist_count"> {{ count($wishlist) }} </div>
                                     </div>
 
                                 </div>
@@ -167,27 +169,29 @@
                                         $countitem = 0;
                                         $cartTotal = 0;
                                         if(Session::has('cart')){
-                                            $cart = Session::get('cart');
-                                             //Session::forget('cart');
-                                            if($cart){
-                                                foreach ($cart as $product) {
-                                                   $cartTotal += (double)$product['price'] * (int)$product['qty'];
-                                                   $countitem += (int)$product['qty'];
-                                                }
-                                            }
-                                        }else{
-                                            $cart =[];
+                                        $cart = Session::get('cart');
+                                        //Session::forget('cart');
+                                        if($cart){
+                                        foreach ($cart as $product) {
+                                        $cartTotal += (double)$product['price'] * (int)$product['qty'];
+                                        $countitem += (int)$product['qty'];
                                         }
-                                       @endphp
+                                        }
+                                        }else{
+                                        $cart =[];
+                                        }
+                                        @endphp
 
                                         <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}" alt="">
-                                            <div class="cart_count"><span id="cart_count">{{ count($cart) }}</span></div>
+                                            <div class="cart_count"><span id="cart_count">{{ count($cart) }}</span>
+                                            </div>
                                         </div>
 
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price" > $<span id="cart_price">{{ $cartTotal }}</span> </div>
+                                            <div class="cart_price"> $<span id="cart_price">{{ $cartTotal }}</span>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -330,8 +334,6 @@
     <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/all.min.js"></script>
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -384,6 +386,15 @@
              }
            });
        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#catall').on('click', function() {
+                $('#catlist').toggleClass('active');
+            });
+        });
+
     </script>
 
 
