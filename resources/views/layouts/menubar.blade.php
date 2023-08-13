@@ -236,7 +236,7 @@ $category = DB::table('categories')->get();
                         @if ($slider->discount_price == NULL)
                         <span>${{ $slider->selling_price}}</span>
                         @else
-                        <span>${{ $slider->selling_price}}</span> 
+                        <span>${{ $slider->selling_price}}</span>
                         ${{ $slider->discount_price}}
                         @endif
 

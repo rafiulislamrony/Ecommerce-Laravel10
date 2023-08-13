@@ -3655,13 +3655,24 @@ select option
 {
 	margin-right: 0px;
 }
-.product_fav i {
-    transition: 0.3s ease-in-out;
-}
-.product_fav:hover i {
-    color: red;
-}
+
+
 
 .arrivals_slider .slick-track {
     padding-bottom: 110px;
+}
+
+ .product_fav {
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_fav {
+    transition: 0.3s ease-in-out;
+}
+
+.product_fav:hover  {
+    color: red;
 }

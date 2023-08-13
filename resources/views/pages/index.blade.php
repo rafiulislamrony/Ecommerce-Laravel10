@@ -18,7 +18,7 @@ $hot = DB::table('products')
 @endphp
 
 
-<div class="characteristics">
+{{-- <div class="characteristics">
     <div class="container">
         <div class="row">
 
@@ -71,7 +71,7 @@ $hot = DB::table('products')
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Deals of the week -->
 
@@ -181,7 +181,9 @@ $hot = DB::table('products')
                                                 @endif
                                             </div>
                                             <div class="product_name">
-                                                <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{ $row->product_name }}</a> </div>
+                                                <div><a
+                                                        href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
+                                                        $row->product_name }}</a> </div>
 
                                             </div>
                                             <div class="product_extras">
@@ -193,9 +195,12 @@ $hot = DB::table('products')
                                                 </div>
 
                                                 <button class="product_cart_button addcart" data-id="{{ $row->id }}"
-                                                    style="cursor: pointer;">
+                                                    data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
+                                                    data-qty="1" style="cursor: pointer;">
                                                     Add To Cart
                                                 </button>
+
+
                                             </div>
                                         </div>
 
@@ -1201,17 +1206,22 @@ $buyGet = DB::table('products')
     $(document).ready(function(){
      $('.addcart').on('click', function(){
         var id = $(this).data('id');
+        var price = parseFloat($(this).data('price'));
+        var qty = parseInt($(this).data('qty'));
 
         if (id) {
             $.ajax({
-                url: " {{ url('/add/to/cart/') }}/"+id,
+                url: "{{ url('/add/to/cart/') }}/"+id,
                 type:"GET",
                 datType:"json",
                 success:function(data){
-
-                    let oldCart =  $('#cart_count').text();
-                    let newCart = parseInt(oldCart) + 1;
+                    let oldCart = parseInt($('#cart_count').text());
+                    let newCart = oldCart + 1;
                     $('#cart_count').text(newCart);
+
+                    let oldPrice = parseFloat($('#cart_price').text());
+                    let newPrice = oldPrice + (price * qty);
+                    $('#cart_price').text(newPrice.toFixed(2));
 
                     const Toast = Swal.mixin({
                     toast: true,
@@ -1235,6 +1245,7 @@ $buyGet = DB::table('products')
                         title: data.error
                         })
                     }
+
                 },
             });
         }else{

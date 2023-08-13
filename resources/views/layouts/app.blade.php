@@ -168,6 +168,7 @@
                                         $cartTotal = 0;
                                         if(Session::has('cart')){
                                             $cart = Session::get('cart');
+                                             //Session::forget('cart');
                                             if($cart){
                                                 foreach ($cart as $product) {
                                                    $cartTotal += (double)$product['price'] * (int)$product['qty'];
@@ -186,7 +187,7 @@
 
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price" id="cart_price">${{ number_format($cartTotal,2 ) }}</div>
+                                            <div class="cart_price" > $<span id="cart_price">{{ $cartTotal }}</span> </div>
                                         </div>
 
                                     </div>
