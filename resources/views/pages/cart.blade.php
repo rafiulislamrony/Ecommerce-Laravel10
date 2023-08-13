@@ -1,6 +1,132 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Cart -->
+@php
+$countitem = 0;
+$cartTotal = 0;
+if(Session::has('cart')){
+$cart = Session::get('cart');
+//Session::forget('cart');
+if($cart){
+foreach ($cart as $product) {
+$cartTotal += (double)$product['price'] * (int)$product['qty'];
+$countitem += (int)$product['qty'];
+}
+}
+}else{
+$cart =[];
+}
+@endphp
 
+<div class="cart_section pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cart_container">
+                    <div class="cart_title">Shopping Cart</div>
+                    <div class="mt-4">
+                        <table class="table table-striped" style="border: 2px solid #ddd;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sl</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $i = 1;
+                                @endphp
+                                @foreach ($cart as $row)
+                                <tr>
+                                    <th scope="row">{{ $i++ }}</th>
+                                    <td><img src="{{ asset($row['image']) }}" alt="" style="max-width: 60px;"></td>
+                                    <td>{{ $row['name'] }}</td>
+                                    <td>
+                                        @if($row['color'] == NULL)
+                                        No Color Selected
+                                        @else
+                                        {{ $row['color'] }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $row['size'] }}
+                                        @if($row['size'] == NULL)
+                                        No Size Selected
+                                        @else
+                                        {{ $row['size'] }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $row['qty'] }}</td>
+                                    <td> {{ number_format($row['price'], 2, '.', ',') }} </td>
+                                    <td> {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }} </td>
+                                    <td>
+                                        <a href="{{ route('cart.remove', $row['id']) }}" class="  text-danger" > <i class="far fa-trash-alt"></i> </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Order Total -->
+                    <div class="order_total d-flex justify-content-between">
+                        <div class="order_total_content">
+                            <div class="order_total_title">Total Item:</div>
+                            <div class="order_total_amount">{{ $countitem }}</div>
+                        </div>
+                        <div class="order_total_content ">
+                            <div class="order_total_title">Order Total:</div>
+                            <div class="order_total_amount">${{ number_format($cartTotal, 2, '.', ',') }}</div>
+                        </div>
+                    </div>
+
+                    <div class="cart_buttons">
+                        <button type="button" class="button cart_button_clear">All Cancle</button>
+                        <button type="button" class="button cart_button_checkout">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div
+                    class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_icon"><img src="{{ asset('frontend/images/send.png')}}" alt="">
+                        </div>
+                        <div class="newsletter_title">Sign up for Newsletter</div>
+                        <div class="newsletter_text">
+                            <p>...and receive %20 coupon for first shopping.</p>
+                        </div>
+                    </div>
+                    <div class="newsletter_content clearfix">
+                        <form action="{{ route('store.newslater') }}" method="post" class="newsletter_form">
+                            @csrf
+                            <input type="email" name="email" class="newsletter_input"
+                                placeholder="Enter your email address">
+                            <button class="newsletter_button" type="submit">Subscribe</button>
+                        </form>
+                        <div class="newsletter_unsubscribe_link"><a href="#">Unsubscribe</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
 
 @endsection
