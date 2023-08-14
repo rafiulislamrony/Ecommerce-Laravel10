@@ -1157,7 +1157,7 @@ $buyGet = DB::table('products')
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Label">Modal title</h5>
+                <h5 class="modal-title" id="Label">Product Quick View</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1166,9 +1166,9 @@ $buyGet = DB::table('products')
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="" alt="">
+                            <img src="" id="pimg" alt="">
                             <div class="card-body">
-                                <h5 class="cart-title">Product Name</h5>
+                                <h5 class="cart-title" id="pname"> </h5>
                             </div>
                         </div>
                     </div>
@@ -1179,7 +1179,7 @@ $buyGet = DB::table('products')
                             <li class="list-group-item">A third item</li>
                             <li class="list-group-item">A fourth item</li>
                             <li class="list-group-item">And a fifth one</li>
-                          </ul>
+                        </ul>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -1202,9 +1202,9 @@ $buyGet = DB::table('products')
                         </div>
                         <div class="form-group">
                             <label for="qty">Quantity</label>
-                            <input id="qty" type="number" min="1" value="1" class="form-control" >
+                            <input id="qty" type="number" min="1" value="1" class="form-control">
                         </div>
-                        <button type="submit"  class="btn btn-primary"> Add to Cart</button>
+                        <button type="submit" class="btn btn-primary"> Add to Cart</button>
                     </div>
                 </div>
 
@@ -1214,7 +1214,6 @@ $buyGet = DB::table('products')
         </div>
     </div>
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -1272,6 +1271,72 @@ $buyGet = DB::table('products')
 
 </script>
 
+
+<script type="text/javascript">
+    function productView(id) {
+        $.ajax({
+            url: "{{ url('product/quick/view/') }}/" + id,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                $('#pname').text(data.product.product_name);
+                $('#pimg').attr('src',data.product.image_one);
+            }
+        })
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+     $('.addwishlist').on('click', function(){
+        var id = $(this).data('id');
+        if (id) {
+            $.ajax({
+                url: " {{ url('wishlist/add/') }}/"+id,
+                type:"GET",
+                datType:"json",
+                success:function(data){
+
+                let oldWish = parseInt($('#wishlist_count').text());
+                let newWish = oldWish + 1;
+                $('#wishlist_count').text(newWish);
+
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                        })
+                    }
+                },
+
+            });
+
+        }else{
+            alert('danger');
+        }
+     });
+   });
+
+</script>
 
 {{-- <script type="text/javascript">
     $(document).ready(function(){

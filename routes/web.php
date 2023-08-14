@@ -139,6 +139,8 @@ Route::get('product/cart', [CartController::class, 'ShowCart'])->name('show.cart
 Route::get('cart/remove/{id}', [CartController::class, 'RemoveCart'])->name('cart.remove');
 Route::post('update/cartqty', [CartController::class, 'UpdateCartQty'])->name('update.cartqty');
 
+Route::get('product/quick/view/{id}', [CartController::class, 'QuickView']);
+
 
 // Product Details Route
 Route::get('product/details/{id}/{product_name}', [ProductDetailsController::class, 'ProductDetsilsView']);
