@@ -1166,7 +1166,7 @@ $buyGet = DB::table('products')
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="" id="pimg" alt="">
+                            <img src="" id="pimg" alt="" style="width: 80%; height:80%; margin: 0 auto;">
                             <div class="card-body">
                                 <h5 class="cart-title" id="pname"> </h5>
                             </div>
@@ -1174,30 +1174,23 @@ $buyGet = DB::table('products')
                     </div>
                     <div class="col-md-4">
                         <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
+                            <li class="list-group-item"> Product Code: <span id="pcode"> </span> </li>
+                            <li class="list-group-item">Category: <span id="pcat"> </span> </li>
+                            <li class="list-group-item">Subategory: <span id="psub"> </span></li>
+                            <li class="list-group-item">Brand:  <span id="pbrand"> </span></li>
+                            <li class="list-group-item">Stock: <span id="pstock"> </span>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="color">Color</label>
-                            <select name="" class="form-control ml-0" id="color">
-                                <option value="">Choose Color</option>
-                                <option value="">Color 1</option>
-                                <option value="">Color 2</option>
-                                <option value="">Color 3</option>
+                            <select name="color" class="form-control w-100 ml-0" id="color">
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="size">Size</label>
-                            <select name="" class="form-control ml-0" id="size">
-                                <option value="">Choose Size</option>
-                                <option value="">Size 1</option>
-                                <option value="">Size 2</option>
-                                <option value="">Size 3</option>
+                            <select name="size" class="form-control ml-0 w-100" id="size">
                             </select>
                         </div>
                         <div class="form-group">
@@ -1207,7 +1200,6 @@ $buyGet = DB::table('products')
                         <button type="submit" class="btn btn-primary"> Add to Cart</button>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
             </div>
@@ -1215,11 +1207,8 @@ $buyGet = DB::table('products')
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-
 <script type="text/javascript">
     $(document).ready(function(){
      $('.addwishlist').on('click', function(){
@@ -1271,7 +1260,6 @@ $buyGet = DB::table('products')
 
 </script>
 
-
 <script type="text/javascript">
     function productView(id) {
         $.ajax({
@@ -1281,6 +1269,26 @@ $buyGet = DB::table('products')
             success: function(data) {
                 $('#pname').text(data.product.product_name);
                 $('#pimg').attr('src',data.product.image_one);
+                $('#pcode').text(data.product.product_code);
+                $('#pcat').text(data.product.category_name);
+                $('#psub').text(data.product.subcategory_name);
+                $('#pbrand').text(data.product.brand_name);
+                if(data.product.product_quantity < 1){
+                    $('#pstock').html('<span class="badge" style="background: red; color:white;"> Unavailable</span>');
+                }else{
+                    $('#pstock').html('<span class="badge" style="background: green; color:white;"> Available</span>');
+                }
+
+                var d = $('select[name="color"]').empty();
+                $.each(data.color, function(key, value){
+                    $('select[name="color"]').append('<option value="'+value+'">'+value+'</option>');
+                });
+
+                var d = $('select[name="size"]').empty();
+                $.each(data.size, function(key, value){
+                    $('select[name="size"]').append('<option value="'+value+'">'+value+'</option>');
+                });
+
             }
         })
     }
