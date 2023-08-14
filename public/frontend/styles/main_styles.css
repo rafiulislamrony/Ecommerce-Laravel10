@@ -1637,14 +1637,12 @@ select option
 }
 .featured_slider_item
 {
-	height: 263px;
+	height: 280px;
 	width: 25%;
 }
 .product_item
 {
 	position: relative;
-	left: -10px;
-	width: calc(100% + 20px);
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1707,7 +1705,6 @@ select option
 	font-size: 14px;
 	font-weight: 400;
 	color: #000000;
-	white-space: nowrap;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -2236,7 +2233,7 @@ select option
 .arrivals_slider_item
 {
 	visibility: hidden;
-	height: 263px;
+	height: 280px;
 	width: 25%;
 }
 .arrivals_slider .slick-active .arrivals_slider_item
@@ -2651,11 +2648,7 @@ select option
 {
 	display: block;
 }
-.bestsellers_fav i
-{
-	font-size: 13px;
-	color: #df3b3b;
-}
+
 .bestsellers_marks
 {
 	position: absolute;
@@ -3673,6 +3666,81 @@ select option
     transition: 0.3s ease-in-out;
 }
 
+.product_fav i {
+    color: #0e8ce4;
+}
 .product_fav:hover i {
     color: red;
+}
+
+.quickview{
+    position: absolute;
+    top: 80px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+    border-radius: 50%;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 200ms ease;
+    color: #0e8ce4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+}
+.quickview:focus{
+    outline: 0px auto -webkit-focus-ring-color;
+    box-shadow: #00000000;
+}
+
+.product_fav:focus{
+    outline: 0px auto -webkit-focus-ring-color;
+    box-shadow: #00000000;
+    border: 0px;
+}
+.product_fav{
+    border: 0px;
+}
+
+.qproduct:hover .quickview {
+    visibility: visible;
+    opacity: 1;
+    top: 66px;
+    border: 0px;
+}
+
+.quickview:hover,
+.quickview:hover i {
+    color: red;
+}
+
+.bestsellers_fav {
+    background-color: transparent;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0d82d3;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.13);
+    border-radius: 50%;
+    background: #fff;
+    top: 15px;
+    right: 15px;
+}
+.bestsellers_fav i
+{
+	font-size: 13px;
+}
+.bestsellers_fav:hover{
+    color: red;
+}
+
+.bestsellers_fav:focus{
+    outline: 0px auto -webkit-focus-ring-color;
+    box-shadow: #00000000;
+    border: 0px;
 }

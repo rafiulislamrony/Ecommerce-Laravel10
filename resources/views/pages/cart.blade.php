@@ -102,7 +102,7 @@ $cart =[];
                             <div class="order_total_amount cartQTY">{{ count($cart) }}</div>
                         </div>
                         <div class="order_total_content ">
-                            <div class="order_total_title">Order Total:</div>
+                            <div class="order_total_title">Total Price:</div>
                             <div class="order_total_amount cartTotal">${{ number_format($cartTotal, 2, '.', ',') }}</div>
                         </div>
                     </div>
