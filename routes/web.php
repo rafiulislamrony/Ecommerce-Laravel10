@@ -140,6 +140,7 @@ Route::get('cart/remove/{id}', [CartController::class, 'RemoveCart'])->name('car
 Route::post('update/cartqty', [CartController::class, 'UpdateCartQty'])->name('update.cartqty');
 
 Route::get('product/quick/view/{id}', [CartController::class, 'QuickView']);
+Route::post('add/quickviewproduct/cart', [CartController::class, 'AddQuickViewProduct'])->name('insert.into.cart');
 
 
 // Product Details Route

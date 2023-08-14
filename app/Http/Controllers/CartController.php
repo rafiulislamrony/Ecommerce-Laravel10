@@ -103,6 +103,7 @@ class CartController extends Controller
                 ];
                 return redirect()->back()->with($notification);
             }
+            
         }
     }
 
@@ -128,6 +129,61 @@ class CartController extends Controller
             'color' => $product_color,
             'size' => $product_size,
         ]);
+    }
+
+
+    public function AddQuickViewProduct(Request $request)
+    {
+        $id = $request->product_id;
+        $color = $request->color;
+        $size = $request->size;
+        $qty = $request->qty;
+
+        $cart = Session::get('cart', []);
+
+        $product = DB::table('products')->where('id', $id)->first();
+
+        if ($product) {
+            $cartItem = [
+                "id" => $product->id,
+                "name" => $product->product_name,
+                "qty" => $qty,
+                "price" => ($product->discount_price === NULL) ? $product->selling_price : $product->discount_price,
+                "weight" => 1,
+                "color" => $color,
+                "size" => $size,
+                "image" => $product->image_one
+            ];
+
+            if (array_key_exists($id, $cart) && $product->product_quantity < $cart[$id]['qty']) {
+                $notification = [
+                    'message' => 'Product Out of Stock',
+                    'alert-type' => 'error',
+                ];
+                return Redirect()->back()->with($notification);
+            } elseif (array_key_exists($id, $cart)) {
+                $notification = [
+                    'message' => 'Allready Added On Cart.',
+                    'alert-type' => 'error',
+                ];
+                return Redirect()->back()->with($notification);
+            } else {
+                // Otherwise, add the new item to the cart
+                $cart[$id] = $cartItem;
+            }
+            Session::put('cart', $cart);
+
+            $notification = [
+                'message' => 'Product added to cart successfully!',
+                'alert-type' => 'success',
+            ];
+            return Redirect()->back()->with($notification);
+        }
+        $notification = [
+            'message' => 'Product not found.',
+            'alert-type' => 'error',
+        ];
+        return Redirect()->back()->with($notification);
     }
 
     public function check()

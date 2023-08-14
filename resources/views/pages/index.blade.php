@@ -1179,10 +1179,14 @@ $buyGet = DB::table('products')
                             <li class="list-group-item">Subategory: <span id="psub"> </span></li>
                             <li class="list-group-item">Brand:  <span id="pbrand"> </span></li>
                             <li class="list-group-item">Stock: <span id="pstock"> </span>
+                            <li class="list-group-item">Price: <span id="pprice"> </span>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-4">
+                        <form method="post" action="{{ route('insert.into.cart') }}">
+                            <input type="hidden" name="product_id" id="product_id" value="">
+                            @csrf
                         <div class="form-group">
                             <label for="color">Color</label>
                             <select name="color" class="form-control w-100 ml-0" id="color">
@@ -1195,9 +1199,11 @@ $buyGet = DB::table('products')
                         </div>
                         <div class="form-group">
                             <label for="qty">Quantity</label>
-                            <input id="qty" type="number" min="1" value="1" class="form-control">
+                            <input id="qty" name="qty" type="number" min="1" value="1" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary"> Add to Cart</button>
+
+                      </form>
                     </div>
                 </div>
             </div>
@@ -1273,10 +1279,17 @@ $buyGet = DB::table('products')
                 $('#pcat').text(data.product.category_name);
                 $('#psub').text(data.product.subcategory_name);
                 $('#pbrand').text(data.product.brand_name);
+                $('#product_id').val(data.product.id);
+
                 if(data.product.product_quantity < 1){
                     $('#pstock').html('<span class="badge" style="background: red; color:white;"> Unavailable</span>');
                 }else{
                     $('#pstock').html('<span class="badge" style="background: green; color:white;"> Available</span>');
+                }
+                if(data.product.discount_price === null){
+                    $('#pprice').text(data.product.selling_price);
+                }else{
+                    $('#pprice').text(data.product.discount_price);
                 }
 
                 var d = $('select[name="color"]').empty();
@@ -1401,5 +1414,6 @@ $buyGet = DB::table('products')
      });
    });
 </script> --}}
+
 
 @endsection

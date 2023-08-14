@@ -98,7 +98,7 @@ $cart =[];
                     <!-- Order Total -->
                     <div class="order_total d-flex justify-content-between">
                         <div class="order_total_content">
-                            <div class="order_total_title">Total Item:</div>
+                            <div class="order_total_title">Total Product:</div>
                             <div class="order_total_amount cartQTY">{{ count($cart) }}</div>
                         </div>
                         <div class="order_total_content ">
