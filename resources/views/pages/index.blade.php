@@ -187,18 +187,21 @@ $hot = DB::table('products')
 
                                             </div>
                                             <div class="product_extras">
-                                                <div class="product_color">
-                                                    <input type="radio" checked name="product_color"
-                                                        style="background:#b19c83">
-                                                    <input type="radio" name="product_color" style="background:#000000">
-                                                    <input type="radio" name="product_color" style="background:#999999">
-                                                </div>
 
-                                                <button class="product_cart_button addcart" data-id="{{ $row->id }}"
+                                                {{-- <button class="product_cart_button addcart"
+                                                    data-id="{{ $row->id }}"
                                                     data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
                                                     data-qty="1" style="cursor: pointer;">
                                                     Add To Cart
+                                                </button> --}}
+                                                <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
+                                                    onclick="productView(this.id)" class="product_cart_button addcart"
+                                                    style="cursor: pointer;">
+                                                    Quick View
                                                 </button>
+
+
+
                                             </div>
                                         </div>
 
@@ -1148,6 +1151,72 @@ $buyGet = DB::table('products')
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="cartmodel" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="" alt="">
+                            <div class="card-body">
+                                <h5 class="cart-title">Product Name</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li>
+                          </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <select name="" class="form-control ml-0" id="color">
+                                <option value="">Choose Color</option>
+                                <option value="">Color 1</option>
+                                <option value="">Color 2</option>
+                                <option value="">Color 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <select name="" class="form-control ml-0" id="size">
+                                <option value="">Choose Size</option>
+                                <option value="">Size 1</option>
+                                <option value="">Size 2</option>
+                                <option value="">Size 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Quantity</label>
+                            <input id="qty" type="number" min="1" value="1" class="form-control" >
+                        </div>
+                        <button type="submit"  class="btn btn-primary"> Add to Cart</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
@@ -1204,7 +1273,7 @@ $buyGet = DB::table('products')
 </script>
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function(){
      $('.addcart').on('click', function(){
         var id = $(this).data('id');
@@ -1258,6 +1327,6 @@ $buyGet = DB::table('products')
         }
      });
    });
-</script>
+</script> --}}
 
 @endsection
