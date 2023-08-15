@@ -1,30 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Cart -->
-@php
-$countitem = 0;
-$cartTotal = 0;
-if(Session::has('cart')){
-$cart = Session::get('cart');
-//Session::forget('cart');
-if($cart){
-foreach ($cart as $product) {
-$cartTotal += (double)$product['price'] * (int)$product['qty'];
-$countitem += (int)$product['qty'];
-}
-}
-}else{
-$cart =[];
-}
-@endphp
 
 <div class="cart_section pt-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="cart_container">
-                    <div class="cart_title">Shopping Cart</div>
+                    <div class="cart_title">Tour Wishlist Products</div>
                     <div class="mt-4">
                         <table class="table table-striped" style="border: 2px solid #ddd;">
                             <thead>
@@ -34,88 +17,60 @@ $cart =[];
                                     <th scope="col">Name</th>
                                     <th scope="col">Color</th>
                                     <th scope="col">Size</th>
-                                    <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Add to Cart</th>
+                                    <th scope="col">Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                 $i = 1;
                                 @endphp
-                                @foreach ($cart as $row)
-                                <tr class="cartRowremove{{$row['id']}}">
+                                @foreach ($product as $row)
+                                <tr class="wishlistRowremove{{$row->id}}">
                                     <th scope="row">{{ $i++ }}</th>
-                                    <td><img src="{{ asset($row['image']) }}" alt="" style="max-width: 60px;"></td>
-                                    <td>{{ $row['name'] }}</td>
+                                    <td><img src="{{ asset($row->image_one) }}" alt="" style="max-width: 60px;"></td>
+                                    <td>{{ $row->product_name }}</td>
                                     <td>
-                                        @if($row['color'] == NULL)
-                                        No Color Selected
+                                        @if($row->product_color == NULL)
                                         @else
-                                        {{ $row['color'] }}
+                                        {{ $row->product_color }}
                                         @endif
                                     </td>
                                     <td>
-                                        @if($row['size'] == NULL)
+                                        @if($row->product_size == NULL)
                                         No Size Selected
                                         @else
-                                        {{ $row['size'] }}
+                                        {{ $row->product_size }}
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('update.cartqty') }}" method="post"
-                                            class="d-flex align-items-center">
-                                            @csrf
-                                            <input type="hidden" name="productId" value="{{  $row['id'] }}">
-                                            <input type="number" name="qty" min="1" value="{{ $row['qty'] }}"
-                                                class="form-control" style="width:60px">
-                                            <button class="btn btn-success btn-sm" type="submit"><i
-                                                    class="fas fa-check-square"></i> </button>
-                                        </form>
-                                    </td>
-                                    <td> {{ number_format($row['price'], 2, '.', ',') }} </td>
+                                        @if($row->discount_price == NULL)
+                                        {{ number_format($row->selling_price , 2, '.', ',') }}
+                                        @else
+                                        {{ number_format($row->discount_price , 2, '.', ',') }}
+                                        @endif
                                     <td>
-                                        {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }}
-
+                                        <a href="" class="btn btn-sm btn-primary"> Add to Cart</a>
                                     </td>
                                     <td>
-                                        <span data-id="{{ $row['id'] }}" class="cartRemove text-danger"
-                                            style="cursor: pointer;">
-                                            <i class="far fa-trash-alt"></i> </span>
+                                        <button class="removeWishlist text-danger" data-id="{{ $row->id }}"
+                                            title="Remove Form Wishlist" style="border:0;cursor: pointer;">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 @endforeach
-                                @if(count($cart) == 0)
+                                @if(count($product) == 0)
                                 <tr>
                                     <td class="bg-light py-5  text-center" colspan="100">
-                                        <h3 class="text-uppercase">Cart is empty!</h3>
+                                        <h3 class="text-uppercase">Wishlist is empty!</h3>
                                     </td>
                                 </tr>
                                 @endif
 
                             </tbody>
                         </table>
-                    </div>
-
-                    <!-- Order Total -->
-                    <div class="order_total d-flex justify-content-between">
-                        <div class="order_total_content">
-                            <div class="order_total_title">Total Product:</div>
-                            <div class="order_total_amount cartQTY">{{ count($cart) }}</div>
-                        </div>
-                        <div class="order_total_content ">
-                            <div class="order_total_title">Total Price:</div>
-                            <div class="order_total_amount cartTotal">${{ number_format($cartTotal, 2, '.', ',') }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cart_buttons">
-                        <button type="button" class="button cart_button_clear">All Cancle</button>
-
-                        <a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
-
                     </div>
                 </div>
             </div>
@@ -156,36 +111,37 @@ $cart =[];
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-
-
 <script type="text/javascript">
     $(document).ready(function(){
-     $('.cartRemove').on('click', function(){
+     $('.removeWishlist').on('click', function(){
         var id = $(this).data('id');
         if (id) {
             $.ajax({
-                url: " {{ url('cart/remove/') }}/"+id,
+                url: " {{ url('wishlist/remove/') }}/"+id,
                 type:"GET",
                 datType:"json",
                 success:function(data){
-                    $('.cartQTY').text(data.count);
-                    $('.cartTotal').text(data.total);
-                    $('.cartRowremove'+id).remove();
 
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
+                let oldWish = parseInt($('#wishlist_count').text());
+                let newWish = oldWish - 1;
+                $('#wishlist_count').text(newWish);
+
+                $('.wishlistRowremove'+id).remove();
+
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
 
                     if ($.isEmptyObject(data.error)) {
+
                         Toast.fire({
                         icon: 'success',
                         title: data.success
@@ -197,6 +153,7 @@ $cart =[];
                         })
                     }
                 },
+
             });
 
         }else{
@@ -206,7 +163,6 @@ $cart =[];
    });
 
 </script>
-
 
 
 @endsection

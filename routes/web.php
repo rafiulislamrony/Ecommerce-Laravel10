@@ -132,6 +132,9 @@ Route::post('blog/update/{id}', [PostController::class, 'UpdateBlog'])->name('up
 
 // Wishlist  All Route
 Route::get('wishlist/add/{id}', [WishlistController::class, 'addWishlist']);
+Route::get('user/wishlist', [WishlistController::class, 'UserWishlist'])->name('user.wishlist');
+Route::get('wishlist/remove/{id}', [WishlistController::class, 'RemoveWishlist']);
+
 
 //  Cart Route
 Route::get('add/to/cart/{id}', [CartController::class, 'AddToCart']);
@@ -151,3 +154,5 @@ Route::post('cart/product/add/{id}', [ProductDetailsController::class, 'AddCart'
 
 // Checkout
 Route::get('user/checkout', [CheckoutController::class, 'Checkout'])->name('user.checkout');
+
+

@@ -2,22 +2,7 @@
 
 @section('content')
 <!-- Cart -->
-@php
-$countitem = 0;
-$cartTotal = 0;
-if(Session::has('cart')){
-$cart = Session::get('cart');
-//Session::forget('cart');
-if($cart){
-foreach ($cart as $product) {
-$cartTotal += (double)$product['price'] * (int)$product['qty'];
-$countitem += (int)$product['qty'];
-}
-}
-}else{
-$cart =[];
-}
-@endphp
+
 
 <div class="cart_section pt-5">
     <div class="container">
@@ -157,59 +142,6 @@ $cart =[];
     </div>
 </div>
 <!-- Footer -->
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function(){
-     $('.cartRemove').on('click', function(){
-        var id = $(this).data('id');
-        if (id) {
-            $.ajax({
-                url: " {{ url('cart/remove/') }}/"+id,
-                type:"GET",
-                datType:"json",
-                success:function(data){
-                    $('.cartQTY').text(data.count);
-                    $('.cartTotal').text(data.total);
-                    $('.cartRowremove'+id).remove();
-
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                        icon: 'success',
-                        title: data.success
-                        })
-                    }else{
-                        Toast.fire({
-                        icon: 'error',
-                        title: data.error
-                        })
-                    }
-                },
-            });
-
-        }else{
-            alert('danger');
-        }
-     });
-   });
-
-</script>
 
 
 

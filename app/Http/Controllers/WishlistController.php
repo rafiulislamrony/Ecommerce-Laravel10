@@ -31,7 +31,29 @@ class WishlistController extends Controller
         }
     }
 
-  
+
+    public function UserWishlist()
+    {
+        $userid = Auth::id();
+
+        $product = DB::table('wishlists')
+            ->join('products', 'wishlists.product_id', 'products.id')
+            ->select('products.*', 'wishlists.user_id')
+            ->where('wishlists.user_id', $userid)
+            ->get();
+
+        return view('pages.wishlist', compact('product'));
+
+    }
+
+    public function RemoveWishlist($id)
+    {
+        $userid = Auth::id();
+        DB::table('wishlists')
+            ->where('product_id', $id)->where('user_id', $userid)->delete();
+        return response()->json(['success' => 'This Product Remove form wishlist.']);
+    }
+
 
 
 }
