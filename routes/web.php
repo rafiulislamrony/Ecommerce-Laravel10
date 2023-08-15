@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,3 +149,5 @@ Route::get('product/details/{id}/{product_name}', [ProductDetailsController::cla
 Route::post('cart/product/add/{id}', [ProductDetailsController::class, 'AddCart'])->name('cart.product.add');
 
 
+// Checkout
+Route::get('user/checkout', [CheckoutController::class, 'Checkout'])->name('user.checkout');
