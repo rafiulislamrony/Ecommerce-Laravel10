@@ -16,6 +16,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -160,3 +161,5 @@ Route::post('user/coupon/apply', [CheckoutController::class, 'ApplyCoupon'])->na
 Route::get('user/coupon/remove', [CheckoutController::class, 'RemoveCoupon'])->name('coupon.remove');
 
 
+// Blog All route
+Route::get('blog/post', [BlogController::class, 'Blog'])->name('blog.post');
