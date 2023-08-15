@@ -24,7 +24,7 @@ $cart =[];
         <div class="row">
             <div class="col-12">
                 <div class="cart_container">
-                    <div class="cart_title">Checkout</div> 
+                    <div class="cart_title">Checkout</div>
                     <div class="mt-4">
                         <table class="table table-striped" style="border: 2px solid #ddd;">
                             <thead>
@@ -45,7 +45,7 @@ $cart =[];
                                 $i = 1;
                                 @endphp
                                 @foreach ($cart as $row)
-                                <tr class="cartRowremove{{$row['id']}}" >
+                                <tr class="cartRowremove{{$row['id']}}">
                                     <th scope="row">{{ $i++ }}</th>
                                     <td><img src="{{ asset($row['image']) }}" alt="" style="max-width: 60px;"></td>
                                     <td>{{ $row['name'] }}</td>
@@ -64,11 +64,14 @@ $cart =[];
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('update.cartqty') }}" method="post" class="d-flex align-items-center">
+                                        <form action="{{ route('update.cartqty') }}" method="post"
+                                            class="d-flex align-items-center">
                                             @csrf
                                             <input type="hidden" name="productId" value="{{  $row['id'] }}">
-                                            <input type="number" name="qty" min="1" value="{{ $row['qty'] }}"  class="form-control" style="width:60px" >
-                                            <button class="btn btn-success btn-sm" type="submit" ><i class="fas fa-check-square"></i> </button>
+                                            <input type="number" name="qty" min="1" value="{{ $row['qty'] }}"
+                                                class="form-control" style="width:60px">
+                                            <button class="btn btn-success btn-sm" type="submit"><i
+                                                    class="fas fa-check-square"></i> </button>
                                         </form>
                                     </td>
                                     <td> {{ number_format($row['price'], 2, '.', ',') }} </td>
@@ -77,7 +80,8 @@ $cart =[];
 
                                     </td>
                                     <td>
-                                        <span data-id="{{ $row['id'] }}" class="cartRemove text-danger" style="cursor: pointer;" >
+                                        <span data-id="{{ $row['id'] }}" class="cartRemove text-danger"
+                                            style="cursor: pointer;">
                                             <i class="far fa-trash-alt"></i> </span>
                                     </td>
                                 </tr>
@@ -85,7 +89,7 @@ $cart =[];
                                 @if(count($cart) == 0)
                                 <tr>
                                     <td class="bg-light py-5  text-center" colspan="100">
-                                         <h3 class="text-uppercase">Cart is empty!</h3>
+                                        <h3 class="text-uppercase">Cart is empty!</h3>
                                     </td>
                                 </tr>
                                 @endif
@@ -93,24 +97,29 @@ $cart =[];
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Order Total -->
-                    <div class="order_total d-flex justify-content-between">
-                        <div class="order_total_content">
-                            <div class="order_total_title">Total Product:</div>
-                            <div class="order_total_amount cartQTY">{{ count($cart) }}</div>
+                    <br>
+                    <div class="row justify-content-between">
+                        <div class="order-total-content  col-lg-4" style="padding: 15px;">
+                            <h5>Apply Coupon</h5>
+                            <form action="">
+                                <div class="form-grop">
+                                    <input type="text" name="" class="form-control" placeholder="Enter Your Coupon">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
-                        <div class="order_total_content ">
-                            <div class="order_total_title">Total Price:</div>
-                            <div class="order_total_amount cartTotal">${{ number_format($cartTotal, 2, '.', ',') }}</div>
-                        </div>
+                        <ul class="list-group col-lg-4">
+                            <li class="list-group-item">Subtotal:- <span style="float: right;"> 111 </span></li>
+                            <li class="list-group-item">Coupons:- <span style="float: right;"> 111 </span></li>
+                            <li class="list-group-item">Shiping Charge:- <span style="float: right;"> 111 </span></li>
+                            <li class="list-group-item">Vats:- <span style="float: right;"> 111 </span></li>
+                        </ul>
                     </div>
 
                     <div class="cart_buttons">
                         <button type="button" class="button cart_button_clear">All Cancle</button>
-
-                <a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
-
+                        <a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
                     </div>
                 </div>
             </div>
