@@ -18,6 +18,14 @@ $countitem += (int)$product['qty'];
 }else{
 $cart =[];
 }
+
+
+$settings = DB::table('settings')->first();
+
+$charge = $settings->shipping_charge;
+$vat = $settings->vat;
+
+
 @endphp
 
 <div class="cart_section pt-5">
@@ -38,7 +46,6 @@ $cart =[];
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
-                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,11 +87,6 @@ $cart =[];
                                         {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }}
 
                                     </td>
-                                    <td>
-                                        <span data-id="{{ $row['id'] }}" class="cartRemove text-danger"
-                                            style="cursor: pointer;">
-                                            <i class="far fa-trash-alt"></i> </span>
-                                    </td>
                                 </tr>
                                 @endforeach
                                 @if(count($cart) == 0)
@@ -101,21 +103,54 @@ $cart =[];
                     <br>
                     <div class="row justify-content-between">
                         <div class="order-total-content  col-lg-4" style="padding: 15px;">
+                            @if(Session::has('coupon'))
+
+                            @else
                             <h5>Apply Coupon</h5>
                             <form action="{{ route('apply.coupon') }}" method="post">
                                 @csrf
                                 <div class="form-grop">
-                                    <input type="text" name="coupon" class="form-control" required placeholder="Enter Your Coupon">
+                                    <input type="text" name="coupon" class="form-control" required
+                                        placeholder="Enter Your Coupon">
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
+                            @endif
+
                         </div>
                         <ul class="list-group col-lg-4">
-                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{ number_format($cartTotal, 2, '.', ',') }} </span></li>
-                            <li class="list-group-item">Coupons:- <span style="float: right;"> 111 </span></li>
-                            <li class="list-group-item">Shiping Charge:- <span style="float: right;"> 111 </span></li>
-                            <li class="list-group-item">Vats:- <span style="float: right;"> 111 </span></li>
+
+                            @if( Session::has('coupon'))
+                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{$cartTotal - Session::get('coupon')['discount'] }} </span></li>
+                            <li class="list-group-item">Coupons:-
+                                {{ Session::get('coupon')['name'] }}
+                                <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span>
+                                <a href="" class="btn btn-danger btn-sm" title="Remove Coupon">
+                                    X
+                                </a>
+                            </li>
+                            @else
+                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{
+                                    number_format($cartTotal, 2, '.', ',') }} </span></li>
+                            @endif
+
+
+                            <li class="list-group-item">Shiping Charge:- <span style="float: right;"> ${{ $charge }} </span></li>
+                            <li class="list-group-item">Vat/Taxs:- <span style="float: right;">${{ $vat }} </span></li>
+                            @if( Session::has('coupon'))
+                            <li class="list-group-item">Order Total:-
+                                <span style="float: right;">
+                                    ${{$cartTotal - Session::get('coupon')['discount'] + $charge +  $vat }}
+                                </span>
+                            </li>
+                            @else
+                            <li class="list-group-item">Order Total:-
+                                <span style="float: right;">
+                                    ${{ $cartTotal + $charge +  $vat  }}
+                                </span>
+                            </li>
+                            @endif
                         </ul>
                     </div>
 
