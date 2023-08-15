@@ -126,7 +126,7 @@ $vat = $settings->vat;
                             <li class="list-group-item">Coupons:-
                                 {{ Session::get('coupon')['name'] }}
                                 <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span>
-                                <a href="" class="btn btn-danger btn-sm" title="Remove Coupon">
+                                <a href="{{ route('coupon.remove') }}" class="btn btn-danger btn-sm" title="Remove Coupon">
                                     X
                                 </a>
                             </li>

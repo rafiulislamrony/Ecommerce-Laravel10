@@ -63,5 +63,14 @@ class CheckoutController extends Controller
         }
     }
 
+    public function RemoveCoupon(){
+        Session::forget('coupon');
+        $notification = [
+            'message' => 'Coupon Removed Successfully.',
+            'alert-type' => 'success',
+        ];
+        return redirect()->back()->with($notification);
+    }
+
 
 }

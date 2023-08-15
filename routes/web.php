@@ -156,6 +156,7 @@ Route::post('cart/product/add/{id}', [ProductDetailsController::class, 'AddCart'
 Route::get('user/checkout', [CheckoutController::class, 'Checkout'])->name('user.checkout');
 
 // Coupon
-Route::post('user/apply/coupon', [CheckoutController::class, 'ApplyCoupon'])->name('apply.coupon');
+Route::post('user/coupon/apply', [CheckoutController::class, 'ApplyCoupon'])->name('apply.coupon');
+Route::get('user/coupon/remove', [CheckoutController::class, 'RemoveCoupon'])->name('coupon.remove');
 
 
