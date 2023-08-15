@@ -163,3 +163,5 @@ Route::get('user/coupon/remove', [CheckoutController::class, 'RemoveCoupon'])->n
 
 // Blog All route
 Route::get('blog/post', [BlogController::class, 'Blog'])->name('blog.post');
+Route::get('language/english', [BlogController::class, 'BlogEnglish'])->name('language.english');
+Route::get('language/hindi', [BlogController::class, 'BlogHindi'])->name('language.hindi');

@@ -26,6 +26,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_responsive.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_responsive.css') }}">
+
 </head>
 
 <body>
@@ -54,12 +57,15 @@
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
+                                        @php
+                                            $language = Session::get('lang');
+                                        @endphp
                                         <li>
-                                            @if(Session::has('hindi'))
-                                            <a href="#">English<i class="fas fa-chevron-down"></i></a>
+                                            @if(Session::get('lang') == 'hindi')
+                                            <a href="{{ route('language.english') }}">English<i class="fas fa-chevron-down"></i></a>
                                             @else
-                                            <a href="#">Hindi<i class="fas fa-chevron-down"></i></a>
-                                            @endif 
+                                            <a href="{{ route('language.hindi') }}">Hindi<i class="fas fa-chevron-down"></i></a>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -327,14 +333,15 @@
     <script src="{{ asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
     <script src="{{ asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
     <script src="{{ asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-    <script src="{{ asset('frontend/plugins/greensock/ScrollToPlugin.min.jsplugins/greensock/ScrollToPlugin.min.js')}}">
-    </script>
+    <script src="{{ asset('frontend/plugins/greensock/ScrollToPlugin.min.jsplugins/greensock/ScrollToPlugin.min.js')}}"> </script>
     <script src="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
     <script src="{{ asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
     <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
     <script src="{{ asset('frontend/js/cart_custom.js')}}"></script>
+    <script src="{{ asset('frontend/plugins/parallax-js-master/parallax.min.js')}}"></script>
+    <script src="{{ asset('frontend/js/blog_custom.js')}}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
