@@ -2,7 +2,23 @@
 
 @section('content')
 <!-- Cart -->
-
+<!-- Cart -->
+@php
+$countitem = 0;
+$cartTotal = 0;
+if(Session::has('cart')){
+$cart = Session::get('cart');
+//Session::forget('cart');
+if($cart){
+foreach ($cart as $product) {
+$cartTotal += (double)$product['price'] * (int)$product['qty'];
+$countitem += (int)$product['qty'];
+}
+}
+}else{
+$cart =[];
+}
+@endphp
 
 <div class="cart_section pt-5">
     <div class="container">
@@ -86,16 +102,17 @@
                     <div class="row justify-content-between">
                         <div class="order-total-content  col-lg-4" style="padding: 15px;">
                             <h5>Apply Coupon</h5>
-                            <form action="">
+                            <form action="{{ route('apply.coupon') }}" method="post">
+                                @csrf
                                 <div class="form-grop">
-                                    <input type="text" name="" class="form-control" placeholder="Enter Your Coupon">
+                                    <input type="text" name="coupon" class="form-control" required placeholder="Enter Your Coupon">
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                         <ul class="list-group col-lg-4">
-                            <li class="list-group-item">Subtotal:- <span style="float: right;"> 111 </span></li>
+                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{ number_format($cartTotal, 2, '.', ',') }} </span></li>
                             <li class="list-group-item">Coupons:- <span style="float: right;"> 111 </span></li>
                             <li class="list-group-item">Shiping Charge:- <span style="float: right;"> 111 </span></li>
                             <li class="list-group-item">Vats:- <span style="float: right;"> 111 </span></li>
