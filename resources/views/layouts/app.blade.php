@@ -17,17 +17,20 @@
         href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/plugins/slick-1.8.0/slick.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/main_styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/responsive.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_responsive.css') }}">
-
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_single_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/blog_single_responsive.css') }}">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/main_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/responsive.css') }}">
 
 </head>
 
@@ -337,16 +340,19 @@
     <script src="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
     <script src="{{ asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
     <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
-    <script src="{{ asset('frontend/js/custom.js')}}"></script>
-    <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
+
     <script src="{{ asset('frontend/js/cart_custom.js')}}"></script>
     <script src="{{ asset('frontend/plugins/parallax-js-master/parallax.min.js')}}"></script>
     <script src="{{ asset('frontend/js/blog_custom.js')}}"></script>
+    <script src="{{ asset('frontend/js/blog_single_custom.js')}}"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+    <script src="{{ asset('frontend/js/custom.js')}}"></script>
+    <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
 
     <!-- toastr script --->
     <script>

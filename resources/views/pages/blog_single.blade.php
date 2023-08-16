@@ -3,21 +3,67 @@
 @section('content')
 <!-- Home -->
 
-<div class="home">
+<!-- Home -->
+
+
+<div class="home" style="height: 260px">
     <div class="home_background parallax-window" data-parallax="scroll"
+        style="height: 260px; min-height:260px; max-height:260px"
         data-image-src="{{ asset('frontend/images/shop_background.jpg')}}"></div>
     <div class="home_overlay"></div>
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
-        <h2 class="home_title">Technological Blog</h2>
+        <h2 class="home_title"> Blog Details</h2>
     </div>
 </div>
 
-<!-- Blog -->
-
+<!-- Single Blog Post -->
+@foreach ($post as $row)
+<div class="single_post">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="blogimg" >
+                    <img src="{{ asset($row->post_image) }}" style="width: 100%" alt="">
+                </div>
+                <br>
+                <div class="single_post_title">
+                    @if (Session::get('lang') == 'hindi')
+                    {{ $row->post_title_hin }}
+                    @else
+                    {{ $row->post_title_en }}
+                    @endif
+                </div>
+                <div class="single_post_text">
+                    <p>
+                        @if (Session::get('lang') == 'hindi')
+                        {!! $row->details_hin !!}
+                        @else
+                        {!! $row->details_en !!}
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+<!-- Blog Posts -->
+@php
+    $postitem = DB::table('posts')
+        ->join('post_category', 'posts.category_id', 'post_category.id')
+        ->select('posts.*', 'post_category.category_name_en', 'post_category.category_name_hin')
+        ->orderBy('posts.id', 'DESC')
+         ->limit(3)
+        ->get();
+@endphp
 <div class="blog">
     <div class="container">
         <div class="row blog_posts">
-            @foreach ($post as $row)
+            <div class="col-12">
+                <h3>Recent News</h3>
+                <br>
+            </div>
+            @foreach ($postitem as $row)
             <div class="col-lg-4">
                 <!-- Blog post -->
                 <div class="blog_post" style="width: unset; height: unset;">
@@ -48,6 +94,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Newsletter -->
 <div class="newsletter">

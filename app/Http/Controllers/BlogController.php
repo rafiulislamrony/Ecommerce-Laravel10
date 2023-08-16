@@ -28,4 +28,11 @@ class BlogController extends Controller
         Session::put('lang', 'hindi');
         return redirect()->back();
     }
+
+    public function BlogSingle($id){
+        $post = DB::table('posts')
+        ->where('id',$id)
+        ->get();
+        return view('pages.blog_single', compact('post'));
+    }
 }
