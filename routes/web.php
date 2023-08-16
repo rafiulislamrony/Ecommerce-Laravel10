@@ -152,9 +152,11 @@ Route::post('add/quickviewproduct/cart', [CartController::class, 'AddQuickViewPr
 Route::get('product/details/{id}/{product_name}', [ProductDetailsController::class, 'ProductDetsilsView']);
 Route::post('cart/product/add/{id}', [ProductDetailsController::class, 'AddCart'])->name('cart.product.add');
 
-
 // Checkout
 Route::get('user/checkout', [CheckoutController::class, 'Checkout'])->name('user.checkout');
+
+// Payment
+Route::get('payment/step', [CheckoutController::class, 'PaymentPage'])->name('payment.step');
 
 // Coupon
 Route::post('user/coupon/apply', [CheckoutController::class, 'ApplyCoupon'])->name('apply.coupon');

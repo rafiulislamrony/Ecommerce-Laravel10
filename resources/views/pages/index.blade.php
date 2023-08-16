@@ -18,7 +18,7 @@ $hot = DB::table('products')
 @endphp
 
 
-{{-- <div class="characteristics">
+<div class="characteristics">
     <div class="container">
         <div class="row">
 
@@ -71,7 +71,7 @@ $hot = DB::table('products')
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 <!-- Deals of the week -->
 

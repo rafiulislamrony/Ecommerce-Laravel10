@@ -19,12 +19,10 @@ $countitem += (int)$product['qty'];
 $cart =[];
 }
 
-
 $settings = DB::table('settings')->first();
 
 $charge = $settings->shipping_charge;
 $vat = $settings->vat;
-
 
 @endphp
 
@@ -131,8 +129,8 @@ $vat = $settings->vat;
                                 </a>
                             </li>
                             @else
-                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{
-                                    number_format($cartTotal, 2, '.', ',') }} </span></li>
+                            <li class="list-group-item">Subtotal:- <span style="float: right;">$
+                            {{ number_format($cartTotal, 2, '.', ',') }} </span></li>
                             @endif
 
 
@@ -147,7 +145,7 @@ $vat = $settings->vat;
                             @else
                             <li class="list-group-item">Order Total:-
                                 <span style="float: right;">
-                                    ${{ $cartTotal + $charge +  $vat  }}
+                                    ${{ number_format($cartTotal + $charge +  $vat, 2, '.', ',')   }}
                                 </span>
                             </li>
                             @endif
@@ -155,8 +153,7 @@ $vat = $settings->vat;
                     </div>
 
                     <div class="cart_buttons">
-                        <button type="button" class="button cart_button_clear">All Cancle</button>
-                        <a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
+                        <a href="{{ route('payment.step') }}" class="button cart_button_checkout">Final Step</a>
                     </div>
                 </div>
             </div>

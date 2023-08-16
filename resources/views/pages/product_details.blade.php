@@ -47,8 +47,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Color</label>
-                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;">
-                                            <option>Choose Color</option>
+                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;"> 
                                             @foreach ($product_color as $color)
                                             <option value="{{ $color }}" >{{ $color }}</option>
                                             @endforeach
@@ -62,7 +61,6 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Size</label>
                                         <select class="form-control" name="size" id="size" style="min-width:100%; width:100%;" >
-                                            <option>Choose Size</option>
                                             @foreach ($product_size as $size)
                                             <option value="{{ $size }}">{{ $size }}</option>
                                             @endforeach
