@@ -17,6 +17,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,16 +156,17 @@ Route::post('cart/product/add/{id}', [ProductDetailsController::class, 'AddCart'
 // Checkout
 Route::get('user/checkout', [CheckoutController::class, 'Checkout'])->name('user.checkout');
 
-// Payment
-Route::get('payment/step', [CheckoutController::class, 'PaymentPage'])->name('payment.step');
-
 // Coupon
 Route::post('user/coupon/apply', [CheckoutController::class, 'ApplyCoupon'])->name('apply.coupon');
 Route::get('user/coupon/remove', [CheckoutController::class, 'RemoveCoupon'])->name('coupon.remove');
-
 
 // Blog All route
 Route::get('blog/post', [BlogController::class, 'Blog'])->name('blog.post');
 Route::get('language/english', [BlogController::class, 'BlogEnglish'])->name('language.english');
 Route::get('language/hindi', [BlogController::class, 'BlogHindi'])->name('language.hindi');
 Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blog.single');
+
+
+// Payment All Route
+Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
+Route::post('payment/process', [PaymentController::class, 'Payment'])->name('payment.process');

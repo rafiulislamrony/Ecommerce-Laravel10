@@ -72,10 +72,6 @@ class CheckoutController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function PaymentPage(){
-        $cart = Session::get('cart');
-        return view('pages.payment', compact('cart'));
-    }
 
 
 }
