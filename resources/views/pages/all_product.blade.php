@@ -26,15 +26,9 @@
                     <div class="sidebar_section">
                         <div class="sidebar_title">Categories</div>
                         <ul class="sidebar_categories">
-                            <li><a href="#">Computers & Laptops</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Smartphones & Tablets</a></li>
-                            <li><a href="#">TV & Audio</a></li>
-                            <li><a href="#">Gadgets</a></li>
-                            <li><a href="#">Car Electronics</a></li>
-                            <li><a href="#">Video Games & Consoles</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            @foreach ($categories as $row)
+                            <li><a href="#"> {{ $row->category_name }} </a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="sidebar_section filter_by_section">
@@ -48,28 +42,14 @@
                         </div>
                     </div>
                     <div class="sidebar_section">
-                        <div class="sidebar_subtitle color_subtitle">Color</div>
-                        <ul class="colors_list">
-                            <li class="color"><a href="#" style="background: #b19c83;"></a></li>
-                            <li class="color"><a href="#" style="background: #000000;"></a></li>
-                            <li class="color"><a href="#" style="background: #999999;"></a></li>
-                            <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-                            <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-                            <li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sidebar_section">
                         <div class="sidebar_subtitle brands_subtitle">Brands</div>
                         <ul class="brands_list">
-                            <li class="brand"><a href="#">Apple</a></li>
-                            <li class="brand"><a href="#">Beoplay</a></li>
-                            <li class="brand"><a href="#">Google</a></li>
-                            <li class="brand"><a href="#">Meizu</a></li>
-                            <li class="brand"><a href="#">OnePlus</a></li>
-                            <li class="brand"><a href="#">Samsung</a></li>
-                            <li class="brand"><a href="#">Sony</a></li>
-                            <li class="brand"><a href="#">Xiaomi</a></li>
+                            @foreach ($brands as $row)
+                            @php
+                              $brand =  DB::table('brands')->where('id', $row->brand_id)->first();
+                            @endphp
+                            <li class="brand"><a href="#">{{ $brand->brand_name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -81,6 +61,7 @@
                 <!-- Shop Content -->
 
                 <div class="shop_content">
+
                     <div class="shop_bar clearfix">
                         <div class="shop_product_count"><span>186</span> products found</div>
                         <div class="shop_sorting">
@@ -119,16 +100,17 @@
                             <div class="product_content">
                                 <div class="product_price discount mt-3">
                                     @if($row->discount_price == NULL)
-                                     ${{ $row->selling_price }}
+                                    ${{ $row->selling_price }}
                                     @else
-                                    ${{ $row->discount_price }}<span
-                                        style="text-decoration: line-through;">${{ $row->selling_price
+                                    ${{ $row->discount_price }}<span style="text-decoration: line-through;">${{
+                                        $row->selling_price
                                         }}</span>
                                     @endif
                                 </div>
                                 <div class="product_name">
                                     <div>
-                                        <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}" style="white-space: wrap;" >{{
+                                        <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}"
+                                            style="white-space: wrap;">{{
                                             $row->product_name }}</a>
                                     </div>
                                 </div>
@@ -158,7 +140,7 @@
                     <!-- Shop Page Navigation -->
 
                     <div class="shop_page_nav d-flex flex-row">
-                         {{ $products->links("pagination::bootstrap-4") }}
+                        {{ $products->links("pagination::bootstrap-4") }}
                     </div>
 
                 </div>
@@ -168,6 +150,8 @@
     </div>
 </div>
 
+{{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
 {{-- <script src="{{ asset('frontend/js/shop_custom.js')}}"></script> --}}
 
 @endsection
