@@ -174,11 +174,12 @@ $hot = DB::table('products')
 
                                 <div class="featured_slider_item">
                                     <div class="border_active"></div>
-                                    <div class="product_item qproduct discount d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="product_image d-flex flex-column align-items-center justify-content-center">
+                                    <div
+                                        class="product_item qproduct discount d-flex flex-column align-items-center justify-content-center text-center">
+                                        <div
+                                            class="product_image d-flex flex-column align-items-center justify-content-center">
                                             <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
-                                                <img src="{{ asset( $row->image_one )}}"
-                                                style=" height:180px;"  alt="">
+                                                <img src="{{ asset( $row->image_one )}}" style=" height:180px;" alt="">
                                             </a>
                                         </div>
                                         <div class="product_content"><br>
@@ -195,23 +196,24 @@ $hot = DB::table('products')
                                                 <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
                                                         $row->product_name }}</a> </div>
                                             </div>
-                                            <div class="product_extras">
 
+                                            <div class="product_extras">
                                                 <button class="product_cart_button addcart" data-id="{{ $row->id }}"
                                                     data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
                                                     data-qty="1">
                                                     Add To Cart
                                                 </button>
                                             </div>
+
                                         </div>
 
                                         <button class="addwishlist product_fav" data-id="{{ $row->id }}" style="cursor: pointer;">
-                                             <i class="fas fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
                                         </button>
 
+
                                         <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
-                                            onclick="productView(this.id)" class="quickview"
-                                            style="cursor: pointer;">
+                                            onclick="productView(this.id)" class="quickview" style="cursor: pointer;">
                                             <i class="fas fa-eye"></i>
                                         </button>
 
@@ -332,7 +334,8 @@ $mid = DB::table('products')
                                         <i></i><i></i><i></i><i></i><i></i>
                                     </div>
                                     <div class="button banner_2_button">
-                                        <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}"> Explore</a>
+                                        <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
+                                            Explore</a>
                                     </div>
                                 </div>
 
@@ -388,9 +391,10 @@ $product = DB::table('products')->where('category_id',$catid)->where('status',1)
                                             class="product_item qproduct is_new d-flex flex-column align-items-center justify-content-center text-center">
                                             <div
                                                 class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
-                                                    <img src="{{ asset( $row->image_one )}}"
-                                                    style=" height:180px;"  alt="">
+                                                <a
+                                                    href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
+                                                    <img src="{{ asset( $row->image_one )}}" style=" height:180px;"
+                                                        alt="">
                                                 </a>
                                             </div>
                                             <div class="product_content"> <br>
@@ -404,7 +408,8 @@ $product = DB::table('products')->where('category_id',$catid)->where('status',1)
                                                     @endif
                                                 </div>
                                                 <div class="product_name">
-                                                    <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
+                                                    <div><a
+                                                            href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
                                                             $row->product_name }}</a> </div>
                                                 </div>
                                                 <div class="product_extras">
@@ -415,8 +420,9 @@ $product = DB::table('products')->where('category_id',$catid)->where('status',1)
                                                     </button>
                                                 </div>
                                             </div>
-                                            <button class="addwishlist product_fav" data-id="{{ $row->id }}" style="cursor: pointer;">
-                                                 <i class="fas fa-heart"></i>
+                                            <button class="addwishlist product_fav" data-id="{{ $row->id }}"
+                                                style="cursor: pointer;">
+                                                <i class="fas fa-heart"></i>
                                             </button>
                                             <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
                                                 onclick="productView(this.id)" class="quickview"
@@ -484,59 +490,62 @@ $product = DB::table('products')->where('category_id',$catid)->where('status',1)
                                     <div class="arrivals_slider_item">
                                         <div class="border_active"></div>
                                         <div
-                                        class="product_item qproduct is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div
-                                            class="product_image d-flex flex-column align-items-center justify-content-center">
-                                            <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
-                                                <img src="{{ asset( $row->image_one )}}"
-                                                style=" height:180px;"  alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product_content"> <br>
-                                            <div class="product_price">
-                                                @if($row->discount_price == NULL)
-                                                <span>${{ $row->selling_price }}</span>
+                                            class="product_item qproduct is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                            <div
+                                                class="product_image d-flex flex-column align-items-center justify-content-center">
+                                                <a
+                                                    href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
+                                                    <img src="{{ asset( $row->image_one )}}" style=" height:180px;"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="product_content"> <br>
+                                                <div class="product_price">
+                                                    @if($row->discount_price == NULL)
+                                                    <span>${{ $row->selling_price }}</span>
+                                                    @else
+                                                    ${{ $row->discount_price }}<span
+                                                        style="text-decoration: line-through;">${{ $row->selling_price
+                                                        }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="product_name">
+                                                    <div><a
+                                                            href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
+                                                            $row->product_name }}</a> </div>
+                                                </div>
+                                                <div class="product_extras">
+                                                    <button class="product_cart_button addcart" data-id="{{ $row->id }}"
+                                                        data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
+                                                        data-qty="1">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button class="addwishlist product_fav" data-id="{{ $row->id }}"
+                                                style="cursor: pointer;">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                            <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
+                                                onclick="productView(this.id)" class="quickview"
+                                                style="cursor: pointer;">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <ul class="product_marks">
+                                                @if ($row->discount_price == NULL)
+                                                <li class="product_mark product_new"
+                                                    style="opacity: 1; visibility:visible; display:block;">new</li>
                                                 @else
-                                                ${{ $row->discount_price }}<span
-                                                    style="text-decoration: line-through;">${{ $row->selling_price
-                                                    }}</span>
+                                                <li class="product_mark product_discount">
+                                                    @php
+                                                    $amount = $row->selling_price - $row->discount_price;
+                                                    $discount = $amount/$row->selling_price*100;
+                                                    @endphp
+                                                    {{ intval($discount) }}%
+                                                </li>
                                                 @endif
-                                            </div>
-                                            <div class="product_name">
-                                                <div><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">{{
-                                                        $row->product_name }}</a> </div>
-                                            </div>
-                                            <div class="product_extras">
-                                                <button class="product_cart_button addcart" data-id="{{ $row->id }}"
-                                                    data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
-                                                    data-qty="1">
-                                                    Add To Cart
-                                                </button>
-                                            </div>
+                                            </ul>
                                         </div>
-                                        <button class="addwishlist product_fav" data-id="{{ $row->id }}" style="cursor: pointer;">
-                                           <i class="fas fa-heart"></i>
-                                        </button>
-                                        <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
-                                            onclick="productView(this.id)" class="quickview"
-                                            style="cursor: pointer;">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <ul class="product_marks">
-                                            @if ($row->discount_price == NULL)
-                                            <li class="product_mark product_new"
-                                                style="opacity: 1; visibility:visible; display:block;">new</li>
-                                            @else
-                                            <li class="product_mark product_discount">
-                                                @php
-                                                $amount = $row->selling_price - $row->discount_price;
-                                                $discount = $amount/$row->selling_price*100;
-                                                @endphp
-                                                {{ intval($discount) }}%
-                                            </li>
-                                            @endif
-                                        </ul>
-                                      </div>
                                     </div>
                                     @endforeach
 
@@ -587,15 +596,17 @@ $hotBest = DB::table('products')
                                     <div class="bestsellers_image">
                                         <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
                                             <img src="{{ asset( $row->image_one )}}"
-                                            style="min-width:100px; max-width:100px;" alt="">
+                                                style="min-width:100px; max-width:100px;" alt="">
                                         </a>
                                     </div>
                                     <div class="bestsellers_content">
                                         <div class="bestsellers_category">
-                                             {{ $row->brand_name }}
+                                            {{ $row->brand_name }}
                                         </div>
-                                        <div class="bestsellers_name"><a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}"> {{
-                                            $row->product_name }}</a> </div>
+                                        <div class="bestsellers_name"><a
+                                                href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
+                                                {{
+                                                $row->product_name }}</a> </div>
                                         <div class="rating_r rating_r_4 bestsellers_rating">
                                             <i></i><i></i><i></i><i></i><i></i>
                                         </div>
@@ -609,14 +620,15 @@ $hotBest = DB::table('products')
                                             @endif
                                         </div>
 
-                                            <button class="btn btn-primary mt-2 addcart" data-id="{{ $row->id }}"
-                                                data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
-                                                data-qty="1">
-                                                Add To Cart
-                                            </button>
+                                        <button class="btn btn-primary mt-2 addcart" data-id="{{ $row->id }}"
+                                            data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
+                                            data-qty="1">
+                                            Add To Cart
+                                        </button>
                                     </div>
                                 </div>
-                                <button class="addwishlist bestsellers_fav active" data-id="{{ $row->id }}" style="cursor: pointer; border:0px;">
+                                <button class="addwishlist bestsellers_fav active" data-id="{{ $row->id }}"
+                                    style="cursor: pointer; border:0px;">
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
@@ -754,8 +766,7 @@ $buyGet = DB::table('products')
                                 <div class="trends_image d-flex flex-column align-items-center justify-content-center">
 
                                     <a href="{{ url('product/details/'.$row->id.'/'. $row->product_name ) }}">
-                                        <img src="{{ asset( $row->image_one )}}"
-                                        style=" height:180px;" alt="">
+                                        <img src="{{ asset( $row->image_one )}}" style=" height:180px;" alt="">
                                     </a>
                                 </div>
                                 <div class="trends_content">
@@ -801,8 +812,7 @@ $buyGet = DB::table('products')
                                     <div class="product_fav trends_fav"><i class="fas fa-heart"></i></div>
                                 </button>
                                 <button id="{{ $row->id }}" data-toggle="modal" data-target="#cartmodel"
-                                    onclick="productView(this.id)" class="quickview"
-                                    style="cursor: pointer;">
+                                    onclick="productView(this.id)" class="quickview" style="cursor: pointer;">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
@@ -1107,6 +1117,9 @@ $buyGet = DB::table('products')
     </div>
 </div>
 
+@php
+$brand = DB::table('brands')->get();
+@endphp
 <!-- Brands -->
 <div class="brands">
     <div class="container">
@@ -1118,38 +1131,15 @@ $buyGet = DB::table('products')
 
                     <div class="owl-carousel owl-theme brands_slider">
 
+                        @foreach ($brand as $row)
                         <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_1.jpg')}}" alt=""></div>
+                            <div class="brands_item d-flex flex-column justify-content-center">
+                                <a href="{{ route('brand.product', $row->id ) }}">
+                                    <img src="{{ asset($row->brand_logo)}}" style="width:100px;" alt="">
+                                </a>
+                            </div>
                         </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_2.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_3.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_4.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_5.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_6.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_7.jpg')}}" alt=""></div>
-                        </div>
-                        <div class="owl-item">
-                            <div class="brands_item d-flex flex-column justify-content-center"><img
-                                    src="{{ asset('frontend/images/brands_8.jpg')}}" alt=""></div>
-                        </div>
+                        @endforeach
 
                     </div>
 
@@ -1257,6 +1247,7 @@ $buyGet = DB::table('products')
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
      $('.addwishlist').on('click', function(){
@@ -1346,10 +1337,8 @@ $buyGet = DB::table('products')
 
             }
         })
-    }
-
+    } 
 </script>
-
 
 
 <script type="text/javascript">

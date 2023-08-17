@@ -291,6 +291,13 @@ class ProductController extends Controller
         $catname = DB::table('categories')->where('id', $id)->first();
         return view('pages.category_products', compact('allcategory', 'totalCount', 'catname'));
     }
+    public function ProductByBrand($id)
+    {
+        $brandproduct = DB::table('products')->where('brand_id', $id)->paginate(8);
+        $totalCount = DB::table('products')->where('brand_id', $id)->count();
+        $brandname = DB::table('brands')->where('id', $id)->first();
+        return view('pages.brands_products', compact('brandproduct', 'totalCount', 'brandname'));
+    }
 
 
 }

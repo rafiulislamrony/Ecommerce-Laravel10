@@ -170,6 +170,7 @@ Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('pay
 Route::post('payment/process', [PaymentController::class, 'Payment'])->name('payment.process');
 
 
-// Product Details Page
+// Product  Page
 Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
 Route::get('allcategory/{id}', [ProductController::class, 'Allcategory'])->name('allcategory');
+Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->name('brand.product');

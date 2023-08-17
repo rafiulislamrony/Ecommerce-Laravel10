@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_responsive.css') }}">
 
-
 @include('layouts.menubar');
 
-
 <!-- Home -->
+
 
 <div class="home">
     <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg">
@@ -18,10 +16,8 @@
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
         <h3 class="home_title">
             <a style="color:#000;" href="{{ url('/') }}">Home </a> >
-            <a style="color:#000;" href="{{ route('allcategory', $catdetails->category_id ) }}">{{
-                $catdetails->category_name }}</a> >
-            <a style="color:#000;" href="{{ route('products.page',$catdetails->id ) }}"> {{
-                $catdetails->subcategory_name }} </a>
+
+            <a style="color:#000;" href="{{ route('allcategory', $brandname->id ) }}">{{ $brandname->brand_name }}</a>
         </h3>
     </div>
 </div>
@@ -32,13 +28,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-
                 <!-- Shop Sidebar -->
                 <div class="shop_sidebar">
                     <div class="sidebar_section">
                         <div class="sidebar_title">Categories</div>
                         <ul class="sidebar_categories">
-                            @foreach ($categories as $row)
+                            @php
+                            $category = DB::table('categories')->get();
+                            @endphp
+                            @foreach ($category as $row)
                             <li><a href="{{ route('allcategory', $row->id ) }}"> {{ $row->category_name }} </a></li>
                             @endforeach
                         </ul>
@@ -89,7 +87,7 @@
                     <div class="product_grid row">
                         <div class="product_grid_border"></div>
 
-                        @foreach ($products as $row)
+                        @foreach ($brandproduct as $row)
                         <!-- Product Item -->
                         <div class="product_item is_new" style="width:25%;">
                             <div class="product_border" style="top: 40px;"></div>
@@ -128,6 +126,8 @@
                             <button class="addwishlist product_fav" data-id="{{ $row->id }}" style="cursor: pointer;">
                                 <i class="fas fa-heart"></i>
                             </button>
+
+
                             <ul class="product_marks">
                                 @if ($row->discount_price == NULL)
                                 <li class="product_mark product_new"
@@ -148,13 +148,10 @@
                     </div>
 
                     <!-- Shop Page Navigation -->
-
-                    <div class="shop_page_nav mt-4 d-flex flex-row">
-                        {{ $products->links("pagination::bootstrap-4") }}
+                    <div class="shop_page_nav  mt-4 d-flex flex-row">
+                        {{ $brandproduct->links("pagination::bootstrap-4") }}
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -189,6 +186,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
