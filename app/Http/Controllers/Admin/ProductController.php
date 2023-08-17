@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +13,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        
+
     }
 
     public function index()
@@ -268,5 +267,11 @@ class ProductController extends Controller
             return Redirect()->route('all.product')->with($notification);
         }
     }
+
+    public function ProductsView($id){
+        $products = DB::table('products')->where('subcategory_id', $id)->paginate(10);
+        return view('pages.all_product', compact('products'));
+    }
+
 
 }

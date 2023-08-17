@@ -24,12 +24,12 @@ $category = DB::table('categories')->get();
                             @php
                             $subcategory = DB::table('subcategories')->where('category_id', $cat->id)->get();
                             @endphp
-                            <li  @if (count($subcategory) > 0) class="hassubs" @endif>
+                            <li @if (count($subcategory)> 0) class="hassubs" @endif>
                                 <a href="#">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
                                 <ul>
                                     @foreach ($subcategory as $subcat)
                                     <li>
-                                        <a href="#">{{ $subcat->subcategory_name }} <i class="fas fa-chevron-right"></i></a>
+                                        <a href="{{ route('products.page',$subcat->id ) }}">{{ $subcat->subcategory_name }} <i class="fas fa-chevron-right"></i></a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -95,7 +95,7 @@ $category = DB::table('categories')->get();
                                 </ul>
                             </li>
 
-                        <li><a href="{{ route('blog.post') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="{{ route('blog.post') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
 
                             <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                         </ul>
@@ -219,10 +219,10 @@ $category = DB::table('categories')->get();
 
 <!-- Banner -->
 @php
-    $slider = DB::table('products')
-    ->join('brands', 'products.brand_id', 'brands.id')
-    ->select('products.*', 'brands.brand_name')
-    ->where('main_slider',1)->orderBy('id', 'DESC')->first();
+$slider = DB::table('products')
+->join('brands', 'products.brand_id', 'brands.id')
+->select('products.*', 'brands.brand_name')
+->where('main_slider',1)->orderBy('id', 'DESC')->first();
 @endphp
 
 {{-- <div class="banner">

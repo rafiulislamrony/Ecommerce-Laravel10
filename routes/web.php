@@ -47,8 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/password-change', [ProfileController::class, 'passwordChange'])->name('password.change');
 });
 
-
-
 require __DIR__.'/auth.php';
 
 // Admin Routes
@@ -170,3 +168,7 @@ Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blo
 // Payment All Route
 Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
 Route::post('payment/process', [PaymentController::class, 'Payment'])->name('payment.process');
+
+
+// Product Details Page
+Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
