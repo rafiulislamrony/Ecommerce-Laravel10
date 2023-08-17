@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_responsive.css') }}">
 
+
 @include('layouts.menubar');
+
 
 <!-- Home -->
 
@@ -13,7 +16,13 @@
     </div>
     <div class="home_overlay"></div>
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
-        <h2 class="home_title">Subcategory</h2>
+        <h3 class="home_title">
+            <a style="color:#000;" href="{{ url('/') }}">Home </a> >
+            <a style="color:#000;" href="{{ route('allcategory', $catdetails->category_id ) }}">{{
+                $catdetails->category_name }}</a> >
+            <a style="color:#000;" href="{{ route('products.page',$catdetails->id ) }}"> {{
+                $catdetails->subcategory_name }} </a>
+        </h3>
     </div>
 </div>
 
@@ -35,13 +44,14 @@
                         </ul>
                     </div>
                     <div class="sidebar_section filter_by_section">
-                        <div class="sidebar_title">Filter By</div>
-                        <div class="sidebar_subtitle">Price</div>
-                        <div class="filter_price">
-                            <div id="slider-range" class="slider_range"></div>
-                            <p>Range: </p>
-                            <p><input type="text" id="amount" class="amount" readonly
-                                    style="border:0; font-weight:bold;"></p>
+                        <div class="sidebar_title">Price Filter</div>
+                        <div class="range-slider">
+                            <span>
+                                <input type="number" value="25000" min="0" max="120000"/>
+                                <input type="number" value="50000" min="0" max="120000"/>
+                            </span>
+                            <input value="25000" min="0" max="120000" step="500" type="range"/>
+                            <input value="50000" min="0" max="120000" step="500" type="range"/>
                         </div>
                     </div>
                     <div class="sidebar_section">
@@ -49,7 +59,7 @@
                         <ul class="brands_list">
                             @foreach ($brands as $row)
                             @php
-                              $brand =  DB::table('brands')->where('id', $row->brand_id)->first();
+                            $brand = DB::table('brands')->where('id', $row->brand_id)->first();
                             @endphp
                             <li class="brand"><a href="#">{{ $brand->brand_name }}</a></li>
                             @endforeach
@@ -66,7 +76,7 @@
                 <div class="shop_content">
 
                     <div class="shop_bar clearfix">
-                        <div class="shop_product_count"><span>  {{ $totalCount }}  </span>Products found</div>
+                        <div class="shop_product_count"><span> {{ $totalCount }} </span>Products found</div>
                         <div class="shop_sorting">
                             <span>Sort by:</span>
                             <ul>
@@ -91,7 +101,7 @@
 
                         @foreach ($products as $row)
                         <!-- Product Item -->
-                        <div class="product_item is_new"  style="width:25%;">
+                        <div class="product_item is_new" style="width:25%;">
                             <div class="product_border" style="top: 40px;"></div>
                             <div class="product_image d-flex flex-column align-items-center justify-content-center"
                                 style="height: unset">
@@ -183,9 +193,5 @@
     </div>
 </div>
 
-
-{{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
-{{-- <script src="{{ asset('frontend/js/shop_custom.js')}}"></script> --}}
-
+  
 @endsection

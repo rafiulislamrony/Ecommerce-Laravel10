@@ -274,16 +274,22 @@ class ProductController extends Controller
         $products = DB::table('products')->where('subcategory_id', $id)->paginate(8);
         $categories = DB::table('categories')->get();
         $brands = DB::table('products')->where('subcategory_id', $id)->select('brand_id')->groupBy('brand_id')->get();
-
         $totalCount = DB::table('products')->where('subcategory_id', $id)->count();
 
-        return view('pages.subcategory_products', compact('products', 'categories', 'brands', 'totalCount'));
+        $catdetails = DB::table('subcategories')
+        ->join('categories', 'subcategories.category_id', 'categories.id')
+        ->select('subcategories.*', 'categories.category_name')
+        ->where('subcategories.id', $id)
+        ->first();
+        return view('pages.subcategory_products', compact('products', 'categories', 'brands', 'catdetails', 'totalCount'));
     }
+
     public function Allcategory($id)
     {
         $allcategory = DB::table('products')->where('category_id', $id)->paginate(8);
         $totalCount = DB::table('products')->where('category_id', $id)->count();
-        return view('pages.category_products', compact('allcategory', 'totalCount'));
+        $catname = DB::table('categories')->where('id', $id)->first();
+        return view('pages.category_products', compact('allcategory', 'totalCount', 'catname'));
     }
 
 
