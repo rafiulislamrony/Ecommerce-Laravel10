@@ -269,12 +269,18 @@ class ProductController extends Controller
     }
 
     public function ProductsView($id){
-        $products = DB::table('products')->where('subcategory_id', $id)->paginate(10);
+        $products = DB::table('products')->where('subcategory_id', $id)->paginate(8);
         $categories = DB::table('categories')->get();
-        $brands = DB::table('products')->where('subcategory_id', $id)->select('brand_id')->groupBy('brand_id')
-        ->get();
+        $brands = DB::table('products')->where('subcategory_id', $id)->select('brand_id')->groupBy('brand_id')->get();
 
-        return view('pages.all_product', compact('products', 'categories', 'brands'));
+        $totalCount = DB::table('products')->where('subcategory_id', $id)->count();
+
+        return view('pages.subcategory_products', compact('products', 'categories', 'brands', 'totalCount'));
+    }
+    public function Allcategory($id){
+        $allcategory = DB::table('products')->where('category_id', $id)->paginate(8);
+        $totalCount = DB::table('products')->where('category_id', $id)->count();
+        return view('pages.category_products', compact('allcategory', 'totalCount'));
     }
 
 

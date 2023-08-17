@@ -10,7 +10,7 @@
     </div>
     <div class="home_overlay"></div>
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
-        <h2 class="home_title">Smartphones & Tablets</h2>
+        <h2 class="home_title">Subcategory</h2>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
                         <div class="sidebar_title">Categories</div>
                         <ul class="sidebar_categories">
                             @foreach ($categories as $row)
-                            <li><a href="#"> {{ $row->category_name }} </a></li>
+                            <li><a href="{{ route('allcategory', $row->id ) }}"> {{ $row->category_name }} </a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -63,7 +63,7 @@
                 <div class="shop_content">
 
                     <div class="shop_bar clearfix">
-                        <div class="shop_product_count"><span>186</span> products found</div>
+                        <div class="shop_product_count"><span>  {{ $totalCount }}  </span>Products found</div>
                         <div class="shop_sorting">
                             <span>Sort by:</span>
                             <ul>
@@ -88,7 +88,7 @@
 
                         @foreach ($products as $row)
                         <!-- Product Item -->
-                        <div class="product_item is_new">
+                        <div class="product_item is_new"  style="width:25%;">
                             <div class="product_border" style="top: 40px;"></div>
                             <div class="product_image d-flex flex-column align-items-center justify-content-center"
                                 style="height: unset">

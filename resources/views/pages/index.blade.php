@@ -269,9 +269,17 @@ $hot = DB::table('products')
 
                         <div class="owl-item">
                             <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                <div class="popular_category_image"><img
-                                        src="{{ asset('frontend/images/popular_1.png')}}" alt=""></div>
-                                <div class="popular_category_text"> {{ $row->category_name }}</div>
+                                <div class="popular_category_image">
+                                    <a href="{{ route('allcategory', $row->id ) }}">
+                                        <img src="{{ asset('frontend/images/popular_1.png')}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="popular_category_text">
+                                    <a href="{{ route('allcategory', $row->id ) }}">
+                                        {{ $row->category_name }}
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
                         @endforeach

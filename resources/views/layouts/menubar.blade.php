@@ -25,7 +25,7 @@ $category = DB::table('categories')->get();
                             $subcategory = DB::table('subcategories')->where('category_id', $cat->id)->get();
                             @endphp
                             <li @if (count($subcategory)> 0) class="hassubs" @endif>
-                                <a href="#">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                <a href="{{ route('allcategory', $cat->id ) }}">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
                                 <ul>
                                     @foreach ($subcategory as $subcat)
                                     <li>
