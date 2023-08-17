@@ -19,12 +19,15 @@ class ProductDetailsController extends Controller
             ->where('products.id', $id)
             ->first();
 
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
+        if ($product) {
+            $color = $product->product_color;
+            $product_color = $color !== null ? explode(',', $color) : [];
 
-        return view('pages.product_details', compact('product', 'product_color', 'product_size'));
+            $size = $product->product_size;
+            $product_size = $size !== null ? explode(',', $size) : [];
+
+            return view('pages.product_details', compact('product', 'product_color', 'product_size'));
+        }
     }
 
     public function AddCart(Request $request, $id)

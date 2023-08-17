@@ -189,8 +189,7 @@ $vat = $settings->vat;
             </div>
         </div>
     </div>
-</div>
-<!-- Footer -->
+</div> 
 
 
 

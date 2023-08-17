@@ -70,13 +70,11 @@
                                 <li>
                                     <span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
                                     <ul>
-                                        <li class="shop_sorting_button"
-                                            data-isotope-option='{ "sortBy": "original-order" }'>highest rated
+                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated
                                         </li>
                                         <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name
                                         </li>
-                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>
-                                            price</li>
+                                        <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'> price</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -88,7 +86,7 @@
 
                         @foreach ($allcategory as $row)
                         <!-- Product Item -->
-                        <div class="product_item is_new" style="width:25%;">
+                        <div class="product_item qproduct is_new" style="width:25%;">
                             <div class="product_border" style="top: 40px;"></div>
                             <div class="product_image d-flex flex-column align-items-center justify-content-center"
                                 style="height: unset">
@@ -124,6 +122,7 @@
                             <button class="addwishlist product_fav" data-id="{{ $row->id }}" style="cursor: pointer;">
                                 <i class="fas fa-heart"></i>
                             </button>
+
                             <ul class="product_marks">
                                 @if ($row->discount_price == NULL)
                                 <li class="product_mark product_new"
@@ -186,9 +185,7 @@
     </div>
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
 
 <script type="text/javascript">
     $(document).ready(function(){

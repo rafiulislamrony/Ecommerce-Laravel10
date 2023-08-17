@@ -1183,7 +1183,6 @@ $brand = DB::table('brands')->get();
     </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="cartmodel" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -1245,8 +1244,7 @@ $brand = DB::table('brands')->get();
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -1337,7 +1335,7 @@ $brand = DB::table('brands')->get();
 
             }
         })
-    } 
+    }
 </script>
 
 

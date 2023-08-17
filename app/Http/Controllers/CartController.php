@@ -103,7 +103,7 @@ class CartController extends Controller
                 ];
                 return redirect()->back()->with($notification);
             }
-            
+
         }
     }
 
@@ -117,11 +117,12 @@ class CartController extends Controller
             ->where('products.id', $id)
             ->first();
 
+ 
         $color = $product->product_color;
-        $product_color = explode(',', $color);
+        $product_color = $color ? explode(',', $color) : [];
 
         $size = $product->product_size;
-        $product_size = explode(',', $size);
+        $product_size = $size ? explode(',', $size) : [];
 
 
         return response()->json([
