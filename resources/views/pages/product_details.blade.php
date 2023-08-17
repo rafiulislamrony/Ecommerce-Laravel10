@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
 
+@include('layouts.menubar');
+
 <div class="single_product pt-4">
     <div class="container">
         <div class="row">
@@ -47,7 +49,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Color</label>
-                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;"> 
+                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;">
                                             @foreach ($product_color as $color)
                                             <option value="{{ $color }}" >{{ $color }}</option>
                                             @endforeach

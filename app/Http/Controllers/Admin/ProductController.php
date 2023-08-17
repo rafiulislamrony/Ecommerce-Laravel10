@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -149,7 +150,7 @@ class ProductController extends Controller
             ->where('products.id', $id)
             ->first();
 
-         return view('admin.product.show', compact('product'));
+        return view('admin.product.show', compact('product'));
 
     }
 
@@ -268,7 +269,8 @@ class ProductController extends Controller
         }
     }
 
-    public function ProductsView($id){
+    public function ProductsView($id)
+    {
         $products = DB::table('products')->where('subcategory_id', $id)->paginate(8);
         $categories = DB::table('categories')->get();
         $brands = DB::table('products')->where('subcategory_id', $id)->select('brand_id')->groupBy('brand_id')->get();
@@ -277,7 +279,8 @@ class ProductController extends Controller
 
         return view('pages.subcategory_products', compact('products', 'categories', 'brands', 'totalCount'));
     }
-    public function Allcategory($id){
+    public function Allcategory($id)
+    {
         $allcategory = DB::table('products')->where('category_id', $id)->paginate(8);
         $totalCount = DB::table('products')->where('category_id', $id)->count();
         return view('pages.category_products', compact('allcategory', 'totalCount'));

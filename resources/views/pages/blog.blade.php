@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.menubar');
 <!-- Home -->
 
 <div class="home">

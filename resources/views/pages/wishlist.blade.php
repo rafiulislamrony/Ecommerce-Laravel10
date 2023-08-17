@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('layouts.menubar');
 <div class="cart_section pt-5">
     <div class="container">
         <div class="row">

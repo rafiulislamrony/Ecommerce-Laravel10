@@ -4,6 +4,9 @@
 
 @include('layouts.menubar');
 
+@include('layouts.slider');
+
+
 @php
 $featured = DB::table('products')->where('status',1)->orderBy('id','desc')->limit(6)->get();
 $trend = DB::table('products')->where('status',1)->where('trend',1)->orderBy('id','desc')->limit(6)->get();

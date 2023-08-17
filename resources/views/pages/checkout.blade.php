@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Cart -->
+@include('layouts.menubar');
 <!-- Cart -->
 @php
 $countitem = 0;

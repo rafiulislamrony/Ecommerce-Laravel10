@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Home -->
+@include('layouts.menubar');
 
 <!-- Home -->
 

@@ -3,7 +3,12 @@
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_responsive.css') }}">
+
+@include('layouts.menubar');
+
 <!-- Home -->
+
+
 
 <div class="home">
     <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg">
@@ -152,6 +157,37 @@
         </div>
     </div>
 </div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div
+                    class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_icon"><img src="{{ asset('frontend/images/send.png')}}" alt="">
+                        </div>
+                        <div class="newsletter_title">Sign up for Newsletter</div>
+                        <div class="newsletter_text">
+                            <p>...and receive %20 coupon for first shopping.</p>
+                        </div>
+                    </div>
+                    <div class="newsletter_content clearfix">
+                        <form action="{{ route('store.newslater') }}" method="post" class="newsletter_form">
+                            @csrf
+                            <input type="email" name="email" class="newsletter_input"
+                                placeholder="Enter your email address">
+                            <button class="newsletter_button" type="submit">Subscribe</button>
+                        </form>
+                        <div class="newsletter_unsubscribe_link"><a href="#">Unsubscribe</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}

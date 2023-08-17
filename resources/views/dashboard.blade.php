@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.menubar');
 
 <div class="contact_form">
     <div class="container">
@@ -52,7 +53,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <a href="{{ route('password.change') }}">
-                            Change Password 
+                            Change Password
                         </a>
                     </li>
                     <li class="list-group-item">one</li>
