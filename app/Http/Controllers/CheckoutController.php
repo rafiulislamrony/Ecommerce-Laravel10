@@ -42,6 +42,7 @@ class CheckoutController extends Controller
 
         $coupon = $request->coupon;
         $check = DB::table('coupons')->where('coupon', $coupon)->first();
+        
         if($check){
             Session::put('coupon',[
                 'name'=> $check->coupon,

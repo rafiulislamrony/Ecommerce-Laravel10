@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 @include('layouts.menubar');
 @php
@@ -32,9 +33,9 @@ $vat = $settings->vat;
                 <h4>Billing Address</h4>
                 <div class="card">
                     <div class="card-body">
-                        <form  method="POST" action="{{ route('payment.process') }}">
+                        <form action="{{ route('payment.process') }}" id="contact_form" method="post">
                             @csrf
-                            <input type="hidden" name=" " value=" ">
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -90,36 +91,36 @@ $vat = $settings->vat;
                                     <div class="form-group">
                                         <ul class="logos_list">
                                             <li>
-                                                <div class="form-check">
-                                                    <input type="radio" id="radios1" name="payment" value="stripe">
-                                                    <label class="form-check-label pl-1" for="radios1">
+                                                <div class="form-check gateway_check" id="stripe">
+                                                    <input type="radio" id="stripe1" name="payment" value="stripe">
+                                                    <label class="form-check-label pl-1" for="stripe1">
                                                         <img src="{{ asset('frontend/images/mastercard.png') }}"
                                                             style="width:80px" alt="">
                                                     </label>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="form-check">
-                                                    <input type="radio" id="radios2" name="payment" value="paypal">
-                                                    <label class="form-check-label pl-1" for="radios2">
+                                                <div class="form-check gateway_check">
+                                                    <input type="radio" id="paypal" name="payment" value="paypal">
+                                                    <label class="form-check-label pl-1" for="paypal">
                                                         <img src="{{ asset('frontend/images/paypal.png') }}"
                                                             style="width:100px" alt="">
                                                     </label>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="form-check">
-                                                    <input type="radio" id="radios3" name="payment" value="ideal">
-                                                    <label class="form-check-label pl-1" for="radios3">
+                                                <div class="form-check gateway_check">
+                                                    <input type="radio" id="ideal" name="payment" value="ideal">
+                                                    <label class="form-check-label pl-1" for="ideal">
                                                         <img src="{{ asset('frontend/images/mollie.png') }}"
                                                             style="width:100px" alt="">
                                                     </label>
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="form-check">
-                                                    <input type="radio" id="radios4" name="payment" value="cash">
-                                                    <label class="form-check-label pl-1" for="radios4">
+                                                <div class="form-check gateway_check">
+                                                    <input type="radio" id="cash" name="payment" value="cash">
+                                                    <label class="form-check-label pl-1" for="cash">
                                                         <img src="{{ asset('frontend/images/cash.png') }}"
                                                             style="width:100px" alt="">
                                                     </label>
@@ -133,6 +134,7 @@ $vat = $settings->vat;
                                 <a class="btn btn-primary" href=""> Back To Cart</a>
                                 <button class="btn btn-primary" type="submit">Continue </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -166,18 +168,30 @@ $vat = $settings->vat;
                                 </span></li>
                             <li class="list-group-item">Vat/Taxs:- <span style="float: right;">${{ $vat }} </span></li>
                             @if( Session::has('coupon'))
+                            @php
+                            $amount = $cartTotal - Session::get('coupon')['discount'] + $charge + $vat;
+                            $formattedAmount = number_format($amount, 2, '.', ',');
+                            @endphp
                             <li class="list-group-item">Order Total:-
                                 <span style="float: right;">
-                                    ${{$cartTotal - Session::get('coupon')['discount'] + $charge + $vat }}
+                                    ${{ $formattedAmount }}
                                 </span>
                             </li>
                             @else
+                            @php
+                            $amount = $cartTotal + $charge + $vat;
+                            $formattedAmount = number_format($amount, 2, '.', ',');
+                            @endphp
                             <li class="list-group-item">Order Total:-
                                 <span style="float: right;">
-                                    ${{ number_format($cartTotal + $charge + $vat, 2, '.', ',') }}
+                                    ${{ $formattedAmount }}
                                 </span>
                             </li>
                             @endif
+
+                            @php
+                            Session::put('totalamount', ['amount' => $amount]); 
+                            @endphp
                         </ul>
                     </section>
                     <!-- Items in Cart Widget-->
@@ -224,4 +238,5 @@ $vat = $settings->vat;
         </div>
     </div>
 </div>
+
 @endsection

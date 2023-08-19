@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.8",
         "league/oauth2-server": "^8.5.3",
         "league/uri": "^6.7",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "stripe/stripe-php": "^12.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

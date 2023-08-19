@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,10 +168,16 @@ Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blo
 
 // Payment All Route
 Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
-Route::post('payment/process', [PaymentController::class, 'Payment'])->name('payment.process');
+
+Route::post('user/payment/process', [PaymentController::class, 'Payment'])->name('payment.process');
+
+Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
 
 
-
+// Route::controller(StripePaymentController::class)->group(function(){
+//     Route::get('stripe', 'stripe');
+//     Route::post('stripe', 'stripePost')->name('stripe.post');
+// });
 
 
 
@@ -178,3 +185,7 @@ Route::post('payment/process', [PaymentController::class, 'Payment'])->name('pay
 Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
 Route::get('allcategory/{id}', [ProductController::class, 'Allcategory'])->name('allcategory');
 Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->name('brand.product');
+
+
+
+

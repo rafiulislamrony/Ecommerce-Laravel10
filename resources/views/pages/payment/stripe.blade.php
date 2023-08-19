@@ -1,128 +1,158 @@
-@extends('layouts.app')
+<head>
+    <title>Laravel - Stripe Payment Gateway Integration Example - ItSolutionStuff.com</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 
-@section('content')
-@include('layouts.menubar');
-@php
-$countitem = 0;
-$cartTotal = 0;
-if(Session::has('cart')){
-$cart = Session::get('cart');
-//Session::forget('cart');
-if($cart){
-foreach ($cart as $product) {
-$cartTotal += (double)$product['price'] * (int)$product['qty'];
-$countitem += (int)$product['qty'];
-}
-}
-}else{
-$cart =[];
-}
-
-$settings = DB::table('settings')->first();
-
-$charge = $settings->shipping_charge;
-$vat = $settings->vat;
-
-@endphp
-
-<div class="cart_section pt-5">
+<body>
     <div class="container">
+        <h1> Payment in Stripe</h1>
         <div class="row">
-            <div class="col-lg-8">
-                <h4>Stripe Billing Address</h4>
-                <div class="card">
-                    <div class="card-body">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-heading display-table">
+                        <h3 class="panel-title">Payment Details</h3>
+                    </div>
+                    <div class="panel-body">
 
+                        @if (Session::has('success'))
+                        <div class="alert alert-success text-center">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p>{{ Session::get('success') }}</p>
+                        </div>
+                        @endif
+
+                        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+                            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+                            id="payment-form">
+                            @csrf
+
+                            <div class='form-row row'>
+                                <div class='col-xs-12 form-group required'>
+                                    <label class='control-label'>Name on Card</label> <input class='form-control'
+                                        size='4' type='text'>
+                                </div>
+                            </div>
+
+                            <div class='form-row row'>
+                                <div class='col-xs-12 form-group card required'>
+                                    <label class='control-label'>Card Number</label> <input autocomplete='off'
+                                        class='form-control card-number' size='20' type='text'>
+                                </div>
+                            </div>
+
+                            <div class='form-row row'>
+                                <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                    <label class='control-label'>CVC</label> <input autocomplete='off'
+                                        class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+                                </div>
+                                <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                    <label class='control-label'>Expiration Month</label> <input
+                                        class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+                                </div>
+                                <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                    <label class='control-label'>Expiration Year</label> <input
+                                        class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                                </div>
+                            </div>
+
+                            <div class='form-row row'>
+                                <div class='col-md-12 error form-group hide'>
+                                    <div class='alert-danger alert'>Please correct the errors and try
+                                        again.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now
+                                        $(@php
+                                        $totalAmount = Session::get('totalamount')['amount'];
+                                        echo number_format($totalAmount)
+                                        @endphp)
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <aside class="sidebar">
-                    <div class="padding-top-2x hidden-lg-up"></div>
-                    <!-- Order Summary Widget-->
-                    <section class="card widget widget-featured-posts widget-order-summary p-4">
-                        <h4 class="widget-title">Order Summary</h4>
-                        <ul class="list-group">
-
-                            @if( Session::has('coupon'))
-                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{$cartTotal -
-                                    Session::get('coupon')['discount'] }} </span></li>
-                            <li class="list-group-item">Coupons:-
-                                {{ Session::get('coupon')['name'] }}
-                                <span style="float: right;">${{ Session::get('coupon')['discount'] }} </span>
-                                <a href="{{ route('coupon.remove') }}" class="btn btn-danger btn-sm"
-                                    title="Remove Coupon">
-                                    X
-                                </a>
-                            </li>
-                            @else
-                            <li class="list-group-item">Subtotal:- <span style="float: right;">${{
-                                    number_format($cartTotal, 2, '.', ',') }} </span></li>
-                            @endif
-
-
-                            <li class="list-group-item">Shiping Charge:- <span style="float: right;"> ${{ $charge }}
-                                </span></li>
-                            <li class="list-group-item">Vat/Taxs:- <span style="float: right;">${{ $vat }} </span></li>
-                            @if( Session::has('coupon'))
-                            <li class="list-group-item">Order Total:-
-                                <span style="float: right;">
-                                    ${{$cartTotal - Session::get('coupon')['discount'] + $charge + $vat }}
-                                </span>
-                            </li>
-                            @else
-                            <li class="list-group-item">Order Total:-
-                                <span style="float: right;">
-                                    ${{ number_format($cartTotal + $charge + $vat, 2, '.', ',') }}
-                                </span>
-                            </li>
-                            @endif
-                        </ul>
-                    </section>
-                    <!-- Items in Cart Widget-->
-
-                    <section class="card widget widget-featured-posts widget-featured-products mt-4 p-4">
-                        <h4 class="widget-title">Items In Your Cart</h4>
-                        <hr>
-                        @foreach ($cart as $row)
-                        <div class="entry d-flex">
-                            <div class="entry-thumb"><a
-                                    href="{{ url('product/details/'.$row['id'].'/'. $row['name'] ) }}">
-                                    <img src="{{ asset($row['image']) }}" alt="Product"
-                                        style="max-width: 60px; min-width:60px; margin-right:15px;"></a></div>
-                            <div class="entry-content">
-                                <h6 class="entry-title" style="font-size: 14px;"><a style="color: #000" href=" ">
-                                        {{ $row['name'] }}
-                                    </a></h6>
-                                <span class="entry-meta">
-                                    {{ $row['qty'] }} * {{ $row['price'] }} =
-                                    {{ number_format($row['qty'] * $row['price'], 2, '.', ',') }}
-                                </span>
-
-                                @if($row['color'] == NULL)
-                                @else
-                                <p class="mb-0">
-                                    Color : {{ $row['color'] }}
-                                </p>
-                                @endif
-
-                                @if($row['size'] == NULL)
-                                @else
-                                <p class="mb-0">
-                                    Size : {{ $row['size'] }}
-                                </p>
-                                @endif
-
-                            </div>
-                        </div>
-                        <hr>
-                        @endforeach
-                    </section>
-                </aside>
-            </div>
         </div>
+
     </div>
-</div>
 
+</body>
 
-@endsection
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<script type="text/javascript">
+    $(function() {
+
+    /*------------------------------------------
+    --------------------------------------------
+    Stripe Payment Code
+    --------------------------------------------
+    --------------------------------------------*/
+
+    var $form = $(".require-validation");
+
+    $('form.require-validation').bind('submit', function(e) {
+        var $form = $(".require-validation"),
+        inputSelector = ['input[type=email]', 'input[type=password]',
+                         'input[type=text]', 'input[type=file]',
+                         'textarea'].join(', '),
+        $inputs = $form.find('.required').find(inputSelector),
+        $errorMessage = $form.find('div.error'),
+        valid = true;
+        $errorMessage.addClass('hide');
+
+        $('.has-error').removeClass('has-error');
+        $inputs.each(function(i, el) {
+          var $input = $(el);
+          if ($input.val() === '') {
+            $input.parent().addClass('has-error');
+            $errorMessage.removeClass('hide');
+            e.preventDefault();
+          }
+        });
+
+        if (!$form.data('cc-on-file')) {
+          e.preventDefault();
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+        }
+
+    });
+
+    /*------------------------------------------
+    --------------------------------------------
+    Stripe Response Handler
+    --------------------------------------------
+    --------------------------------------------*/
+    function stripeResponseHandler(status, response) {
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            /* token contains id, last4, and card type */
+            var token = response['id'];
+
+            $form.find('input[type=text]').empty();
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $form.get(0).submit();
+        }
+    }
+
+});
+</script>
+
+</html>

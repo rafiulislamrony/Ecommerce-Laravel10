@@ -11,7 +11,9 @@ class PaymentController extends Controller
     public function PaymentPage()
     {
         $cart = Session::get('cart');
+
         return view('pages.payment', compact('cart'));
+
     }
 
     public function Payment(Request $request)
@@ -27,17 +29,22 @@ class PaymentController extends Controller
 
 
         if ($request->payment == 'stripe') {
+
             return view('pages.payment.stripe', compact('data'));
 
         } elseif ($request->payment == 'paypal') {
 
-        } elseif ($request->payment == 'ideal') {
+            # code...
+        } elseif ($request->payment == 'oncash') {
+
+            // return view('pages.payment.oncash', compact('data'));
 
         } else {
-            echo "Cash On Dalivary";
-        }
 
+            echo "Cash On Delivery";
+        }
     }
+
 
 
 

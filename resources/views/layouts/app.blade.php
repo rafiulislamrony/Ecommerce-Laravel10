@@ -358,6 +358,7 @@
     <script src="{{ asset('frontend/js/custom.js')}}"></script>
     <script src="{{ asset('frontend/js/product_custom.js')}}"></script>
 
+
     <!-- toastr script --->
     <script>
         @if (Session::has('message'))
