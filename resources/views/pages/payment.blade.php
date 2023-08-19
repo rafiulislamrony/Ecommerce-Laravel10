@@ -32,7 +32,7 @@ $vat = $settings->vat;
                 <h4>Billing Address</h4>
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('payment.process') }}" method="POST">
+                        <form  method="POST" action="{{ route('payment.process') }}">
                             @csrf
                             <input type="hidden" name=" " value=" ">
                             <div class="row">
@@ -71,8 +71,7 @@ $vat = $settings->vat;
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="checkout-company">Zip Code</label>
-                                        <input class="form-control" name="zip" type="text"
-                                            placeholder="Zip Code">
+                                        <input class="form-control" name="zip" type="text" placeholder="Zip Code">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -92,8 +91,7 @@ $vat = $settings->vat;
                                         <ul class="logos_list">
                                             <li>
                                                 <div class="form-check">
-                                                    <input type="radio" id="radios1"
-                                                        name="payment" value="stripe">
+                                                    <input type="radio" id="radios1" name="payment" value="stripe">
                                                     <label class="form-check-label pl-1" for="radios1">
                                                         <img src="{{ asset('frontend/images/mastercard.png') }}"
                                                             style="width:80px" alt="">
@@ -102,8 +100,7 @@ $vat = $settings->vat;
                                             </li>
                                             <li>
                                                 <div class="form-check">
-                                                    <input type="radio" id="radios2"
-                                                        name="payment" value="paypal">
+                                                    <input type="radio" id="radios2" name="payment" value="paypal">
                                                     <label class="form-check-label pl-1" for="radios2">
                                                         <img src="{{ asset('frontend/images/paypal.png') }}"
                                                             style="width:100px" alt="">
@@ -112,8 +109,7 @@ $vat = $settings->vat;
                                             </li>
                                             <li>
                                                 <div class="form-check">
-                                                    <input type="radio" id="radios3"
-                                                        name="payment" value="ideal">
+                                                    <input type="radio" id="radios3" name="payment" value="ideal">
                                                     <label class="form-check-label pl-1" for="radios3">
                                                         <img src="{{ asset('frontend/images/mollie.png') }}"
                                                             style="width:100px" alt="">
@@ -122,8 +118,7 @@ $vat = $settings->vat;
                                             </li>
                                             <li>
                                                 <div class="form-check">
-                                                    <input type="radio" id="radios4"
-                                                        name="payment" value="cash">
+                                                    <input type="radio" id="radios4" name="payment" value="cash">
                                                     <label class="form-check-label pl-1" for="radios4">
                                                         <img src="{{ asset('frontend/images/cash.png') }}"
                                                             style="width:100px" alt="">

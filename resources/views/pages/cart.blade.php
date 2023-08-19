@@ -113,10 +113,7 @@ $cart =[];
                     </div>
 
                     <div class="cart_buttons">
-                        <button type="button" class="button cart_button_clear">All Cancle</button>
-
                         <a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
-
                     </div>
                 </div>
             </div>
@@ -152,7 +149,7 @@ $cart =[];
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
