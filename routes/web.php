@@ -169,16 +169,9 @@ Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blo
 // Payment All Route
 Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
 
-Route::post('user/payment/process', [PaymentController::class, 'Payment'])->name('payment.process');
+Route::post('payment/process', [PaymentController::class, 'payment'])->name('payment.process');
 
-Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
-
-
-// Route::controller(StripePaymentController::class)->group(function(){
-//     Route::get('stripe', 'stripe');
-//     Route::post('stripe', 'stripePost')->name('stripe.post');
-// });
-
+ 
 
 
 // Product  Page
