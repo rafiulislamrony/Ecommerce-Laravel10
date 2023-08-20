@@ -34,10 +34,9 @@ $vat = $settings->vat;
                 <div class="card">
                     <div class="card-body">
 
-
-                            <form role="form" action="{{ route('payment.process') }}" method="post" class="require-validation"
-                            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-                            id="payment-form">
+                        <form role="form" action="{{ route('payment.process') }}" method="post"
+                            class="require-validation" data-cc-on-file="false"
+                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                             @csrf
 
 
@@ -180,13 +179,13 @@ $vat = $settings->vat;
                             </div>
 
                             <div class="d-flex justify-content-between paddin-top-1x mt-4">
-                                <a class="btn btn-primary" href="#"> Back To Cart</a> 
-                                  <button class="btn btn-primary btn-lg" type="submit">Pay Now
-                                        $(@php
-                                        $totalAmount = Session::get('totalamount')['amount'];
-                                        echo number_format($totalAmount)
-                                        @endphp)
-                                    </button>
+                                <a class="btn btn-primary" href="#"> Back To Cart</a>
+                                <button class="btn btn-primary btn-lg" type="submit">Pay Now
+                                    $(@php
+                                    $totalAmount = Session::get('totalamount')['amount'];
+                                    echo number_format($totalAmount)
+                                    @endphp)
+                                </button>
                             </div>
                         </form>
                     </div>
