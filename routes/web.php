@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Category\BrandController;
 use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
+use App\Http\Controllers\Admin\OrderController;
+
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\WishlistController;
@@ -18,7 +20,6 @@ use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,19 +166,15 @@ Route::get('language/english', [BlogController::class, 'BlogEnglish'])->name('la
 Route::get('language/hindi', [BlogController::class, 'BlogHindi'])->name('language.hindi');
 Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blog.single');
 
-
 // Payment All Route
 Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
-
 Route::post('payment/process', [PaymentController::class, 'payment'])->name('payment.process');
-
-  
 
 // Product  Page
 Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
 Route::get('allcategory/{id}', [ProductController::class, 'Allcategory'])->name('allcategory');
 Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->name('brand.product');
 
-
-
+// Admin Order Route
+Route::get('admin/panding/order', [OrderController::class, 'adminNewOrder'])->name('admin.neworder');
 
