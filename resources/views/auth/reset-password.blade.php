@@ -1,10 +1,5 @@
-
-
-
 @extends('layouts.app')
-
 @section('content')
-
 <div class="wrapper without_header_sidebar">
     <div class="container">
         <div class="row d-flex flex-column justify-content-center align-items-center">
