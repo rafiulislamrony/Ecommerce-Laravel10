@@ -39,8 +39,6 @@ $vat = $settings->vat;
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                             @csrf
 
-
-
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -169,23 +167,18 @@ $vat = $settings->vat;
                                     </div>
                                 </div>
 
-                                <div class='form-row row'>
+                                {{-- <div class='form-row row'>
                                     <div class='col-md-12 error form-group hide'>
                                         <div class='alert-danger alert'>Please correct the errors and try
                                             again.</div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
 
                             <div class="d-flex justify-content-between paddin-top-1x mt-4">
                                 <a class="btn btn-primary" href="#"> Back To Cart</a>
-                                <button class="btn btn-primary btn-lg" type="submit">Pay Now
-                                    $(@php
-                                    $totalAmount = Session::get('totalamount')['amount'];
-                                    echo number_format($totalAmount)
-                                    @endphp)
-                                </button>
+                                <button class="btn btn-primary btn-lg" type="submit">Pay Now </button>
                             </div>
                         </form>
                     </div>
@@ -246,8 +239,8 @@ $vat = $settings->vat;
                             @endphp
                         </ul>
                     </section>
-                    <!-- Items in Cart Widget-->
 
+                    <!-- Items in Cart Widget-->
                     <section class="card widget widget-featured-posts widget-featured-products mt-4 p-4">
                         <h4 class="widget-title">Items In Your Cart</h4>
                         <hr>

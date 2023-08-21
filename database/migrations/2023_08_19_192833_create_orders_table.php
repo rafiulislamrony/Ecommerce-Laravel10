@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id('id');
-            $table->string('order_id');
-            $table->string('product_id')->nullable();
-            $table->string('product_name')->nullable();
-            $table->string('color')->nullable();
-            $table->string('size')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('singpleprice')->nullable();
-            $table->string('totalprice')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('payment_id')->nullable();
+            $table->string('paying_amount')->nullable();
+            $table->string('blnc_transection')->nullable();
+            $table->string('stripe_order_id')->nullable();
+            $table->string('subtotal')->nullable();
+            $table->string('shipping')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('total')->nullable();
+            $table->string('status')->nullable()->default(0);
+            $table->string('month')->nullable();
+            $table->string('date')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }
