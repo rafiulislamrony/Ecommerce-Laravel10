@@ -177,4 +177,5 @@ Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->
 
 // Admin Order Route
 Route::get('admin/panding/order', [OrderController::class, 'adminNewOrder'])->name('admin.neworder');
+Route::get('admin/view/order/{id}', [OrderController::class, 'viewOrder'])->name('admin.view.order');
 

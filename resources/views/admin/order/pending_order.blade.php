@@ -39,9 +39,9 @@
                             <td>{{ $row->date }}</td>
                             <td>
                                 <span class="badge badge-warning"> Pending</span>
-                            </td> 
+                            </td>
                             <td>
-                                <a href="{{ route('coupon.edit', $row->id) }}" class="btn btn-sm btn-info">View</a>
+                                <a href="{{ route('admin.view.order', $row->id) }}" class="btn btn-sm btn-info">View</a>
                             </td>
                         </tr>
                         @endforeach
