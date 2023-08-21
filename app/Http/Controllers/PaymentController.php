@@ -47,6 +47,7 @@ class PaymentController extends Controller
                 $user = Auth::id();
                 $order_id = DB::table('orders')->insertGetId([
                     'user_id' => $user,
+                    'payment_type' =>$request->payment,
                     'payment_id' => $charge->payment_method,
                     'paying_amount' => number_format($charge->amount / 100, 2, '.', ','),
                     'blnc_transection' => $charge->balance_transaction,
