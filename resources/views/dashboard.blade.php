@@ -4,7 +4,7 @@
 @include('layouts.menubar');
 
 @php
-    $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC')->limit(10)->get();
+$orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC')->limit(10)->get();
 @endphp
 
 <div class="contact_form">
@@ -31,7 +31,7 @@
                             <td scope="col">{{ $row->date }}</td>
                             <td scope="col">{{ $row->status_code }}</td>
                             <td scope="col">
-                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-info" >
+                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-info">
                                     Details
                                 </a>
                             </td>
@@ -42,25 +42,26 @@
             </div>
             <div class="col-4">
                 <div class="card">
-                    <img src="{{ asset('frontend/images/kaziariyan.png') }}" class="card-img-top" style="width: 90px; margin:0 auto;" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title text-center">{{ Auth::user()->name }} </h5>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <a href="{{ route('password.change') }}">
-                            Change Password
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{ route('password.request') }}">
-                            Forget Password
-                        </a>
-                    </li>
-                  </ul>
-                  <div class="card-body">
-                   <a class="btn btn-danger btn-sm btn-block" href="{{ route('user.logout') }}">Logout</a>
-                  </div>
+                    <img src="{{ asset('frontend/images/kaziariyan.png') }}" class="card-img-top"
+                        style="width: 90px; margin:0 auto;" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ Auth::user()->name }} </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="{{ route('password.change') }}">
+                                Change Password
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{ route('password.request') }}">
+                                Forget Password
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <a class="btn btn-danger btn-sm btn-block" href="{{ route('user.logout') }}">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>

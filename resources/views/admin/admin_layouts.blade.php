@@ -137,6 +137,7 @@
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('admin.newslater') }}" class="nav-link">Newslaters</a></li>
+                <li class="nav-item"><a href="{{ route('admin.seo') }}" class="nav-link">Seo Settings</a></li>
             </ul>
         </div><!-- sl-sideleft-menu -->
 
@@ -399,6 +400,10 @@
           tooltip: false
         })
         $('#summernote2').summernote({
+          height: 150,
+          tooltip: false
+        })
+        $('#summernote3').summernote({
           height: 150,
           tooltip: false
         })

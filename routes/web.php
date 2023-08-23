@@ -20,6 +20,7 @@ use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SeoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -194,4 +195,7 @@ Route::get('admin/delevery/done/{id}', [OrderController::class, 'deleveryDone'])
 Route::get('admin/delevery/done/{id}', [OrderController::class, 'deleveryDone'])->name('admin.delevery.done');
 
 Route::get('user/view/order/{id}', [OrderController::class, 'userViewOrder'])->name('user.view.order');
+
+// Admin Seo
+Route::get('admin/seo', [SeoController::class, 'getSeo'])->name('admin.seo');
 
