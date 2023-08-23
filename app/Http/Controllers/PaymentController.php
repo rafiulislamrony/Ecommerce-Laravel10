@@ -13,41 +13,53 @@ class PaymentController extends Controller
     //
     public function PaymentPage()
     {
-        $cart = Session::get('cart');
-        return view('pages.payment', compact('cart'));
+        try {
+            $cart = Session::get('cart');
+            return view('pages.payment', compact('cart'));
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
     }
+
 
     public function payment(Request $request)
     {
         try {
             if ($request->payment == 'stripe') {
+                // Get settings Data
                 $settings = DB::table('settings')->first();
                 $shipping_charge = $settings->shipping_charge;
                 $vat = $settings->vat;
 
+                // Calculate cart total
                 $cartTotal = 0;
                 $cart = Session::get('cart') ?: [];
+
 
                 foreach ($cart as $product) {
                     $cartTotal += (double) $product['price'] * (int) $product['qty'];
                 }
-
+                // Calculate subtotal and total amount
                 $subtotal = $cartTotal - (Session::has('coupon') ? Session::get('coupon')['discount'] : 0);
                 $totalAmount = (int) Session::get('totalamount')['amount'];
-
+                // Create Stripe charge
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $charge = Stripe\Charge::create([
                     "amount" => $totalAmount * 100,
                     "currency" => "usd",
                     "source" => $request->stripeToken,
                     "description" => "BlackBox Ecommerce.",
-                    "metadata" => ['order_id'=> uniqid()],
+                    "metadata" => ['order_id' => uniqid()],
                 ]);
-
+                // Store order data
                 $user = Auth::id();
                 $order_id = DB::table('orders')->insertGetId([
                     'user_id' => $user,
-                    'payment_type' =>$request->payment,
+                    'payment_type' => $request->payment,
                     'payment_id' => $charge->payment_method,
                     'paying_amount' => number_format($charge->amount / 100, 2, '.', ','),
                     'blnc_transection' => $charge->balance_transaction,
@@ -60,9 +72,9 @@ class PaymentController extends Controller
                     'date' => date('d-m-y'),
                     'month' => date('F'),
                     'year' => date('Y'),
-                    'status_code' => mt_rand(100000,999999),
+                    'status_code' => mt_rand(100000, 999999),
                 ]);
-
+                // Store shipping information
                 $shipping = [
                     'order_id' => $order_id,
                     'ship_name' => $request->name,
@@ -73,7 +85,7 @@ class PaymentController extends Controller
                     'ship_zip' => $request->zip,
                 ];
                 DB::table('shipping')->insert($shipping);
-
+                // Store order details for each product
                 $details = [];
                 foreach ($cart as $row) {
                     $details[] = [
@@ -88,12 +100,12 @@ class PaymentController extends Controller
                     ];
                 }
                 DB::table('orders_details')->insert($details);
-
+                // Clear session data
                 Session::forget('cart');
                 if (Session::has('coupon')) {
                     Session::forget('coupon');
                 }
-
+                // Success notification and redirect
                 $notification = [
                     'message' => 'Payment and Order Successfully Done.',
                     'alert-type' => 'success',
@@ -107,13 +119,12 @@ class PaymentController extends Controller
                 echo "Cash On Delivery";
             }
         } catch (\Exception $e) {
+            // Handle exception
             $notification = [
-                'message' => 'An error occurred while processing your payment.',
+                'message' => 'An error occurred while processing your payment. try latter.',
                 'alert-type' => 'error',
             ];
             return redirect()->back()->with($notification);
         }
-    }
-
-
+    } 
 }
