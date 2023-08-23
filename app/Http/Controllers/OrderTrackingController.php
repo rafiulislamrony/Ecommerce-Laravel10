@@ -13,14 +13,12 @@ class OrderTrackingController extends Controller
         return view('pages.tracking');
     }
     //
-    public function orderTracking(Request $request)
-    {
+    public function orderTracking(Request $request) {
         try {
             $code = $request->code;
             $track = DB::table('orders')->where('status_code', $code)->first();
             if ($track) {
-                //return $track;
-                return view('pages.tracking', compact('track'));
+                return redirect('tracking/page')->with('track', $track);
             } else {
                 $notification = [
                     'message' => 'Status Code Invalid.',
@@ -36,4 +34,5 @@ class OrderTrackingController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
 }

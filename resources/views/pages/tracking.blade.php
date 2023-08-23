@@ -10,9 +10,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="card p-3">
-                    <h3>Track Your Order</h3>
                     <div class="card-body">
-                        <form action=" " method="post">
+                        <form action="{{ route('order.tracking') }}" method="post">
                             @csrf
                             <div class="modal-body">
                                 <label for="">Status Code</label>
@@ -21,6 +20,57 @@
                                 <button type="submit" class="btn mt-3 btn-info">Track Now</button>
                             </div>
                         </form>
+                        <div class="mt-4">
+                            @if(session('track'))
+                            <h3>Your Order Status</h3>
+                            <div class="progress">
+                                @if(session('track')->status == 0)
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                @elseif (session('track')->status == 1)
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"> </div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                @elseif (session('track')->status == 2)
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"> </div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                @elseif (session('track')->status == 3)
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"> </div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%"
+                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                @else
+                                <span class="badge badge-danger">Order Cancled</span>
+                                @endif
+                            </div>
+
+                            <div class="mt-4">
+                                @if(session('track')->status == 0)
+                                <h4>Note: Your Order is under Review.</h4>
+                                @elseif (session('track')->status == 1)
+                                <h4>Note: Your Order is under Process.</h4>
+                                @elseif (session('track')->status == 2)
+                                <h4>Note: Your Order is on the Way.</h4>
+                                @elseif (session('track')->status == 3)
+                                <h4>Note: Your Order is Delivered.</h4>
+                                @else
+                                <h4>Note: Your Order is Cancle.</h4>
+                                @endif
+                            </div>
+
+
+                            @endif
+                        </div>
+
                     </div>
                 </div>
             </div>
