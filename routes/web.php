@@ -21,6 +21,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\OrderTrackingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -199,4 +200,8 @@ Route::get('user/view/order/{id}', [OrderController::class, 'userViewOrder'])->n
 // Admin Seo
 Route::get('admin/seo', [SeoController::class, 'getSeo'])->name('admin.seo');
 Route::post('admin/seo/update', [SeoController::class, 'updateSeo'])->name('update.seo');
+
+// Order tracking
+Route::get('tracking/page', [OrderTrackingController::class, 'getTracking'])->name('tracking');
+Route::post('order/tracking', [OrderTrackingController::class, 'orderTracking'])->name('order.tracking');
 

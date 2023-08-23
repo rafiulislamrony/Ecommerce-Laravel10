@@ -58,16 +58,30 @@
                                 </div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                             </div>
                             <div class="top_bar_content ml-auto">
+
+                                <div class="top_bar_menu">
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href="" type="button" data-toggle="modal"
+                                                data-target="#exampleModal">Order Tracking </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Modal -->
+
+
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         @php
-                                            $language = Session::get('lang');
+                                        $language = Session::get('lang');
                                         @endphp
                                         <li>
                                             @if(Session::get('lang') == 'hindi')
-                                            <a href="{{ route('language.english') }}">English<i class="fas fa-chevron-down"></i></a>
+                                            <a href="{{ route('language.english') }}">English<i
+                                                    class="fas fa-chevron-down"></i></a>
                                             @else
-                                            <a href="{{ route('language.hindi') }}">Hindi<i class="fas fa-chevron-down"></i></a>
+                                            <a href="{{ route('language.hindi') }}">Hindi<i
+                                                    class="fas fa-chevron-down"></i></a>
                                             @endif
                                         </li>
                                     </ul>
@@ -133,9 +147,10 @@
                                             <div class="custom_dropdown">
 
                                                 <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc" id="catall" >All Categories</span>
+                                                    <span class="custom_dropdown_placeholder clc" id="catall">All
+                                                        Categories</span>
                                                     <i class="fas fa-chevron-down"></i>
-                                                    <ul class="custom_list clc" id="catlist" >
+                                                    <ul class="custom_list clc" id="catlist">
                                                         @foreach ($category as $cat)
                                                         <li><a class="clc" href="#">{{ $cat->category_name }} </a></li>
                                                         @endforeach
@@ -193,13 +208,15 @@
 
                                         <div class="cart_icon">
                                             <img src="{{ asset('frontend/images/cart.png')}}" alt="">
-                                            <div class="cart_count"><span class="cartQTY" id="cart_count">{{ count($cart) }}</span>
+                                            <div class="cart_count"><span class="cartQTY" id="cart_count">{{
+                                                    count($cart) }}</span>
                                             </div>
                                         </div>
 
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{ route('show.cart') }}">Cart</a></div>
-                                            <div class="cart_price"> $<span class="cartTotal" id="cart_price">{{ $cartTotal }}</span>
+                                            <div class="cart_price"> $<span class="cartTotal" id="cart_price">{{
+                                                    $cartTotal }}</span>
                                             </div>
                                         </div>
 
@@ -333,6 +350,33 @@
 
     </div>
 
+    <!--  Order Tracking Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('order.tracking') }}"  method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <label for="">Status Code</label>
+                            <input type="text" name="code" required class="form-control" placeholder="Your Order Status Code">
+                            <button type="submit" class="btn mt-3 btn-info">Track Now</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>
     <script src="{{ asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
@@ -340,7 +384,8 @@
     <script src="{{ asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
     <script src="{{ asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
     <script src="{{ asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-    <script src="{{ asset('frontend/plugins/greensock/ScrollToPlugin.min.jsplugins/greensock/ScrollToPlugin.min.js')}}"> </script>
+    <script src="{{ asset('frontend/plugins/greensock/ScrollToPlugin.min.jsplugins/greensock/ScrollToPlugin.min.js')}}">
+    </script>
     <script src="{{ asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
     <script src="{{ asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
     <script src="{{ asset('frontend/plugins/easing/easing.js')}}"></script>
