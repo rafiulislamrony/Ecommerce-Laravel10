@@ -89,13 +89,13 @@
                                                 @if($order->status == 0)
                                                 <span class="badge badge-warning">Pending</span>
                                                 @elseif ($order->status == 1)
-                                                <span class="badge badge-warning">Payment Accept</span>
+                                                <span class="badge badge-primary">Payment Accept</span>
                                                 @elseif ($order->status == 2)
-                                                <span class="badge badge-warning">Progress</span>
-                                                @elseif ($order->status == 4)
+                                                <span class="badge badge-info">Progress</span>
+                                                @elseif ($order->status == 3)
                                                 <span class="badge badge-success">Delivered</span>
                                                 @else
-                                                <span class="badge badge-danger">Cancle</span>
+                                                <span class="badge badge-danger">Order Cancled</span>
                                                 @endif
                                             </strong>
                                         </td>
@@ -106,6 +106,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-12 mt-4">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Shipping Details</h5>
+                        <div class="table-wrapper">
+                            <table class="table display responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Se. No.</th>
+                                        <th>Product Code</th>
+                                        <th>Product Name</th>
+                                        <th>Image</th>
+                                        <th>Color</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orderDetails as $key=>$row)
+                                    <tr>
+                                        <td>{{ $key +1 }}</td>
+                                        <td>{{ $row->product_code }}</td>
+                                        <td>{{  $row->product_name  }}</td>
+                                        <td>
+                                            <img src="{{ asset($row->image_one) }}" width="50px" alt="">
+                                        </td>
+                                        <td>{{ $row->color }}</td>
+                                        <td>{{ $row->size }}</td>
+                                        <td>{{ $row->quantity }}</td>
+                                        <td>{{ $row->singpleprice }}</td>
+                                        <td>{{ $row->totalprice }}</td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4">
+                <a href="{{ route('admin.payment.accept', $order->id )}}" class="btn btn-success me-3">Payment Accepted</a>
+                <a href="{{ route('admin.order.cancle', $order->id )}}" class="btn btn-danger">Cancle</a>
             </div>
         </div>
 

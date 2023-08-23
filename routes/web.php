@@ -178,4 +178,6 @@ Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->
 // Admin Order Route
 Route::get('admin/panding/order', [OrderController::class, 'adminNewOrder'])->name('admin.neworder');
 Route::get('admin/view/order/{id}', [OrderController::class, 'viewOrder'])->name('admin.view.order');
+Route::get('admin/payment/accept/{id}', [OrderController::class, 'paymentAccept'])->name('admin.payment.accept');
+Route::get('admin/order/cancle/{id}', [OrderController::class, 'orderCancle'])->name('admin.order.cancle');
 

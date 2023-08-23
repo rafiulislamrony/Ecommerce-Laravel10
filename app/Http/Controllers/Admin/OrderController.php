@@ -36,5 +36,22 @@ class OrderController extends Controller
         return view('admin.order.view_order', compact('order', 'shipping', 'orderDetails'));
     }
 
+    public function paymentAccept($id){
+        DB::table('orders')->where('id', $id)->update(['status'=>1]);
+        $notification = [
+            'message' => 'Payment Accept Done.',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('admin.neworder')->with($notification);
+    }
+    public function orderCancle($id){
+        DB::table('orders')->where('id', $id)->update(['status'=>4]);
+        $notification = [
+            'message' => 'Order Cancled.',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('admin.neworder')->with($notification);
+    }
+
 
 }
