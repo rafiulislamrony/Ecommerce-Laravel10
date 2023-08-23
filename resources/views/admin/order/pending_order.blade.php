@@ -6,7 +6,7 @@
 <div class="sl-mainpanel">
     <div class="sl-pagebody">
         <div class="sl-page-title">
-            <h5>Pendiung Orders Table</h5>
+            <h5>Orders Detais</h5>
 
         </div><!-- sl-page-title -->
 

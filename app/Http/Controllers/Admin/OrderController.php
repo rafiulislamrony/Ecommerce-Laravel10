@@ -71,5 +71,22 @@ class OrderController extends Controller
         return view('admin.order.pending_order', compact('orders'));
     }
 
+    public function deleveryProcess($id){
+        DB::table('orders')->where('id', $id)->update(['status'=>2]);
+        $notification = [
+            'message' => 'Send to Delevery.',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('admin.accept.payment')->with($notification);
+    }
+    public function deleveryDone($id){
+        DB::table('orders')->where('id', $id)->update(['status'=> 3]);
+        $notification = [
+            'message' => 'Order Develered.',
+            'alert-type' => 'success',
+        ];
+        return redirect()->route('admin.dalivered.orders')->with($notification);
+    }
+
 
 }

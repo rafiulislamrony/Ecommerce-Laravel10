@@ -131,7 +131,7 @@
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{ $row->product_code }}</td>
-                                        <td>{{  $row->product_name  }}</td>
+                                        <td>{{ $row->product_name }}</td>
                                         <td>
                                             <img src="{{ asset($row->image_one) }}" width="50px" alt="">
                                         </td>
@@ -150,12 +150,33 @@
                 </div>
             </div>
 
+            @if($order->status == 0)
             <div class="col-12 mt-4">
-                <a href="{{ route('admin.payment.accept', $order->id )}}" class="btn btn-success me-3">Payment Accepted</a>
+                <a href="{{ route('admin.payment.accept', $order->id )}}" class="btn btn-success me-3">Payment
+                    Accepted</a>
                 <a href="{{ route('admin.order.cancle', $order->id )}}" class="btn btn-danger">Cancle</a>
             </div>
-        </div>
+            @elseif($order->status == 1)
+            <div class="col-12 mt-4">
+                <a href="{{ route('admin.delevery.process', $order->id )}}" class="btn btn-info me-3">Process Delevery
+                </a>
+            </div>
+            @elseif($order->status == 2)
+            <div class="col-12 mt-4">
+                <a href="{{ route('admin.delevery.done', $order->id )}}" class="btn btn-success me-3"> Done Delevery
+                </a>
+            </div>
+            @elseif($order->status == 4)
+            <div class="col-12 mt-4">
+                <strong class="text-danger">This Order are not Valid.</strong>
+            </div>
+            @else
+            <div class="col-12 mt-4">
+                <strong class="text-success">This Product are Successfully Delevired.</strong>
+            </div>
+            @endif
 
+        </div>
     </div>
 </div>
 @endsection

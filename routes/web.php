@@ -186,3 +186,6 @@ Route::get('admin/processing/orders', [OrderController::class, 'processingOrders
 Route::get('admin/dalivered/orders', [OrderController::class, 'daliveredOrders'])->name('admin.dalivered.orders');
 Route::get('admin/cancle/orders', [OrderController::class, 'cancleOrders'])->name('admin.cancle.orders');
 
+Route::get('admin/delevery/process/{id}', [OrderController::class, 'deleveryProcess'])->name('admin.delevery.process');
+Route::get('admin/delevery/done/{id}', [OrderController::class, 'deleveryDone'])->name('admin.delevery.done');
+
