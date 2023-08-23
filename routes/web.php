@@ -198,4 +198,5 @@ Route::get('user/view/order/{id}', [OrderController::class, 'userViewOrder'])->n
 
 // Admin Seo
 Route::get('admin/seo', [SeoController::class, 'getSeo'])->name('admin.seo');
+Route::post('admin/seo/update', [SeoController::class, 'updateSeo'])->name('update.seo');
 

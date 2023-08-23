@@ -9,10 +9,11 @@
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Seo Setting </h6>
 
-            <form action="{{ route('store.blog') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update.seo') }}" method="POST">
                 @csrf
                 <div class="form-layout">
                     <div class="row mg-b-25">
+                        <input type="hidden" name="id" value="{{ $seo->id }}">
 
                         <div class="col-lg-4">
                             <div class="form-group">
