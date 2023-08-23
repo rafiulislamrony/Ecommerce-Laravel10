@@ -74,6 +74,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg--6">
+                @if(session('track'))
+                <h4>Your Order Details. </h4>
+                <ul class="list-group">
+                    <li class="list-group-item"> Payment Type: {{ session('track')->payment_type }}</li>
+                    <li class="list-group-item"> Transection Id: {{ session('track')->payment_id }}</li>
+                    <li class="list-group-item"> Balance Id: {{ session('track')->blnc_transection }}</li>
+                    <li class="list-group-item"> Subtotal: {{ session('track')->	subtotal }}</li>
+                    <li class="list-group-item"> Shipping: {{ session('track')->shipping }}</li>
+                    <li class="list-group-item"> Total: {{ session('track')->total }}</li>
+                    <li class="list-group-item"> Date: {{ session('track')->date }}</li> 
+                </ul>
+
+                @endif
+            </div>
         </div>
 
     </div>

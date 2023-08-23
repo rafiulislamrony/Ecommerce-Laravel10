@@ -58,7 +58,9 @@
                                 </div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                             </div>
                             <div class="top_bar_content ml-auto">
+                                @guest
 
+                                @else
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
@@ -66,7 +68,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- Modal -->
+                                @endguest
 
 
                                 <div class="top_bar_menu">
@@ -348,33 +350,7 @@
             </div>
 
     </div>
-
-    <!--  Order Tracking Modal -->
-    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('order.tracking') }}"  method="post">
-                        @csrf
-                        <div class="modal-body">
-                            <label for="">Status Code</label>
-                            <input type="text" name="code" required class="form-control" placeholder="Your Order Status Code">
-                            <button type="submit" class="btn mt-3 btn-info">Track Now</button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
+ 
 
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>
