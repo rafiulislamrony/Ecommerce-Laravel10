@@ -189,3 +189,9 @@ Route::get('admin/cancle/orders', [OrderController::class, 'cancleOrders'])->nam
 Route::get('admin/delevery/process/{id}', [OrderController::class, 'deleveryProcess'])->name('admin.delevery.process');
 Route::get('admin/delevery/done/{id}', [OrderController::class, 'deleveryDone'])->name('admin.delevery.done');
 
+
+// Profile Dashboard
+Route::get('admin/delevery/done/{id}', [OrderController::class, 'deleveryDone'])->name('admin.delevery.done');
+
+Route::get('user/view/order/{id}', [OrderController::class, 'userViewOrder'])->name('user.view.order');
+

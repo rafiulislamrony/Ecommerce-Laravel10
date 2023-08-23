@@ -35,6 +35,22 @@ class OrderController extends Controller
 
         return view('admin.order.view_order', compact('order', 'shipping', 'orderDetails'));
     }
+    public function userViewOrder($id){
+        $userOrder = DB::table('orders')
+        ->join('users', 'orders.user_id', 'users.id')
+        ->select('orders.*','users.name','users.email')
+        ->where('orders.id', $id)->first();
+
+        $userShipping = DB::table('shipping')->where('order_id', $id)->first();
+
+        $userOrderDetails = DB::table('orders_details')
+        ->join('products', 'orders_details.product_id', 'products.id')
+        ->select('orders_details.*','products.product_code','products.image_one')
+        ->where('orders_details.order_id', $id)->get();
+
+        return view('pages.user_order_details', compact('userOrder', 'userShipping', 'userOrderDetails'));
+    }
+
 
     public function paymentAccept($id){
         DB::table('orders')->where('id', $id)->update(['status'=>1]);

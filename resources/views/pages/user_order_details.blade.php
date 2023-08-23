@@ -1,14 +1,11 @@
-@extends('admin.admin_layouts')
+@extends('layouts.app')
 
-@section('admin_content')
+@section('content')
+@include('layouts.menubar');
 
-<!-- ########## START: MAIN PANEL ########## -->
-<div class="sl-mainpanel">
-    <div class="sl-pagebody">
-        <div class="sl-page-title">
-            <h5>View Order Details</h5>
-        </div><!-- sl-page-title -->
 
+<div class="contact_form">
+    <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="card w-100">
@@ -19,31 +16,31 @@
                                 <tbody>
                                     <tr>
                                         <td> <strong>Name:</strong> </td>
-                                        <td> <strong>{{ $order->name }} </strong></td>
+                                        <td> <strong>{{ $userOrder->name }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Email:</strong> </td>
-                                        <td> <strong>{{ $order->email }} </strong></td>
+                                        <td> <strong>{{ $userOrder->email }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Payment_type:</strong> </td>
-                                        <td> <strong>{{ $order->payment_type }} </strong></td>
+                                        <td> <strong>{{ $userOrder->payment_type }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Payment Id:</strong> </td>
-                                        <td> <strong>{{ $order->payment_id }} </strong></td>
+                                        <td> <strong>{{ $userOrder->payment_id }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Total Amount:</strong> </td>
-                                        <td> <strong>${{ number_format($order->total, 2) }}</strong></td>
+                                        <td> <strong>${{ number_format($userOrder->total, 2) }}</strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Month:</strong> </td>
-                                        <td> <strong>{{ $order->month }} </strong></td>
+                                        <td> <strong>{{ $userOrder->month }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Date:</strong> </td>
-                                        <td> <strong>{{ $order->date }} </strong></td>
+                                        <td> <strong>{{ $userOrder->date }} </strong></td>
                                     </tr>
 
                                 </tbody>
@@ -61,38 +58,38 @@
                                 <tbody>
                                     <tr>
                                         <td> <strong>Name:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_name }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_name }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Phone:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_phone }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_phone }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Email:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_email }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_email }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Address:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_address }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_address }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>City:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_city }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_city }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Zip Code:</strong> </td>
-                                        <td> <strong>{{ $shipping->ship_zip }} </strong></td>
+                                        <td> <strong>{{ $userShipping->ship_zip }} </strong></td>
                                     </tr>
                                     <tr>
                                         <td> <strong>Status:</strong> </td>
                                         <td> <strong>
-                                                @if($order->status == 0)
+                                                @if($userOrder->status == 0)
                                                 <span class="badge badge-warning">Pending</span>
-                                                @elseif ($order->status == 1)
+                                                @elseif ($userOrder->status == 1)
                                                 <span class="badge badge-primary">Payment Accept</span>
-                                                @elseif ($order->status == 2)
+                                                @elseif ($userOrder->status == 2)
                                                 <span class="badge badge-info">Processing</span>
-                                                @elseif ($order->status == 3)
+                                                @elseif ($userOrder->status == 3)
                                                 <span class="badge badge-success">Delivered</span>
                                                 @else
                                                 <span class="badge badge-danger">Order Cancled</span>
@@ -110,7 +107,7 @@
             <div class="col-lg-12 mt-4">
                 <div class="card w-100">
                     <div class="card-body">
-                        <h5 class="card-title">Order Products   </h5>
+                        <h5 class="card-title">Order Products</h5>
                         <div class="table-wrapper">
                             <table class="table display responsive nowrap">
                                 <thead>
@@ -127,7 +124,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orderDetails as $key=>$row)
+                                    @foreach ($userOrderDetails as $key=>$row)
                                     <tr>
                                         <td>{{ $key +1 }}</td>
                                         <td>{{ $row->product_code }}</td>
@@ -149,34 +146,41 @@
                     </div>
                 </div>
             </div>
-
-            @if($order->status == 0)
-            <div class="col-12 mt-4">
-                <a href="{{ route('admin.payment.accept', $order->id )}}" class="btn btn-success me-3">Payment
-                    Accepted</a>
-                <a href="{{ route('admin.order.cancle', $order->id )}}" class="btn btn-danger">Cancle</a>
-            </div>
-            @elseif($order->status == 1)
-            <div class="col-12 mt-4">
-                <a href="{{ route('admin.delevery.process', $order->id )}}" class="btn btn-info me-3">Process Delevery
-                </a>
-            </div>
-            @elseif($order->status == 2)
-            <div class="col-12 mt-4">
-                <a href="{{ route('admin.delevery.done', $order->id )}}" class="btn btn-success me-3"> Done Delevery
-                </a>
-            </div>
-            @elseif($order->status == 4)
-            <div class="col-12 mt-4">
-                <strong class="text-danger">This Order are not Valid.</strong>
-            </div>
-            @else
-            <div class="col-12 mt-4">
-                <strong class="text-success">This Product are Successfully Delevired.</strong>
-            </div>
-            @endif
-
         </div>
     </div>
 </div>
+
+<!-- Newsletter -->
+<div class="newsletter mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div
+                    class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_icon"><img src="{{ asset('frontend/images/send.png')}}" alt="">
+                        </div>
+                        <div class="newsletter_title">Sign up for Newsletter</div>
+                        <div class="newsletter_text">
+                            <p>...and receive %20 coupon for first shopping.</p>
+                        </div>
+                    </div>
+                    <div class="newsletter_content clearfix">
+                        <form action="{{ route('store.newslater') }}" method="post" class="newsletter_form">
+                            @csrf
+                            <input type="email" name="email" class="newsletter_input"
+                                placeholder="Enter your email address">
+                            <button class="newsletter_button" type="submit">Subscribe</button>
+                        </form>
+                        <div class="newsletter_unsubscribe_link"><a href="#">Unsubscribe</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 @endsection

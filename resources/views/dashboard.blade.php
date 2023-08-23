@@ -3,6 +3,10 @@
 @section('content')
 @include('layouts.menubar');
 
+@php
+    $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC')->limit(10)->get();
+@endphp
+
 <div class="contact_form">
     <div class="container">
         <div class="row">
@@ -10,37 +14,29 @@
                 <table class="table table-response">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Body</th>
+                            <th scope="col">Payment Type</th>
+                            <th scope="col">Payment Id</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status Code</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($orders as $row)
                         <tr>
-                            <td scope="col">1</td>
-                            <td scope="col">Mark 1</td>
-                            <td scope="col">Mark 2</td>
-                            <td scope="col">Mark 3</td>
+                            <td scope="col">{{ $row->payment_type }} </td>
+                            <td scope="col">{{ $row->payment_id }}</td>
+                            <td scope="col">${{ $row->total }}</td>
+                            <td scope="col">{{ $row->date }}</td>
+                            <td scope="col">{{ $row->status_code }}</td>
+                            <td scope="col">
+                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-info" >
+                                    Details
+                                </a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td scope="col">1</td>
-                            <td scope="col">Mark 1</td>
-                            <td scope="col">Mark 2</td>
-                            <td scope="col">Mark 3</td>
-                        </tr>
-                        <tr>
-                            <td scope="col">1</td>
-                            <td scope="col">Mark 1</td>
-                            <td scope="col">Mark 2</td>
-                            <td scope="col">Mark 3</td>
-                        </tr>
-                        <tr>
-                            <td scope="col">1</td>
-                            <td scope="col">Mark 1</td>
-                            <td scope="col">Mark 2</td>
-                            <td scope="col">Mark 3</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -56,8 +52,11 @@
                             Change Password
                         </a>
                     </li>
-                    <li class="list-group-item">one</li>
-                    <li class="list-group-item">one</li>
+                    <li class="list-group-item">
+                        <a href="{{ route('password.request') }}">
+                            Forget Password
+                        </a>
+                    </li>
                   </ul>
                   <div class="card-body">
                    <a class="btn btn-danger btn-sm btn-block" href="{{ route('user.logout') }}">Logout</a>
@@ -67,5 +66,38 @@
         </div>
     </div>
 </div>
+
+<!-- Newsletter -->
+<div class="newsletter mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div
+                    class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_icon"><img src="{{ asset('frontend/images/send.png')}}" alt="">
+                        </div>
+                        <div class="newsletter_title">Sign up for Newsletter</div>
+                        <div class="newsletter_text">
+                            <p>...and receive %20 coupon for first shopping.</p>
+                        </div>
+                    </div>
+                    <div class="newsletter_content clearfix">
+                        <form action="{{ route('store.newslater') }}" method="post" class="newsletter_form">
+                            @csrf
+                            <input type="email" name="email" class="newsletter_input"
+                                placeholder="Enter your email address">
+                            <button class="newsletter_button" type="submit">Subscribe</button>
+                        </form>
+                        <div class="newsletter_unsubscribe_link"><a href="#">Unsubscribe</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger mo
 
 @endsection
