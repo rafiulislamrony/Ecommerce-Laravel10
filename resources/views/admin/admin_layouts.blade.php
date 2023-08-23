@@ -107,8 +107,11 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="{{ route('admin.neworder') }}" class="nav-link">New Order</a></li>
-                <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link">Others  </a></li>
+                <li class="nav-item"><a href="{{ route('admin.neworder') }}" class="nav-link">New Orders</a></li>
+                <li class="nav-item"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Payment Accepted Orders</a></li>
+                <li class="nav-item"><a href="{{ route('admin.processing.orders') }}" class="nav-link">Processing Orders </a></li>
+                <li class="nav-item"><a href="{{ route('admin.dalivered.orders') }}" class="nav-link">Dalivered Orders </a></li>
+                <li class="nav-item"><a href="{{ route('admin.cancle.orders') }}" class="nav-link">Cancle Orders </a></li>
             </ul>
 
 

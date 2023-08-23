@@ -54,4 +54,22 @@ class OrderController extends Controller
     }
 
 
+    public function paymentAcceptOrders(){
+        $orders = DB::table('orders')->where('status', 1)->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+    public function processingOrders(){
+        $orders = DB::table('orders')->where('status', 2)->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+    public function daliveredOrders(){
+        $orders = DB::table('orders')->where('status', 3)->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+    public function cancleOrders(){
+        $orders = DB::table('orders')->where('status', 4)->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+
+
 }

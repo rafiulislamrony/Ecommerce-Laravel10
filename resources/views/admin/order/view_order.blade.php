@@ -91,7 +91,7 @@
                                                 @elseif ($order->status == 1)
                                                 <span class="badge badge-primary">Payment Accept</span>
                                                 @elseif ($order->status == 2)
-                                                <span class="badge badge-info">Progress</span>
+                                                <span class="badge badge-info">Processing</span>
                                                 @elseif ($order->status == 3)
                                                 <span class="badge badge-success">Delivered</span>
                                                 @else

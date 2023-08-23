@@ -38,7 +38,19 @@
                             <td>${{ $row->total }}</td>
                             <td>{{ $row->date }}</td>
                             <td>
-                                <span class="badge badge-warning"> Pending</span>
+                                <strong>
+                                    @if($row->status == 0)
+                                    <span class="badge badge-warning">Pending</span>
+                                    @elseif ($row->status == 1)
+                                    <span class="badge badge-primary">Payment Accept</span>
+                                    @elseif ($row->status == 2)
+                                    <span class="badge badge-info">Progress</span>
+                                    @elseif ($row->status == 3)
+                                    <span class="badge badge-success">Delivered</span>
+                                    @else
+                                    <span class="badge badge-danger">Order Cancled</span>
+                                    @endif
+                                </strong>
                             </td>
                             <td>
                                 <a href="{{ route('admin.view.order', $row->id) }}" class="btn btn-sm btn-info">View</a>

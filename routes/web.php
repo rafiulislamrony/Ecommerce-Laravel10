@@ -181,3 +181,8 @@ Route::get('admin/view/order/{id}', [OrderController::class, 'viewOrder'])->name
 Route::get('admin/payment/accept/{id}', [OrderController::class, 'paymentAccept'])->name('admin.payment.accept');
 Route::get('admin/order/cancle/{id}', [OrderController::class, 'orderCancle'])->name('admin.order.cancle');
 
+Route::get('admin/accept/payment', [OrderController::class, 'paymentAcceptOrders'])->name('admin.accept.payment');
+Route::get('admin/processing/orders', [OrderController::class, 'processingOrders'])->name('admin.processing.orders');
+Route::get('admin/dalivered/orders', [OrderController::class, 'daliveredOrders'])->name('admin.dalivered.orders');
+Route::get('admin/cancle/orders', [OrderController::class, 'cancleOrders'])->name('admin.cancle.orders');
+
