@@ -214,3 +214,4 @@ Route::get('admin/this/month', [ReportController::class, 'thisMonth'])->name('th
 Route::get('admin/search/report', [ReportController::class, 'searchReport'])->name('search.report');
 Route::post('admin/search/by/year', [ReportController::class, 'searchByYear'])->name('search.by.year');
 Route::post('admin/search/by/month', [ReportController::class, 'searchBymonth'])->name('search.by.month');
+Route::post('admin/search/by/date', [ReportController::class, 'searchByDate'])->name('search.by.date');

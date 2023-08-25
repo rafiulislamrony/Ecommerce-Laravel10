@@ -12,7 +12,7 @@
 
             <div class="col-lg-4">
                 <div class="card">
-                    <form action=" " method="post">
+                    <form action="{{ route('search.by.date') }}" method="post">
                         @csrf
                         <div class="modal-body pd-20">
                             <div class="form-group">

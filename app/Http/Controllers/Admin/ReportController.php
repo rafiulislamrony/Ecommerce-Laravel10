@@ -103,5 +103,22 @@ class ReportController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function searchByDate(Request $request)
+    {
+        try {
+            $date = $request->date;
+            $newDate = date('d-m-y', strtotime($date));
+
+            $total = DB::table('orders')->where('status', 3)->where('date', $newDate)->sum('total');
+            $orders = DB::table('orders')->where('status', 3)->where('date', $newDate)->get();
+            return view('admin.report.search_date', compact('orders', 'total'));
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
 }
