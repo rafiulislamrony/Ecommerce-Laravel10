@@ -210,3 +210,5 @@ Route::post('order/tracking', [OrderTrackingController::class, 'orderTracking'])
 
 Route::get('admin/today/order', [ReportController::class, 'todayOrder'])->name('today.order');
 Route::get('admin/today/delivery', [ReportController::class, 'todayDelivery'])->name('today.delivery');
+Route::get('admin/this/month', [ReportController::class, 'thisMonth'])->name('this.month');
+Route::get('admin/search/report', [ReportController::class, 'searchReport'])->name('search.report');

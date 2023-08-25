@@ -6,7 +6,7 @@
 <div class="sl-mainpanel">
     <div class="sl-pagebody">
         <div class="sl-page-title">
-            <h5>Today Orders Reports</h5>
+            <h5>This Month Reports</h5>
         </div><!-- sl-page-title -->
 
         <div class="card pd-20 pd-sm-40">

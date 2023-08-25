@@ -137,6 +137,8 @@
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Orders</a></li>
                 <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">Today Delivered</a></li>
+                <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+                <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
             </ul>
 
             <a href="#" class="sl-menu-link">
