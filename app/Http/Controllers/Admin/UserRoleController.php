@@ -70,6 +70,26 @@ class UserRoleController extends Controller
                 'message' => 'Admin Inserted Successfully.',
                 'alert-type' => 'success',
             ];
+            return redirect()->route('admin.all.user')->with($notification);
+
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
+    public function deleteAdmin($id)
+    {
+        try {
+            DB::table('admins')->where('id', $id)->delete();
+
+            $notification = [
+                'message' => 'Admin Deleted Successfully.',
+                'alert-type' => 'success',
+            ];
             return redirect()->back()->with($notification);
 
         } catch (\Exception $e) {
@@ -81,8 +101,65 @@ class UserRoleController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function editAdmin($id)
+    {
+        try {
+           $user = DB::table('admins')->where('id', $id)->first();
 
+            return view('admin.role.edit_role', compact('user') );
 
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function updateAdmin(Request $request)
+    {
+        try {
+
+            $id = $request->id;
+
+            $data = array();
+            $data['name'] = $request->name;
+            $data['phone'] = $request->phone;
+            $data['email'] = $request->email;
+            $data['password'] = Hash::make($request->password);
+            $data['category'] = $request->category;
+            $data['coupon'] = $request->coupon;
+            $data['products'] = $request->products;
+            $data['blog'] = $request->blog;
+            $data['orders'] = $request->orders;
+            $data['other'] = $request->other;
+            $data['report'] = $request->report;
+            $data['role'] = $request->role;
+            $data['returns'] = $request->returns;
+            $data['contact'] = $request->contact;
+            $data['comment'] = $request->comment;
+            $data['setting'] = $request->setting;
+            $data['type'] = 2;
+
+            DB::table('admins')->where('id',$id)->update($data);
+
+            $notification = [
+                'message' => 'Admin Updated Successfully.',
+                'alert-type' => 'success',
+            ];
+            return redirect()->route('admin.all.user')->with($notification);
+
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
 
 

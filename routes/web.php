@@ -222,3 +222,6 @@ Route::post('admin/search/by/date', [ReportController::class, 'searchByDate'])->
 Route::get('admin/all/user', [UserRoleController::class, 'userRole'])->name('admin.all.user');
 Route::get('admin/create', [UserRoleController::class, 'createAdmin'])->name('create.admin');
 Route::post('admin/store', [UserRoleController::class, 'storeAdmin'])->name('store.admin');
+Route::get('admin/delete/{id}', [UserRoleController::class, 'deleteAdmin'])->name('delete.admin');
+Route::get('admin/edit/{id}', [UserRoleController::class, 'editAdmin'])->name('edit.admin');
+Route::post('admin/update', [UserRoleController::class, 'updateAdmin'])->name('update.admin');

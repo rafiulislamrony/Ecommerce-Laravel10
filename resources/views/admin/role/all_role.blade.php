@@ -36,7 +36,7 @@
                                 <span class="badge badge-info">Caretogry</span>
                                 @else
                                 @endif
-                                
+
                                 @if($row->coupon == 1)
                                 <span class="badge badge-info">Coupon</span>
                                 @else
@@ -96,9 +96,9 @@
 
                             </td>
                             <td>
-                                {{-- <a href="{{ route('edit.admin', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ route('edit.admin', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('delete.admin', $row->id) }}" class="btn btn-sm btn-danger"
-                                    id="delete">Delete</a> --}}
+                                    id="delete">Delete</a>
                             </td>
                         </tr>
                         @endforeach
