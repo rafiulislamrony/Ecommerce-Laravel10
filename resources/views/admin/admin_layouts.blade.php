@@ -127,6 +127,17 @@
                 <li class="nav-item"><a href="{{ route('add.blog') }}" class="nav-link">Add Blog</a></li>
                 <li class="nav-item"><a href="{{ route('all.blog') }}" class="nav-link">Blog List</a></li>
             </ul>
+            <a href="#" class="sl-menu-link">
+                <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                    <span class="menu-item-label">Reports</span>
+                    <i class="menu-item-arrow fa fa-angle-down"></i>
+                </div><!-- menu-item -->
+            </a><!-- sl-menu-link -->
+            <ul class="sl-menu-sub nav flex-column">
+                <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Orders</a></li>
+                <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">Today Delivered</a></li>
+            </ul>
 
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">

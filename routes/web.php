@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Category\SubCategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ReportController;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
@@ -205,3 +206,7 @@ Route::post('admin/seo/update', [SeoController::class, 'updateSeo'])->name('upda
 Route::get('tracking/page', [OrderTrackingController::class, 'getTracking'])->name('tracking');
 Route::post('order/tracking', [OrderTrackingController::class, 'orderTracking'])->name('order.tracking');
 
+// Report
+
+Route::get('admin/today/order', [ReportController::class, 'todayOrder'])->name('today.order');
+Route::get('admin/today/delivery', [ReportController::class, 'todayDelivery'])->name('today.delivery');
