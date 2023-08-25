@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Admin\SettingController;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
@@ -225,3 +226,7 @@ Route::post('admin/store', [UserRoleController::class, 'storeAdmin'])->name('sto
 Route::get('admin/delete/{id}', [UserRoleController::class, 'deleteAdmin'])->name('delete.admin');
 Route::get('admin/edit/{id}', [UserRoleController::class, 'editAdmin'])->name('edit.admin');
 Route::post('admin/update', [UserRoleController::class, 'updateAdmin'])->name('update.admin');
+
+
+// Site Settings
+Route::get('admin/site/setting', [SettingController::class, 'siteSetting'])->name('admin.site.setting');

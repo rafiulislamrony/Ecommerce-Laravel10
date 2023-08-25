@@ -243,7 +243,7 @@
                                 <div class="logo_container">
                                     <div class="logo">
                                         <a href="{{ url('/') }}">
-                                            <img src="{{ asset('frontend/images/logo.png')}}" alt="">
+                                            <h2>OneTech</h2>
                                         </a>
                                     </div>
                                 </div>
@@ -350,7 +350,7 @@
             </div>
 
     </div>
- 
+
 
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('frontend/styles/bootstrap4/popper.js')}}"></script>
