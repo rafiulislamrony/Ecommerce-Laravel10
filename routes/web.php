@@ -230,3 +230,4 @@ Route::post('admin/update', [UserRoleController::class, 'updateAdmin'])->name('u
 
 // Site Settings
 Route::get('admin/site/setting', [SettingController::class, 'siteSetting'])->name('admin.site.setting');
+Route::post('admin/update/site/setting', [SettingController::class, 'updateSiteSetting'])->name('update.site.setting');
