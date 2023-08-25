@@ -60,10 +60,42 @@ class ReportController extends Controller
         }
     }
 
-    public function searchReport(){
-        try{
+    public function searchReport()
+    {
+        try {
             return view('admin.report.search');
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
+    public function searchByYear(Request $request)
+    {
+        try {
+            $year = $request->year;
+            $total = DB::table('orders')->where('status', 3)->where('year', $year)->sum('total');
+            $orders = DB::table('orders')->where('status', 3)->where('year', $year)->get();
+            return view('admin.report.search_year', compact('orders', 'total'));
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function searchBymonth(Request $request)
+    {
+        try {
+            $month = $request->month;
+            $total = DB::table('orders')->where('status', 3)->where('month', $month)->sum('total');
+            $orders = DB::table('orders')->where('status', 3)->where('month', $month)->get();
+            return view('admin.report.search_month', compact('orders', 'total'));
+        } catch (\Exception $e) {
             $notification = [
                 'message' => 'Error: ' . $e->getMessage(),
                 'alert-type' => 'error',

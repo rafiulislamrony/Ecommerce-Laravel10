@@ -212,3 +212,5 @@ Route::get('admin/today/order', [ReportController::class, 'todayOrder'])->name('
 Route::get('admin/today/delivery', [ReportController::class, 'todayDelivery'])->name('today.delivery');
 Route::get('admin/this/month', [ReportController::class, 'thisMonth'])->name('this.month');
 Route::get('admin/search/report', [ReportController::class, 'searchReport'])->name('search.report');
+Route::post('admin/search/by/year', [ReportController::class, 'searchByYear'])->name('search.by.year');
+Route::post('admin/search/by/month', [ReportController::class, 'searchBymonth'])->name('search.by.month');

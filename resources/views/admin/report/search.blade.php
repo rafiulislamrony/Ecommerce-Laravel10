@@ -28,13 +28,13 @@
             </div>
             <div class="col-lg-4">
                 <div class="card">
-                    <form action=" " method="post">
+                    <form action="{{ route('search.by.month') }}" method="post">
                         @csrf
                         <div class="modal-body pd-20">
                             <div class="form-group">
                                 <label for="text2">Search by Month</label>
                                 <select class="form-control" name="month">
-                                    <option>--Select Month--</option>
+                                    <option value="" disabled selected hidden>--Select Month--</option>
                                     <option value='janaury'>Janaury</option>
                                     <option value='february'>February</option>
                                     <option value='march'>March</option>
@@ -58,13 +58,13 @@
             </div>
             <div class="col-lg-4">
                 <div class="card">
-                    <form action=" " method="post">
+                    <form action="{{ route('search.by.year') }}" method="post">
                         @csrf
                         <div class="modal-body pd-20">
                             <div class="form-group">
                                 <label for="text3">Search By Year</label>
                                 <select class="form-control" id="text3" name="year">
-                                    <option>--Select Year--</option>
+                                    <option value="" disabled selected hidden>--Select Year--</option>
                                     <option value='2018'>2018</option>
                                     <option value='2019'>2019</option>
                                     <option value='2020'>2020</option>
