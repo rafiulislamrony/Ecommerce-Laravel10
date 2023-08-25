@@ -37,7 +37,7 @@
     <link href="{{ asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- Data Table Css -->
     <link href="{{ asset('backend/lib/highlightjs/github.css') }}" rel="stylesheet">
@@ -65,6 +65,8 @@
                     <span class="menu-item-label">Dashboard</span>
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
+
+            @if(Auth::user()->category == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
@@ -77,6 +79,10 @@
                 <li class="nav-item"><a href="{{ route('sub.category') }}" class="nav-link">Sub Category</a></li>
                 <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link">Brand</a></li>
             </ul>
+            @else
+            @endif
+
+            @if(Auth::user()->coupon == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -87,6 +93,10 @@
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('admin.coupon') }}" class="nav-link">Coupon </a></li>
             </ul>
+            @else
+            @endif
+
+            @if(Auth::user()->products == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
@@ -98,7 +108,10 @@
                 <li class="nav-item"><a href="{{ route('add.product') }}" class="nav-link">Add Product</a></li>
                 <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link">All Product </a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->orders == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
@@ -108,12 +121,19 @@
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('admin.neworder') }}" class="nav-link">New Orders</a></li>
-                <li class="nav-item"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Payment Accepted Orders</a></li>
-                <li class="nav-item"><a href="{{ route('admin.processing.orders') }}" class="nav-link">Processing Orders </a></li>
-                <li class="nav-item"><a href="{{ route('admin.dalivered.orders') }}" class="nav-link">Dalivered Orders </a></li>
-                <li class="nav-item"><a href="{{ route('admin.cancle.orders') }}" class="nav-link">Cancle Orders </a></li>
+                <li class="nav-item"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Payment Accepted
+                        Orders</a></li>
+                <li class="nav-item"><a href="{{ route('admin.processing.orders') }}" class="nav-link">Processing Orders
+                    </a></li>
+                <li class="nav-item"><a href="{{ route('admin.dalivered.orders') }}" class="nav-link">Dalivered Orders
+                    </a></li>
+                <li class="nav-item"><a href="{{ route('admin.cancle.orders') }}" class="nav-link">Cancle Orders </a>
+                </li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->blog == 1)
 
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
@@ -127,6 +147,10 @@
                 <li class="nav-item"><a href="{{ route('add.blog') }}" class="nav-link">Add Blog</a></li>
                 <li class="nav-item"><a href="{{ route('all.blog') }}" class="nav-link">Blog List</a></li>
             </ul>
+            @else
+            @endif
+
+            @if(Auth::user()->report == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -140,7 +164,10 @@
                 <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
                 <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->role == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -149,10 +176,13 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="{{ route('create.admin') }}" class="nav-link">Create User  </a></li>
+                <li class="nav-item"><a href="{{ route('create.admin') }}" class="nav-link">Create User </a></li>
                 <li class="nav-item"><a href="{{ route('admin.all.user') }}" class="nav-link">All User</a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->returns == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -164,7 +194,10 @@
                 <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Return User</a></li>
                 <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">All User</a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->contact == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -176,6 +209,10 @@
                 <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">New Message</a></li>
                 <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">All Message</a></li>
             </ul>
+            @else
+            @endif
+
+            @if(Auth::user()->comment == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -187,7 +224,10 @@
                 <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">New Comment</a></li>
                 <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">All Comment</a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->setting == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -198,7 +238,10 @@
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Site Setting </a></li>
             </ul>
+            @else
+            @endif
 
+            @if(Auth::user()->other == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -210,6 +253,10 @@
                 <li class="nav-item"><a href="{{ route('admin.newslater') }}" class="nav-link">Newslaters</a></li>
                 <li class="nav-item"><a href="{{ route('admin.seo') }}" class="nav-link">Seo Settings</a></li>
             </ul>
+            @else
+            @endif
+
+
         </div><!-- sl-sideleft-menu -->
 
         <br>
@@ -228,7 +275,7 @@
             <nav class="nav">
                 <div class="dropdown">
                     <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                        <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
+                        <span class="logged-name"> {{ Auth::user()->name }}</span>
                         <img src="{{ asset('backend/img/img3.jpg') }}" class="wd-32 rounded-circle" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -459,7 +506,7 @@
     <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
-      $(function(){
+        $(function(){
         'use strict';
 
         // Inline editor
@@ -537,8 +584,8 @@
         @endif
     </script>
 
-     <!-- Sweet Alert Script --->
-     <script>
+    <!-- Sweet Alert Script --->
+    <script>
         $(document).on("click", "#delete", function(e){
             e.preventDefault();
             var link = $(this).attr("href");
@@ -557,7 +604,7 @@
                  }
                });
            });
-   </script>
+    </script>
 
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
 
