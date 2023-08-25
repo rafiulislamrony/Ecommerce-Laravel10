@@ -220,3 +220,4 @@ Route::post('admin/search/by/date', [ReportController::class, 'searchByDate'])->
 
 // Admin Role Route
 Route::get('admin/all/user', [UserRoleController::class, 'userRole'])->name('admin.all.user');
+Route::get('admin/create', [UserRoleController::class, 'createAdmin'])->name('create.admin');
