@@ -31,12 +31,75 @@
                             <td>{{ $key +1 }}</td>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->phone }}</td>
-                            <td> <span class="badge badge-danger">Setting</span> </td>
-                            {{-- <td>
-                                <a href="{{ route('edit.admin', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                            <td>
+                                @if($row->category == 1)
+                                <span class="badge badge-info">Caretogry</span>
+                                @else
+                                @endif
+                                
+                                @if($row->coupon == 1)
+                                <span class="badge badge-info">Coupon</span>
+                                @else
+                                @endif
+
+                                @if($row->products == 1)
+                                <span class="badge badge-info">Products</span>
+                                @else
+                                @endif
+
+                                @if($row->blog == 1)
+                                <span class="badge badge-info">Blog</span>
+                                @else
+                                @endif
+
+                                @if($row->orders == 1)
+                                <span class="badge badge-info">Orders</span>
+                                @else
+                                @endif
+
+                                @if($row->other == 1)
+                                <span class="badge badge-info">Other</span>
+                                @else
+                                @endif
+
+                                @if($row->report == 1)
+                                <span class="badge badge-info">Report</span>
+                                @else
+                                @endif
+
+                                @if($row->role == 1)
+                                <span class="badge badge-info">Role</span>
+                                @else
+                                @endif
+
+                                @if($row->returns == 1)
+                                <span class="badge badge-info">Returns</span>
+                                @else
+                                @endif
+
+                                @if($row->contact == 1)
+                                <span class="badge badge-info">Contact</span>
+                                @else
+                                @endif
+
+                                @if($row->comment == 1)
+                                <span class="badge badge-info">Comment</span>
+                                @else
+                                @endif
+
+                                @if($row->setting == 1)
+                                <span class="badge badge-info">Setting</span>
+                                @else
+                                @endif
+
+
+
+                            </td>
+                            <td>
+                                {{-- <a href="{{ route('edit.admin', $row->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ route('delete.admin', $row->id) }}" class="btn btn-sm btn-danger"
-                                    id="delete">Delete</a>
-                            </td> --}}
+                                    id="delete">Delete</a> --}}
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

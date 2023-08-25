@@ -149,7 +149,7 @@
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Create User  </a></li>
+                <li class="nav-item"><a href="{{ route('create.admin') }}" class="nav-link">Create User  </a></li>
                 <li class="nav-item"><a href="{{ route('admin.all.user') }}" class="nav-link">All User</a></li>
             </ul>
 

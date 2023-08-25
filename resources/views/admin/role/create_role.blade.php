@@ -13,7 +13,7 @@
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Add New Admin</h6>
 
-            <form action="{{ route('store.product') }}" method="POST">
+            <form action="{{ route('store.admin') }}" method="POST">
                 @csrf
 
                 <div class="form-layout">
