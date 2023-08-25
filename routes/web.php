@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\NewslaterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\UserRoleController;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
@@ -215,3 +216,7 @@ Route::get('admin/search/report', [ReportController::class, 'searchReport'])->na
 Route::post('admin/search/by/year', [ReportController::class, 'searchByYear'])->name('search.by.year');
 Route::post('admin/search/by/month', [ReportController::class, 'searchBymonth'])->name('search.by.month');
 Route::post('admin/search/by/date', [ReportController::class, 'searchByDate'])->name('search.by.date');
+
+
+// Admin Role Route
+Route::get('admin/all/user', [UserRoleController::class, 'userRole'])->name('admin.all.user');
