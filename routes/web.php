@@ -241,3 +241,6 @@ Route::get('/admin/return/request', [ReturnOrderController::class, 'adminReturnR
 Route::get('/admin/return/approve/{id}', [ReturnOrderController::class, 'adminReturnApprove'])->name('admin.return.approve');
 Route::get('/admin/all/return', [ReturnOrderController::class, 'adminAllReturn'])->name('admin.all.return');
 
+// Order stock route
+Route::get('admin/product/stock', [UserRoleController::class, 'productStock'])->name('admin.product.stock');
+

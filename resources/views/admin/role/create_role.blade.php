@@ -125,6 +125,12 @@
                                 <span>Setting</span>
                             </label>
                         </div>
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="stock">
+                                <span>Stock</span>
+                            </label>
+                        </div>
                     </div> <!-- End ROw -->
                     <br><br>
                     <div class="form-layout-footer">

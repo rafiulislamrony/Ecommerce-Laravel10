@@ -86,6 +86,10 @@
                                 <span class="badge badge-info">Comment</span>
                                 @else
                                 @endif
+                                @if($row->stock == 1)
+                                <span class="badge badge-info">Stock</span>
+                                @else
+                                @endif
 
                                 @if($row->setting == 1)
                                 <span class="badge badge-info">Setting</span>

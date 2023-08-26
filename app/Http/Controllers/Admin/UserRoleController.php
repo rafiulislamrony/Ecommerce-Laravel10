@@ -62,6 +62,7 @@ class UserRoleController extends Controller
             $data['contact'] = $request->contact;
             $data['comment'] = $request->comment;
             $data['setting'] = $request->setting;
+            $data['stock'] = $request->stock;
             $data['type'] = 2;
 
             DB::table('admins')->insert($data);
@@ -141,6 +142,7 @@ class UserRoleController extends Controller
             $data['contact'] = $request->contact;
             $data['comment'] = $request->comment;
             $data['setting'] = $request->setting;
+            $data['stock'] = $request->stock;
             $data['type'] = 2;
 
             DB::table('admins')->where('id',$id)->update($data);
@@ -161,6 +163,27 @@ class UserRoleController extends Controller
         }
     }
 
+    public function productStock()
+    {
+        try {
+            $product = DB::table('products')
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->join('subcategories', 'products.subcategory_id', 'subcategories.id')
+            ->select('products.*', 'categories.category_name', 'brands.brand_name', 'subcategories.subcategory_name')
+            ->get();
+
+            return view('admin.stock.stock', compact('product') );
+
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
 
 }

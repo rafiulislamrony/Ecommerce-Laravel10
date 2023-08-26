@@ -113,6 +113,7 @@
                                 <span>Role</span>
                             </label>
                         </div>
+
                         <div class="col-lg-4">
                             <label class="ckbox">
                                 <input type="checkbox" value="1" name="returns"<?php if ($user->returns == 1) {
@@ -121,6 +122,17 @@
                                 <span>Returns</span>
                             </label>
                         </div>
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" value="1" name="returns"<?php if ($user->stock == 1) {
+                                    echo "checked";
+                                } ?>>
+                                <span>Stock</span>
+                            </label>
+                        </div>
+
+
                         <div class="col-lg-4">
                             <label class="ckbox">
                                 <input type="checkbox" value="1" name="contact"<?php if ($user->contact == 1) {
