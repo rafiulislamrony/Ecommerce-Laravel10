@@ -96,12 +96,23 @@ class OrderController extends Controller
         return redirect()->route('admin.accept.payment')->with($notification);
     }
     public function deleveryDone($id){
+
+        $product = DB::table('orders_details')->where('order_id',$id)->get();
+
+        foreach($product as $row){
+            DB::table('products')->where('id',$row->product_id)
+            ->update(['product_quantity' => DB::raw('product_quantity-'.$row->quantity)]);
+        }
+
         DB::table('orders')->where('id', $id)->update(['status'=> 3]);
+
+
         $notification = [
             'message' => 'Order Develered.',
             'alert-type' => 'success',
         ];
         return redirect()->route('admin.dalivered.orders')->with($notification);
+
     }
 
 
