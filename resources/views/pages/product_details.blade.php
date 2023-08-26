@@ -49,12 +49,13 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Color</label>
-                                        <select class="form-control" name="color" id="color" style="min-width:100%; width:100%;">
+                                        <select class="form-control" name="color" id="color"
+                                            style="min-width:100%; width:100%;">
                                             @foreach ($product_color as $color)
-                                            <option value="{{ $color }}" >{{ $color }}</option>
+                                            <option value="{{ $color }}">{{ $color }}</option>
                                             @endforeach
                                         </select>
-                                      </div>
+                                    </div>
                                 </div>
                                 @if($product->product_size == NULL)
 
@@ -62,19 +63,20 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Size</label>
-                                        <select class="form-control" name="size" id="size" style="min-width:100%; width:100%;" >
+                                        <select class="form-control" name="size" id="size"
+                                            style="min-width:100%; width:100%;">
                                             @foreach ($product_size as $size)
                                             <option value="{{ $size }}">{{ $size }}</option>
                                             @endforeach
                                         </select>
-                                      </div>
+                                    </div>
                                 </div>
                                 @endif
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Select Quantity</label>
-                                       <input type="number" name="qty" class="form-control" min="1" value="1">
-                                      </div>
+                                        <input type="number" name="qty" class="form-control" min="1" value="1">
+                                    </div>
                                 </div>
                             </div>
 
@@ -82,7 +84,8 @@
                                 @if($product->discount_price == NULL)
                                 <span style="font-size:16px;">${{ $product->selling_price }}</span>
                                 @else
-                                ${{ $product->discount_price }}<span style="font-size:16px; text-decoration: line-through;">${{
+                                ${{ $product->discount_price }}<span
+                                    style="font-size:16px; text-decoration: line-through;">${{
                                     $product->selling_price
                                     }}</span>
                                 @endif
@@ -92,6 +95,12 @@
                                 <button type="submit" class="button cart_button">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
+
+                            <br><br>
+
+
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_inline_share_toolbox"></div>
 
                         </form>
                     </div>
@@ -138,26 +147,27 @@
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <br>
-                            What is business insurance and how does it work?
-                            There are lots of risks involved in running a business. To protect against this risk,
-                            business owners take out business insurance policies in the event that something happens.
-
-                            There are many different types of business insurance policies, but depending on what policy
-                            you have, business insurance can cover your business for lost income, legal liability,
-                            damage to property, and more.
-
-                            Some types of business insurance are compulsory, either by law (such as worker’s
-                            compensation insurance) or because those you deal with may require it.
+                            <div class="fb-comments"
+                                data-href="{{ Request::url() }}"
+                                data-width="" data-numposts="5"></div>
                         </div>
                     </div>
-
-
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+ {{-- https://developers.facebook.com/docs/plugins/comments/ --}}
+    {{-- Add facebook comments go this link --}}
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0"
+    nonce="BdMUzHcX"></script>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e4b85f98de5201f"></script>
+
 
 
 @endsection
