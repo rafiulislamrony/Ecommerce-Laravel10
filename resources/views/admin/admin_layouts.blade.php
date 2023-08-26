@@ -56,10 +56,10 @@
 
     @else
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i>StartBox</a></div>
+    <div class="sl-logo"><a href="{{ route('admin.home') }}"><i class="icon ion-android-star-outline"></i>StartBox</a></div>
     <div class="sl-sideleft">
         <div class="sl-sideleft-menu">
-            <a href="{{ route('admin.home') }}" class="sl-menu-link active">
+            <a href="" class="sl-menu-link active">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                     <span class="menu-item-label">Dashboard</span>
