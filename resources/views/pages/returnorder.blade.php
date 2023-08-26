@@ -19,7 +19,6 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                             <th scope="col">Amount</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Status Code</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -43,10 +42,9 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                                 <span class="badge badge-danger">  Cancled</span>
                                 @endif
                             </td>
-                            <td scope="col">{{ $row->status_code }}</td>
                             <td scope="col">
-                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-info">
-                                    Details
+                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-sm btn-danger">
+                                    Return
                                 </a>
                             </td>
                         </tr>

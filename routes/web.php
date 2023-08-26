@@ -25,6 +25,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\OrderTrackingController;
+use App\Http\Controllers\ReturnOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -231,3 +232,7 @@ Route::post('admin/update', [UserRoleController::class, 'updateAdmin'])->name('u
 // Site Settings
 Route::get('admin/site/setting', [SettingController::class, 'siteSetting'])->name('admin.site.setting');
 Route::post('admin/update/site/setting', [SettingController::class, 'updateSiteSetting'])->name('update.site.setting');
+
+
+// Return Order List
+Route::get('success/list', [ReturnOrderController::class, 'successOrderList'])->name('success.orderlist');
