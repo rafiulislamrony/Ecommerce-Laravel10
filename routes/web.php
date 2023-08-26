@@ -237,3 +237,7 @@ Route::post('admin/update/site/setting', [SettingController::class, 'updateSiteS
 // Return Order List
 Route::get('success/list', [ReturnOrderController::class, 'successOrderList'])->name('success.orderlist');
 Route::get('return/request/{id}', [ReturnOrderController::class, 'returnRequest'])->name('return.request');
+Route::get('/admin/return/request', [ReturnOrderController::class, 'adminReturnRequest'])->name('admin.return.request');
+Route::get('/admin/return/approve/{id}', [ReturnOrderController::class, 'adminReturnApprove'])->name('admin.return.approve');
+Route::get('/admin/all/return', [ReturnOrderController::class, 'adminAllReturn'])->name('admin.all.return');
+

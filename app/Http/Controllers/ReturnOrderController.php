@@ -44,8 +44,49 @@ class ReturnOrderController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function adminReturnRequest(){
+        try{
+           $orders = DB::table('orders')->where('return_order', 1)->get();
+            return view('admin.return.return_request', compact('orders'));
+        }catch(\Exception $e){
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
 
+    public function adminReturnApprove($id){
+        try{
+            DB::table('orders')->where('id', $id)->update(['return_order' => 2]);
+            $notification = [
+                'message' => 'Order Return Success.',
+                'alert-type' => 'success',
+            ];
+            return redirect()->back()->with($notification);
+        }catch(\Exception $e){
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
+    public function adminAllReturn(){
+        try{
+            $orders= DB::table('orders')->where('return_order', 2)->get();
+            return view('admin.return.all_return', compact('orders'));
+
+        }catch(\Exception $e){
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
+    }
 
 }

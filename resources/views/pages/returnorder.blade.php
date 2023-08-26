@@ -61,7 +61,6 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                                 @elseif ($row->return_order == 2)
                                 <span class="badge badge-info">Success</span>
                                 @endif
-
                             </td>
                         </tr>
                         @endforeach

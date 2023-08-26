@@ -186,13 +186,13 @@
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-                    <span class="menu-item-label">Return Order</span>
+                    <span class="menu-item-label">Return Request</span>
                     <i class="menu-item-arrow fa fa-angle-down"></i>
                 </div><!-- menu-item -->
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
-                <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Return User</a></li>
-                <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">All User</a></li>
+                <li class="nav-item"><a href="{{ route('admin.return.request') }}" class="nav-link">Return Request</a></li>
+                <li class="nav-item"><a href="{{ route('admin.all.return') }}" class="nav-link">All Return</a></li>
             </ul>
             @else
             @endif
