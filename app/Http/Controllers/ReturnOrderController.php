@@ -27,7 +27,22 @@ class ReturnOrderController extends Controller
             ];
             return redirect()->back()->with($notification);
         }
-
+    }
+    public function returnRequest($id){
+        try{
+            DB::table('orders')->where('id', $id)->update(['return_order' => 1]);
+            $notification = [
+                'message' => 'Order Return Request Done.',
+                'alert-type' => 'success',
+            ];
+            return redirect()->back()->with($notification);
+        }catch(\Exception $e){
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
     }
 
 

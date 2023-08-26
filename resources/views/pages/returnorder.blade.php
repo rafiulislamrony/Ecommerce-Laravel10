@@ -15,7 +15,7 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                     <thead>
                         <tr>
                             <th scope="col">Payment Type</th>
-                            <th scope="col">Payment Id</th>
+                            <th scope="col">Return</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
@@ -26,7 +26,15 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                         @foreach ($orders as $row)
                         <tr>
                             <td scope="col">{{ $row->payment_type }} </td>
-                            <td scope="col">{{ $row->payment_id }}</td>
+                            <td scope="col">
+                                @if($row->return_order == 0)
+                                <span class="badge badge-primary">No Request</span>
+                                @elseif ($row->return_order == 1)
+                                <span class="badge badge-info">Pending</span>
+                                @elseif ($row->return_order == 2)
+                                <span class="badge badge-success">Success</span>
+                                @endif
+                            </td>
                             <td scope="col">${{ $row->total }}</td>
                             <td scope="col">{{ $row->date }}</td>
                             <td scope="col">
@@ -39,13 +47,21 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                                 @elseif ($row->status == 3)
                                 <span class="badge badge-success">Delivered</span>
                                 @else
-                                <span class="badge badge-danger">  Cancled</span>
+                                <span class="badge badge-danger"> Cancled</span>
                                 @endif
                             </td>
                             <td scope="col">
-                                <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-sm btn-danger">
+                                @if($row->return_order == 0)
+                                <a href="{{ route('return.request', $row->id) }}" id="return"
+                                    class="btn btn-sm btn-danger">
                                     Return
                                 </a>
+                                @elseif ($row->return_order == 1)
+                                <span class="badge badge-info">Pending</span>
+                                @elseif ($row->return_order == 2)
+                                <span class="badge badge-info">Success</span>
+                                @endif
+
                             </td>
                         </tr>
                         @endforeach
@@ -115,7 +131,5 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
     </div>
 </div>
 
-
-<!-- Button trigger mo
 
 @endsection

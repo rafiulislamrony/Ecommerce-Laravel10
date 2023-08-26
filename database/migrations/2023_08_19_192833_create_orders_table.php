@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('year')->nullable();
             $table->string('status_code')->nullable();
+            $table->string('return_order')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -261,7 +261,7 @@ $setting = DB::table('sitesetting')->first();
                                         <li><a href="{{$setting->facebook}}"><i class="fab fa-facebook-f"></i></a></li>
                                         <li><a href="{{$setting->youtube}}"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="{{$setting->instagram}}"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="{{$setting->twitter}}"><i class="fab fa-google"></i></a></li> 
+                                        <li><a href="{{$setting->twitter}}"><i class="fab fa-google"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -434,8 +434,28 @@ $setting = DB::table('sitesetting')->first();
                 $('#catlist').toggleClass('active');
             });
         });
-
     </script>
+
+<script>
+    $(document).on("click", "#return", function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+           swal({
+             title: "Are you Want to Return?",
+             text: "Once Return, This will return your money!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+                  window.location.href = link;
+             } else {
+               swal("Cancel!");
+             }
+           });
+       });
+</script>
 
 
 </body>

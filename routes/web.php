@@ -236,3 +236,4 @@ Route::post('admin/update/site/setting', [SettingController::class, 'updateSiteS
 
 // Return Order List
 Route::get('success/list', [ReturnOrderController::class, 'successOrderList'])->name('success.orderlist');
+Route::get('return/request/{id}', [ReturnOrderController::class, 'returnRequest'])->name('return.request');
