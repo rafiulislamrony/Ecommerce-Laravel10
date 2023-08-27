@@ -27,6 +27,9 @@ use App\Http\Controllers\SeoController;
 use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\ReturnOrderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GoogleController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +50,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+// Sosalite Route
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -251,6 +260,7 @@ Route::post('contact/form', [ContactController::class, 'contactForm'])->name('co
 Route::get('admin/all/message', [ContactController::class, 'allMessage'])->name('all.message');
 Route::get('admin/view/message/{id}', [ContactController::class, 'ViewMessage'])->name('admin.view.message');
 
-
 // Search Route
 Route::post('product/search', [CartController::class, 'search'])->name('product.search');
+
+

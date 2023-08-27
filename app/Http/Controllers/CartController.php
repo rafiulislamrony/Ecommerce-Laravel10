@@ -194,10 +194,20 @@ class CartController extends Controller
     }
 
     public function search(Request $request){
-        $item = $request->search;
-        $products = DB::table('products')->where('product_name', 'LIKE', "%$item%")->paginate(20);
-        return view('pages.search', compact('products'));
+
+        try {
+            $item = $request->search;
+            $products = DB::table('products')->where('product_name', 'LIKE', "%$item%")->paginate(20);
+            return view('pages.search', compact('products'));
+
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Error: ' . $e->getMessage(),
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
     }
-    
+
 
 }

@@ -22,6 +22,7 @@ use Illuminate\Notifications\Notifiable;
         'name',
         'email',
         'password',
+        'google_id' 
     ];
 
     /**
