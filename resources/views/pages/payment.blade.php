@@ -94,8 +94,9 @@ $vat = $settings->vat;
                                     <div class="form-group">
                                         <ul class="logos_list">
                                             <li>
+
                                                 <div class="form-check gateway_check" id="stripe">
-                                                    <input type="radio" id="stripe1" name="payment" value="stripe">
+                                                    <input type="radio" id="stripe1" name="payment" value="stripe" class="payment-option">
                                                     <label class="form-check-label pl-1" for="stripe1">
                                                         <img src="{{ asset('frontend/images/mastercard.png') }}"
                                                             style="width:80px" alt="">
@@ -103,26 +104,8 @@ $vat = $settings->vat;
                                                 </div>
                                             </li>
                                             <li>
-                                                <div class="form-check gateway_check">
-                                                    <input type="radio" id="paypal" name="payment" value="paypal">
-                                                    <label class="form-check-label pl-1" for="paypal">
-                                                        <img src="{{ asset('frontend/images/paypal.png') }}"
-                                                            style="width:100px" alt="">
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check gateway_check">
-                                                    <input type="radio" id="ideal" name="payment" value="ideal">
-                                                    <label class="form-check-label pl-1" for="ideal">
-                                                        <img src="{{ asset('frontend/images/mollie.png') }}"
-                                                            style="width:100px" alt="">
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check gateway_check">
-                                                    <input type="radio" id="cash" name="payment" value="cash">
+                                                <div class="form-check cashondelivery">
+                                                    <input type="radio" id="cash" name="payment" value="oncash">
                                                     <label class="form-check-label pl-1" for="cash">
                                                         <img src="{{ asset('frontend/images/cash.png') }}"
                                                             style="width:100px" alt="">
@@ -134,8 +117,7 @@ $vat = $settings->vat;
                                 </div>
                             </div>
 
-                            <div class="stripeform d-none ">
-
+                            <div class="stripeform d-none">
                                 <div class='form-row row'>
                                     <div class='col-12 form-group required'>
                                         <label class='control-label'>Name on Card</label>
@@ -166,14 +148,6 @@ $vat = $settings->vat;
                                             type='text'>
                                     </div>
                                 </div>
-
-                                {{-- <div class='form-row row'>
-                                    <div class='col-md-12 error form-group hide'>
-                                        <div class='alert-danger alert'>Please correct the errors and try
-                                            again.</div>
-                                    </div>
-                                </div> --}}
-
                             </div>
 
                             <div class="d-flex justify-content-between paddin-top-1x mt-4">
@@ -291,9 +265,10 @@ $vat = $settings->vat;
 
 <script>
     $(document).on('click','.gateway_check',function(){
-        $('.gateway_check').removeClass('active');
-        $(this).addClass('active');
         $(".stripeform").removeClass("d-none");
+    })
+    $(document).on('click','.cashondelivery',function(){
+        $(".stripeform").addClass("d-none");
     })
 </script>
 
@@ -364,6 +339,5 @@ $vat = $settings->vat;
 
 });
 </script>
-
 
 @endsection

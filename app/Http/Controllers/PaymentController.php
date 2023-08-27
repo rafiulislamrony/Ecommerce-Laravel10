@@ -30,8 +30,9 @@ class PaymentController extends Controller
 
     public function payment(Request $request)
     {
-         try {
+        //  try {
             if ($request->payment == 'stripe') {
+
                 // Get settings Data
                 $settings = DB::table('settings')->first();
                 $shipping_charge = $settings->shipping_charge;
@@ -52,7 +53,9 @@ class PaymentController extends Controller
                 $totalAmount = (int) Session::get('totalamount')['amount'];
 
                 // Create Stripe charge
-                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                $stripeSecretKey = env('STRIPE_SECRET');
+                Stripe\Stripe::setApiKey($stripeSecretKey);
                 $charge = Stripe\Charge::create([
                     "amount" => $totalAmount * 100,
                     "currency" => "usd",
@@ -125,20 +128,88 @@ class PaymentController extends Controller
                     'alert-type' => 'success',
                 ];
                 return redirect()->to('/')->with($notification);
-            } elseif ($request->payment == 'paypal') {
-                // PayPal handling code
-            } elseif ($request->payment == 'oncash') {
-                // On Cash handling code
-            } else {
-                echo "Cash On Delivery";
+            }else{
+                $settings = DB::table('settings')->first();
+                $shipping_charge = $settings->shipping_charge;
+                $vat = $settings->vat;
+
+                // Calculate cart total
+                $cartTotal = 0;
+                $cart = Session::get('cart') ?: [];
+
+                foreach ($cart as $product) {
+                    $cartTotal += (double) $product['price'] * (int) $product['qty'];
+                }
+                // Calculate subtotal and total amount
+                $subtotal = $cartTotal - (Session::has('coupon') ? Session::get('coupon')['discount'] : 0);
+                $totalAmount = (int) Session::get('totalamount')['amount'];
+
+                // Store order data
+                $user = Auth::id();
+                $data = array();
+                $data['user_id'] =  $user;
+                $data['payment_type'] = $request->payment;
+                $data['subtotal'] =  $subtotal;
+                $data['shipping'] = $shipping_charge;
+                $data['vat'] = $vat;
+                $data['total'] = $totalAmount;
+                $data['status'] = 0;
+                $data['date'] = date('d-m-y');
+                $data['month'] = date('F');
+                $data['year'] = date('Y');
+                $data['status_code'] = mt_rand(100000, 999999);
+
+                $order_id = DB::table('orders')->insertGetId($data);
+
+                // Store shipping information
+                $shipping = [
+                    'order_id' => $order_id,
+                    'ship_name' => $request->name,
+                    'ship_phone' => $request->phone,
+                    'ship_email' => $request->email,
+                    'ship_address' => $request->address,
+                    'ship_city' => $request->city,
+                    'ship_zip' => $request->zip,
+                ];
+                DB::table('shipping')->insert($shipping);
+
+                // Store order details for each product
+                $details = [];
+                foreach ($cart as $row) {
+                    $details[] = [
+                        'order_id' => $order_id,
+                        'product_id' => $row['id'],
+                        'product_name' => $row['name'],
+                        'color' => $row['color'],
+                        'size' => $row['size'],
+                        'quantity' => $row['qty'],
+                        'singpleprice' => $row['price'],
+                        'totalprice' => $row['qty'] * $row['price'],
+                    ];
+                }
+                DB::table('orders_details')->insert($details);
+
+                // Clear session data
+                Session::forget('cart');
+                if (Session::has('coupon')) {
+                    Session::forget('coupon');
+                }
+                // Success notification and redirect
+                $notification = [
+                    'message' => 'Cash On Dalivery Successfully.',
+                    'alert-type' => 'success',
+                ];
+                return redirect()->to('/')->with($notification);
             }
-        } catch (\Exception $e) {
-            // Handle exception
-            $notification = [
-                'message' => 'An error occurred while processing your payment. try latter.',
-                'alert-type' => 'error',
-            ];
-            return redirect()->back()->with($notification);
-        }
+        // } catch (\Exception $e) {
+        //     // Handle exception
+        //     $notification = [
+        //         'message' => 'An error occurred while processing your payment. try latter.',
+        //         'alert-type' => 'error',
+        //     ];
+        //     return redirect()->back()->with($notification);
+        // }
     }
+
+
 }
