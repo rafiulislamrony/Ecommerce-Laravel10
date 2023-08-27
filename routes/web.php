@@ -26,6 +26,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\ReturnOrderController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -244,3 +245,5 @@ Route::get('/admin/all/return', [ReturnOrderController::class, 'adminAllReturn']
 // Order stock route
 Route::get('admin/product/stock', [UserRoleController::class, 'productStock'])->name('admin.product.stock');
 
+// Contact Page Route
+Route::get('contact/page', [ContactController::class, 'contact'])->name('contact.page');
