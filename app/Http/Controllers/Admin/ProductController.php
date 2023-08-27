@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Unique;
-use Image;
+use Nette\Utils\Image;
 
 class ProductController extends Controller
 {
@@ -285,11 +285,11 @@ class ProductController extends Controller
     }
 
     public function Allcategory($id)
-    {
+    { 
         $allcategory = DB::table('products')->where('category_id', $id)->paginate(8);
         $totalCount = DB::table('products')->where('category_id', $id)->count();
         $catname = DB::table('categories')->where('id', $id)->first();
-        
+
         return view('pages.category_products', compact('allcategory', 'totalCount', 'catname'));
     }
     public function ProductByBrand($id)

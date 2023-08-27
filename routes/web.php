@@ -186,9 +186,13 @@ Route::get('blog/single/{id}', [BlogController::class, 'BlogSingle'])->name('blo
 Route::get('payment/page', [PaymentController::class, 'PaymentPage'])->name('payment.step');
 Route::post('payment/process', [PaymentController::class, 'payment'])->name('payment.process');
 
-// Product  Page
+// Product Page
+
 Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
 Route::get('allcategory/{id}', [ProductController::class, 'Allcategory'])->name('allcategory');
+
+
+
 Route::get('brand/product/{id}', [ProductController::class, 'ProductByBrand'])->name('brand.product');
 
 // Admin Order Route
