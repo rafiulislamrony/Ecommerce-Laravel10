@@ -247,3 +247,6 @@ Route::get('admin/product/stock', [UserRoleController::class, 'productStock'])->
 
 // Contact Page Route
 Route::get('contact/page', [ContactController::class, 'contact'])->name('contact.page');
+Route::post('contact/form', [ContactController::class, 'contactForm'])->name('contact.form');
+Route::get('admin/all/message', [ContactController::class, 'allMessage'])->name('all.message');
+Route::get('admin/view/message/{id}', [ContactController::class, 'ViewMessage'])->name('admin.view.message');
