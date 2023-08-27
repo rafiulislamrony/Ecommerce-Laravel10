@@ -117,7 +117,7 @@ class CartController extends Controller
             ->where('products.id', $id)
             ->first();
 
- 
+
         $color = $product->product_color;
         $product_color = $color ? explode(',', $color) : [];
 
@@ -193,7 +193,11 @@ class CartController extends Controller
         return response()->json($content);
     }
 
-
-
+    public function search(Request $request){
+        $item = $request->search;
+        $products = DB::table('products')->where('product_name', 'LIKE', "%$item%")->paginate(20);
+        return view('pages.search', compact('products'));
+    }
+    
 
 }

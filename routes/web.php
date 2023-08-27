@@ -250,3 +250,7 @@ Route::get('contact/page', [ContactController::class, 'contact'])->name('contact
 Route::post('contact/form', [ContactController::class, 'contactForm'])->name('contact.form');
 Route::get('admin/all/message', [ContactController::class, 'allMessage'])->name('all.message');
 Route::get('admin/view/message/{id}', [ContactController::class, 'ViewMessage'])->name('admin.view.message');
+
+
+// Search Route
+Route::post('product/search', [CartController::class, 'search'])->name('product.search');

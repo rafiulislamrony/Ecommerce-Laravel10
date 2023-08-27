@@ -68,7 +68,7 @@ $setting = DB::table('sitesetting')->first();
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
-                                            <a href="{{ route('tracking') }}" >Order Tracking </a>
+                                            <a href="{{ route('tracking') }}">Order Tracking </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -146,14 +146,15 @@ $setting = DB::table('sitesetting')->first();
                             <div class="header_search">
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
-                                        <form action="#" class="header_search_form clearfix">
-                                            <input type="search" required="required" class="header_search_input"
-                                                placeholder="Search for products...">
-                                            <div class="custom_dropdown">
+                                        <form action="{{ route('product.search') }}" method="post" class="header_search_form clearfix">
+                                            @csrf
+                                            <input type="search" name="search" required="required" class="header_search_input" placeholder="Search for products...">
 
+                                            <div class="custom_dropdown">
                                                 <div class="custom_dropdown_list">
-                                                    <span class="custom_dropdown_placeholder clc" id="catall">All
-                                                        Categories</span>
+                                                    <span class="custom_dropdown_placeholder clc" id="catall">
+                                                        All Categories
+                                                    </span>
                                                     <i class="fas fa-chevron-down"></i>
                                                     <ul class="custom_list clc" id="catlist">
                                                         @foreach ($category as $cat)
@@ -161,11 +162,11 @@ $setting = DB::table('sitesetting')->first();
                                                         @endforeach
                                                     </ul>
                                                 </div>
-
                                             </div>
-                                            <button type="submit" class="header_search_button trans_300"
-                                                value="Submit"><img src="{{ asset('frontend/images/search.png')}}"
-                                                    alt=""></button>
+
+                                            <button type="submit" class="header_search_button trans_300" value="Submit">
+                                                <img src="{{ asset('frontend/images/search.png')}}" alt="">
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -436,8 +437,8 @@ $setting = DB::table('sitesetting')->first();
         });
     </script>
 
-<script>
-    $(document).on("click", "#return", function(e){
+    <script>
+        $(document).on("click", "#return", function(e){
         e.preventDefault();
         var link = $(this).attr("href");
            swal({
@@ -455,7 +456,7 @@ $setting = DB::table('sitesetting')->first();
              }
            });
        });
-</script>
+    </script>
 
 
 </body>
