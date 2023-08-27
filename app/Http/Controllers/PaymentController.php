@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Session;
 use Stripe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvoiceMail;
 
 class PaymentController extends Controller
 {
@@ -28,12 +30,14 @@ class PaymentController extends Controller
 
     public function payment(Request $request)
     {
-        try {
+         try {
             if ($request->payment == 'stripe') {
                 // Get settings Data
                 $settings = DB::table('settings')->first();
                 $shipping_charge = $settings->shipping_charge;
                 $vat = $settings->vat;
+
+                $email = Auth::user()->email;
 
                 // Calculate cart total
                 $cartTotal = 0;
@@ -46,6 +50,7 @@ class PaymentController extends Controller
                 // Calculate subtotal and total amount
                 $subtotal = $cartTotal - (Session::has('coupon') ? Session::get('coupon')['discount'] : 0);
                 $totalAmount = (int) Session::get('totalamount')['amount'];
+
                 // Create Stripe charge
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $charge = Stripe\Charge::create([
@@ -55,25 +60,32 @@ class PaymentController extends Controller
                     "description" => "BlackBox Ecommerce.",
                     "metadata" => ['order_id' => uniqid()],
                 ]);
+
                 // Store order data
                 $user = Auth::id();
-                $order_id = DB::table('orders')->insertGetId([
-                    'user_id' => $user,
-                    'payment_type' => $request->payment,
-                    'payment_id' => $charge->payment_method,
-                    'paying_amount' => number_format($charge->amount / 100, 2, '.', ','),
-                    'blnc_transection' => $charge->balance_transaction,
-                    'stripe_order_id' => $charge->metadata->order_id,
-                    'subtotal' => $subtotal,
-                    'shipping' => $shipping_charge,
-                    'vat' => $vat,
-                    'total' => $totalAmount,
-                    'status' => 0,
-                    'date' => date('d-m-y'),
-                    'month' => date('F'),
-                    'year' => date('Y'),
-                    'status_code' => mt_rand(100000, 999999),
-                ]);
+                $data = array();
+                $data['user_id'] =  $user;
+                $data['payment_type'] = $request->payment;
+                $data['payment_id'] =  $charge->payment_method;
+                $data['paying_amount'] = number_format($charge->amount / 100, 2, '.', ',');
+                $data['blnc_transection'] = $charge->balance_transaction;
+                $data['stripe_order_id'] = $charge->metadata->order_id;
+                $data['subtotal'] =  $subtotal;
+                $data['shipping'] = $shipping_charge;
+                $data['vat'] = $vat;
+                $data['total'] = $totalAmount;
+                $data['status'] = 0;
+                $data['date'] = date('d-m-y');
+                $data['month'] = date('F');
+                $data['year'] = date('Y');
+                $data['status_code'] = mt_rand(100000, 999999);
+
+                $order_id = DB::table('orders')->insertGetId($data);
+
+                // Mail Send to User for Invoice
+                Mail::to($email)->send(new InvoiceMail($data));
+
+
                 // Store shipping information
                 $shipping = [
                     'order_id' => $order_id,
@@ -85,6 +97,7 @@ class PaymentController extends Controller
                     'ship_zip' => $request->zip,
                 ];
                 DB::table('shipping')->insert($shipping);
+
                 // Store order details for each product
                 $details = [];
                 foreach ($cart as $row) {
@@ -100,6 +113,7 @@ class PaymentController extends Controller
                     ];
                 }
                 DB::table('orders_details')->insert($details);
+
                 // Clear session data
                 Session::forget('cart');
                 if (Session::has('coupon')) {
@@ -126,5 +140,5 @@ class PaymentController extends Controller
             ];
             return redirect()->back()->with($notification);
         }
-    } 
+    }
 }
