@@ -285,13 +285,22 @@ class ProductController extends Controller
     }
 
     public function Allcategory($id)
-    { 
+    {
         $allcategory = DB::table('products')->where('category_id', $id)->paginate(8);
         $totalCount = DB::table('products')->where('category_id', $id)->count();
         $catname = DB::table('categories')->where('id', $id)->first();
 
         return view('pages.category_products', compact('allcategory', 'totalCount', 'catname'));
     }
+
+    public function allProducts()
+    {
+        $products = DB::table('products')->paginate(8);
+        $totalCount = DB::table('products')->count();
+        return view('pages.shop', compact('products', 'totalCount'));
+    }
+
+
     public function ProductByBrand($id)
     {
         $brandproduct = DB::table('products')->where('brand_id', $id)->paginate(8);

@@ -190,6 +190,7 @@ Route::post('payment/process', [PaymentController::class, 'payment'])->name('pay
 
 Route::get('products/{id}', [ProductController::class, 'ProductsView'])->name('products.page');
 Route::get('allcategory/{id}', [ProductController::class, 'Allcategory'])->name('allcategory');
+Route::get('all/products', [ProductController::class, 'allProducts'])->name('all.products');
 
 
 

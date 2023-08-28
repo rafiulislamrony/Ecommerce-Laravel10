@@ -108,9 +108,9 @@ $setting = DB::table('sitesetting')->first();
                                                 Profile<i class="fas fa-chevron-down"></i>
                                             </a>
                                             <ul>
+                                                <li><a href="{{ route('dashboard') }}">Profile</a></li>
                                                 <li><a href="{{  route('user.wishlist') }}">Wishlist</a></li>
                                                 <li><a href="{{  route('user.checkout') }}">Checkout </a></li>
-                                                <li><a href="#">Others</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -187,7 +187,7 @@ $setting = DB::table('sitesetting')->first();
                                     <div class="wishlist_icon"><img src="{{ asset('frontend/images/heart.png')}}"
                                             alt=""></div>
                                     <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                        <div class="wishlist_text"><a href="{{  route('user.wishlist') }}">Wishlist</a></div>
                                         <div class="wishlist_count" id="wishlist_count"> {{ count($wishlist) }} </div>
                                     </div>
 
