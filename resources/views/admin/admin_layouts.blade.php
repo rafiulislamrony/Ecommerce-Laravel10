@@ -167,6 +167,7 @@
             @else
             @endif
 
+
             @if(Auth::user()->role == 1)
             <a href="#" class="sl-menu-link">
                 <div class="sl-menu-item">
@@ -252,6 +253,7 @@
             </a><!-- sl-menu-link -->
             <ul class="sl-menu-sub nav flex-column">
                 <li class="nav-item"><a href="{{ route('admin.site.setting') }}" class="nav-link">Site Setting </a></li>
+                <li class="nav-item"><a href="{{ route('footer.links') }}" class="nav-link">Footer Links</a></li>
             </ul>
             @else
             @endif

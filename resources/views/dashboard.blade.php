@@ -109,7 +109,7 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
                                 placeholder="Enter your email address">
                             <button class="newsletter_button" type="submit">Subscribe</button>
                         </form>
-                        <div class="newsletter_unsubscribe_link"><a href="#">Unsubscribe</a></div>
+                       
                     </div>
                 </div>
             </div>

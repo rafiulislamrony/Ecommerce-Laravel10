@@ -248,6 +248,13 @@ Route::post('admin/update', [UserRoleController::class, 'updateAdmin'])->name('u
 Route::get('admin/site/setting', [SettingController::class, 'siteSetting'])->name('admin.site.setting');
 Route::post('admin/update/site/setting', [SettingController::class, 'updateSiteSetting'])->name('update.site.setting');
 
+Route::get('admin/footer/links', [SettingController::class, 'footerLinks'])->name('footer.links');
+Route::post('admin/footer/links/store', [SettingController::class, 'footerLinksStore'])->name('footer.links.store');
+Route::get('admin/footer/links/edit/{id}', [SettingController::class, 'footerLinksEdit'])->name('links.edit');
+Route::post('admin/footer/links/update', [SettingController::class, 'footerLinksUpdate'])->name('update.flinks');
+Route::get('admin/footer/links/delete/{id}', [SettingController::class, 'footerLinksDelete'])->name('links.delete');
+
+
 
 // Return Order List
 Route::get('success/list', [ReturnOrderController::class, 'successOrderList'])->name('success.orderlist');
