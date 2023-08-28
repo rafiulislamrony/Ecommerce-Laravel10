@@ -90,6 +90,7 @@
                                 </label>
                             </div>
                         </div>
+
                     </div><!-- row -->
                     <div class="form-layout-footer">
                         <button type="submit" class="btn btn-info mg-r-5">Submit</button>

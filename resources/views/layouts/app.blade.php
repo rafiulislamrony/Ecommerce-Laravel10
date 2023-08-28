@@ -39,16 +39,8 @@ $setting = DB::table('sitesetting')->first();
 </head>
 
 <body>
-
-
     <div class="super_container">
-
-        <!-- Header -->
-
         <header class="header">
-
-            <!-- Top Bar -->
-
             <div class="top_bar">
                 <div class="container">
                     <div class="row">
@@ -127,17 +119,20 @@ $setting = DB::table('sitesetting')->first();
             <div class="header_main">
                 <div class="container">
                     <div class="row">
-
+                        @php
+                        $siteSetting = DB::table('sitesetting')->first();
+                        @endphp
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
                                 <div class="logo">
                                     <a href="{{ url('/') }}">
-                                        <img src="{{ asset('frontend/images/logo.png')}}" alt="">
+                                        <img src="{{ asset($siteSetting->sitelogo)}}" alt="">
                                     </a>
                                 </div>
                             </div>
                         </div>
+
                         @php
                         $category = DB::table('categories')->get();
                         @endphp
@@ -325,22 +320,14 @@ $setting = DB::table('sitesetting')->first();
 
                             <div
                                 class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-                                <div class="copyright_content">
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                                        aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                        target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                               <div class="copyright_content">
+                                    {{ $siteSetting->copyright }}
                                 </div>
                                 <div class="logos ml-sm-auto">
                                     <ul class="logos_list">
                                         <li><a href="#"><img src="{{ asset('frontend/images/logos_1.png')}}" alt=""></a>
                                         </li>
                                         <li><a href="#"><img src="{{ asset('frontend/images/logos_2.png')}}" alt=""></a>
-                                        </li>
-                                        <li><a href="#"><img src="{{ asset('frontend/images/logos_3.png')}}" alt=""></a>
                                         </li>
                                         <li><a href="#"><img src="{{ asset('frontend/images/logos_4.png')}}" alt=""></a>
                                         </li>

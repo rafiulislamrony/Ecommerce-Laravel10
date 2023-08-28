@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sitesetting', function (Blueprint $table) {
             $table->id('id');
+            $table->string('sitelogo');
+            $table->string('copyright'); 
             $table->string('phone_one')->nullable();
             $table->string('phone_two')->nullable();
             $table->string('email')->nullable();
@@ -21,7 +23,6 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('twitter')->nullable();
             $table->timestamps();
         });
     }

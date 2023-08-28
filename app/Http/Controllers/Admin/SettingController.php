@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Nette\Utils\Image;
 
 class SettingController extends Controller
 {
@@ -32,6 +33,9 @@ class SettingController extends Controller
     public function updateSiteSetting(Request $request)
     {
         try {
+
+            $oldLogo = $request->oldlogo;
+            $newLogo = $request->file('newlogo');
             $id = $request->id;
 
             $data = array();
@@ -44,15 +48,33 @@ class SettingController extends Controller
             $data['youtube'] = $request->youtube;
             $data['instagram'] = $request->instagram;
             $data['twitter'] = $request->twitter;
+            $data['copyright'] = $request->copyright;
 
-            DB::table('sitesetting')->where('id',$id)->update($data);
+            if ($newLogo) {
+                unlink($oldLogo);
 
-            $notification = [
-                'message' => 'Site Setting Updated Successfully.',
-                'alert-type' => 'success',
-            ];
-            return redirect()->back()->with($notification);
+                $nameMake = hexdec(uniqid()) . '.' . strtolower($newLogo->getClientOriginalExtension());
+                $upload_path = 'media/logo/';
+                $image_url = $upload_path . $nameMake;
+                $newLogo->move($upload_path, $nameMake);
+                $data['sitelogo'] = $image_url;
 
+                DB::table('sitesetting')->where('id',$id)->update($data);
+
+                $notification = [
+                    'message' => 'Site Setting Update With Logo Successfully.',
+                    'alert-type' => 'success',
+                ];
+                return redirect()->back()->with($notification);
+            }else{
+                $data['sitelogo'] = $oldLogo;
+                $notification = [
+                    'message' => 'Site Setting Updated Without Logo Successfully.',
+                    'alert-type' => 'success',
+                ];
+                DB::table('sitesetting')->where('id',$id)->update($data);
+                return redirect()->back()->with($notification);
+            }
         } catch (\Exception $e) {
             $notification = [
                 'message' => 'Error: ' . $e->getMessage(),
@@ -61,5 +83,5 @@ class SettingController extends Controller
             return redirect()->back()->with($notification);
         }
     }
- 
+
 }
