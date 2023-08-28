@@ -84,7 +84,7 @@
                     <li class="list-group-item"> Subtotal: {{ session('track')->	subtotal }}</li>
                     <li class="list-group-item"> Shipping: {{ session('track')->shipping }}</li>
                     <li class="list-group-item"> Total: {{ session('track')->total }}</li>
-                    <li class="list-group-item"> Date: {{ session('track')->date }}</li> 
+                    <li class="list-group-item"> Date: {{ session('track')->date }}</li>
                 </ul>
 
                 @endif
@@ -93,9 +93,6 @@
 
     </div>
 </div>
-
-
-
 
 <!-- Newsletter -->
 <div class="newsletter">
@@ -126,5 +123,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

@@ -88,7 +88,7 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
 </div>
 
 <!-- Newsletter -->
-<div class="newsletter mt-5">
+<div class="newsletter">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -117,7 +117,5 @@ $orders = DB::table('orders')->where('user_id', Auth::id())->orderBy('id','DESC'
     </div>
 </div>
 
-
-<!-- Button trigger mo
 
 @endsection

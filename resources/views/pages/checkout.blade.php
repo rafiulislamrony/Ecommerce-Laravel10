@@ -189,8 +189,7 @@ $vat = $settings->vat;
             </div>
         </div>
     </div>
-</div> 
-
+</div>
 
 
 @endsection

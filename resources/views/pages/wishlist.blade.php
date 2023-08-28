@@ -26,6 +26,7 @@
                                 @php
                                 $i = 1;
                                 @endphp
+
                                 @foreach ($product as $row)
                                 <tr class="wishlistRowremove{{$row->id}}">
                                     <th scope="row">{{ $i++ }}</th>
@@ -51,7 +52,11 @@
                                         {{ number_format($row->discount_price , 2, '.', ',') }}
                                         @endif
                                     <td>
-                                        <a href="" class="btn btn-sm btn-primary"> Add to Cart</a>
+                                        <button class="btn btn-primary addcart" data-id="{{ $row->id }}"
+                                            data-price="{{ $row->discount_price === NULL ? $row->selling_price : $row->discount_price }}"
+                                            data-qty="1">
+                                            Add To Cart
+                                        </button>
                                     </td>
                                     <td>
                                         <button class="removeWishlist text-danger" data-id="{{ $row->id }}"
@@ -60,6 +65,7 @@
                                         </button>
                                     </td>
                                 </tr>
+
                                 @endforeach
                                 @if(count($product) == 0)
                                 <tr>
@@ -108,8 +114,10 @@
     </div>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
      $('.removeWishlist').on('click', function(){
@@ -161,6 +169,63 @@
      });
    });
 
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+     $('.addcart').on('click', function(){
+        var id = $(this).data('id');
+        var price = parseFloat($(this).data('price'));
+        var qty = parseInt($(this).data('qty'));
+        if (id) {
+            $.ajax({
+                url: "{{ url('/add/to/cart/') }}/"+id,
+                type:"GET",
+                datType:"json",
+                success:function(data){
+
+                    if(data.success){
+                        let oldCart = parseInt($('#cart_count').text());
+                         let newCart = oldCart + 1;
+                        $('#cart_count').text(newCart);
+
+                        let oldPrice = parseFloat($('#cart_price').text());
+                        let newPrice = oldPrice + (price * qty);
+                        $('#cart_price').text(newPrice.toFixed(2));
+                    }
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                        icon: 'success',
+                        title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                        icon: 'error',
+                        title: data.error
+                        })
+                    }
+
+                }
+            });
+        }else{
+            alert('danger');
+        }
+     });
+   });
 </script>
 
 

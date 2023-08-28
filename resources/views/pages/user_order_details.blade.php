@@ -151,7 +151,7 @@
 </div>
 
 <!-- Newsletter -->
-<div class="newsletter mt-5">
+<div class="newsletter">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -179,8 +179,5 @@
         </div>
     </div>
 </div>
-
-
-
 
 @endsection

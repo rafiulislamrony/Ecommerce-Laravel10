@@ -663,7 +663,7 @@ $hotBest = DB::table('products')
         </div>
     </div>
 </div>
- 
+
 @php
 $buyGet = DB::table('products')
 ->join('brands','products.brand_id', 'brands.id')
@@ -990,8 +990,7 @@ $brand = DB::table('brands')->get();
         })
     }
 </script>
-
-
+ 
 <script type="text/javascript">
     $(document).ready(function(){
      $('.addcart').on('click', function(){
